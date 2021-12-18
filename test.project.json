@@ -1,0 +1,33 @@
+{
+	"name": "Fission test",
+	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Fission": {
+				"$path": "src"
+			},
+			"Tests": {
+				"$className": "Folder",
+				"Benchmark": {
+					"$path": "benchmark"
+				},
+				"Test": {
+					"$path": "test"
+				}
+			}
+		},
+
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"$path": "test-runner",
+				"TestEZ": {
+					"$path": "vendor/testez/src"
+				}
+			}
+		}
+	}
+}

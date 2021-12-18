@@ -1,0 +1,5572 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Workspace" referent="RBX78AF504FA0384D2AA98B4552CBC80A29">
+		<Properties>
+			<bool name="AllowThirdPartySales">false</bool>
+			<token name="AnimationWeightedBlendFix">0</token>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<token name="ClientAnimatorThrottling">0</token>
+			<string name="CollisionGroups">Default^0^-1</string>
+			<Ref name="CurrentCamera">RBX5C1C71B4682D440EBAE0D51DF421F2D1</Ref>
+			<double name="DistributedGameTime">0</double>
+			<bool name="ExplicitAutoJoints">true</bool>
+			<float name="FallenPartsDestroyHeight">-500</float>
+			<float name="Gravity">196.199997</float>
+			<token name="HumanoidOnlySetCollisionsOnStateChange">0</token>
+			<token name="InterpolationThrottling">0</token>
+			<token name="LevelOfDetail">0</token>
+			<token name="MeshPartHeadsAndAccessories">0</token>
+			<CoordinateFrame name="ModelMeshCFrame">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<SharedString name="ModelMeshData">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
+			<Vector3 name="ModelMeshSize">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+			</Vector3>
+			<string name="Name">Workspace</string>
+			<bool name="NeedsPivotMigration">false</bool>
+			<token name="PhysicsSteppingMethod">0</token>
+			<Ref name="PrimaryPart">null</Ref>
+			<token name="Retargeting">0</token>
+			<token name="SignalBehavior">0</token>
+			<int64 name="SourceAssetId">-1</int64>
+			<token name="StreamOutBehavior">0</token>
+			<bool name="StreamingEnabled">false</bool>
+			<int name="StreamingMinRadius">64</int>
+			<token name="StreamingPauseMode">0</token>
+			<int name="StreamingTargetRadius">1024</int>
+			<BinaryString name="Tags"></BinaryString>
+			<bool name="TerrainWeldsFixed">true</bool>
+			<bool name="TouchesUseCollisionGroups">false</bool>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100019068</UniqueId>
+			<OptionalCoordinateFrame name="WorldPivotData">
+				<CFrame>
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CFrame>
+			</OptionalCoordinateFrame>
+		</Properties>
+		<Item class="Camera" referent="RBX5C1C71B4682D440EBAE0D51DF421F2D1">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<CoordinateFrame name="CFrame">
+					<X>-64.2828903</X>
+					<Y>24.9173908</Y>
+					<Z>70.1990128</Z>
+					<R00>0.904820919</R00>
+					<R01>0.259038121</R01>
+					<R02>-0.337932408</R02>
+					<R10>-1.49011612e-08</R10>
+					<R11>0.793655515</R11>
+					<R12>0.608367383</R12>
+					<R20>0.425792277</R20>
+					<R21>-0.550463557</R21>
+					<R22>0.718116164</R22>
+				</CoordinateFrame>
+				<Ref name="CameraSubject">null</Ref>
+				<token name="CameraType">0</token>
+				<float name="FieldOfView">70</float>
+				<token name="FieldOfViewMode">0</token>
+				<CoordinateFrame name="Focus">
+					<X>-53.4637718</X>
+					<Y>5.44012594</Y>
+					<Z>47.2080727</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="HeadLocked">true</bool>
+				<float name="HeadScale">1</float>
+				<string name="Name">Camera</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a503</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="Terrain" referent="RBX68DFF201BF7E4A859D868249AD0C11ED">
+			<Properties>
+				<token name="AcquisitionMethod">0</token>
+				<bool name="Anchored">true</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">4</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<bool name="Decoration">false</bool>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">true</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<BinaryString name="MaterialColors"><![CDATA[AAAAAAAAan8/P39rf2Y/ilY+j35fi21PZmxvZbDqw8faiVpHOi4kHh4lZlw76JxKc3trhHta
+gcLgc4RKxr21zq2UlJSM]]></BinaryString>
+				<string name="Name">Terrain</string>
+				<BinaryString name="PhysicsGrid">AgMAAAAAAAAAAAAAAAA=</BinaryString>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<BinaryString name="SmoothGrid">AQU=</BinaryString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">3</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a588</UniqueId>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Color3 name="WaterColor">
+					<R>0.0500000007</R>
+					<G>0.330000013</G>
+					<B>0.360000014</B>
+				</Color3>
+				<float name="WaterReflectance">1</float>
+				<float name="WaterTransparency">0.300000012</float>
+				<float name="WaterWaveSize">0.150000006</float>
+				<float name="WaterWaveSpeed">10</float>
+				<Vector3 name="size">
+					<X>2044</X>
+					<Y>252</Y>
+					<Z>2044</Z>
+				</Vector3>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX6F6BD22F04944C2C99E91C7FA1F86A33">
+			<Properties>
+				<bool name="Anchored">true</bool>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>-5</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
+				<bool name="CastShadow">true</bool>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="Name">Part</string>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<UniqueId name="UniqueId">52af2c502b6f79fe01cd05320008263a</UniqueId>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<token name="formFactorRaw">1</token>
+				<token name="shape">1</token>
+				<Vector3 name="size">
+					<X>10</X>
+					<Y>10</Y>
+					<Z>10</Z>
+				</Vector3>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="SoundService" referent="RBX3CDE7C2CAF444520A9B7870836542FEA">
+		<Properties>
+			<token name="AmbientReverb">0</token>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<float name="DistanceFactor">3.32999992</float>
+			<float name="DopplerScale">1</float>
+			<string name="Name">SoundService</string>
+			<bool name="RespectFilteringEnabled">false</bool>
+			<float name="RolloffScale">1</float>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4b9</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="NonReplicatedCSGDictionaryService" referent="RBX7E9431D5168C42E0BA42F8D92706F18D">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">NonReplicatedCSGDictionaryService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4c5</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="CSGDictionaryService" referent="RBXFF96E767AE244B8B861008C4861C4DC0">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">CSGDictionaryService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4c6</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="Chat" referent="RBX7818DC902F00471B8759A8730AA0F80D">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="BubbleChatEnabled">false</bool>
+			<bool name="LoadDefaultChat">true</bool>
+			<string name="Name">Chat</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4cb</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="TimerService" referent="RBXD706732AC31F433A9B83A43BEDB134D1">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4cc</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="Players" referent="RBX4574BFB8AE3144228B1760763BB5DBA0">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="CharacterAutoLoads">true</bool>
+			<int name="MaxPlayersInternal">12</int>
+			<string name="Name">Players</string>
+			<int name="PreferredPlayersInternal">0</int>
+			<float name="RespawnTime">5</float>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4ce</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ReplicatedFirst" referent="RBX260A6CFE03F54399A0C03332E89AC410">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">ReplicatedFirst</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4d2</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="TweenService" referent="RBXE1F7F9082D654D239E6A8FC3C57D34E4">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">TweenService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4d4</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="MaterialService" referent="RBX7AFEA92A51C24874ADFF144FDB5A077F">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<Ref name="Brick">null</Ref>
+			<Ref name="Cobblestone">null</Ref>
+			<Ref name="Concrete">null</Ref>
+			<Ref name="CorrodedMetal">null</Ref>
+			<Ref name="DiamondPlate">null</Ref>
+			<Ref name="Fabric">null</Ref>
+			<Ref name="Foil">null</Ref>
+			<Ref name="Granite">null</Ref>
+			<Ref name="Grass">null</Ref>
+			<Ref name="Ice">null</Ref>
+			<Ref name="Marble">null</Ref>
+			<Ref name="Metal">null</Ref>
+			<string name="Name">MaterialService</string>
+			<Ref name="Pebble">null</Ref>
+			<Ref name="Plastic">null</Ref>
+			<Ref name="Sand">null</Ref>
+			<Ref name="Slate">null</Ref>
+			<Ref name="SmoothPlastic">null</Ref>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<Ref name="TerrainAsphalt">null</Ref>
+			<Ref name="TerrainBasalt">null</Ref>
+			<Ref name="TerrainBrick">null</Ref>
+			<Ref name="TerrainCobblestone">null</Ref>
+			<Ref name="TerrainConcrete">null</Ref>
+			<Ref name="TerrainCrackedLava">null</Ref>
+			<Ref name="TerrainGlacier">null</Ref>
+			<Ref name="TerrainGrass">null</Ref>
+			<Ref name="TerrainGround">null</Ref>
+			<Ref name="TerrainIce">null</Ref>
+			<Ref name="TerrainLeafyGrass">null</Ref>
+			<Ref name="TerrainLimestone">null</Ref>
+			<Ref name="TerrainMud">null</Ref>
+			<Ref name="TerrainPavement">null</Ref>
+			<Ref name="TerrainRock">null</Ref>
+			<Ref name="TerrainSalt">null</Ref>
+			<Ref name="TerrainSand">null</Ref>
+			<Ref name="TerrainSandstone">null</Ref>
+			<Ref name="TerrainSnow">null</Ref>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4d5</UniqueId>
+			<Ref name="Wood">null</Ref>
+			<Ref name="WoodPlanks">null</Ref>
+		</Properties>
+	</Item>
+	<Item class="PermissionsService" referent="RBXA7A6149AF07443708499875126041512">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">PermissionsService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4d9</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="PlayerEmulatorService" referent="RBX7076682F688948E6BA8EDDBAE25191EE">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="CustomPoliciesEnabled">false</bool>
+			<string name="EmulatedCountryCode"></string>
+			<string name="EmulatedGameLocale"></string>
+			<string name="Name">PlayerEmulatorService</string>
+			<bool name="PlayerEmulationEnabled">false</bool>
+			<BinaryString name="SerializedEmulatedPolicyInfo"></BinaryString>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4db</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="StudioData" referent="RBXFEAC9C69FE154B3F97505214BB9E08B9">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<int64 name="CommitInflightAuthorId">0</int64>
+			<string name="CommitInflightGuid"></string>
+			<int name="CommitInflightPlaceVersion">0</int>
+			<bool name="EnableScriptCollabByDefaultOnLoad">false</bool>
+			<bool name="EnableTeamCreateStreamingOnLoad">false</bool>
+			<string name="Name">StudioData</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<int64 name="SrcPlaceId">0</int64>
+			<int64 name="SrcUniverseId">0</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4dd</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="StarterPlayer" referent="5">
+		<Properties>
+			<bool name="AllowCustomAnimations">true</bool>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="AutoJumpEnabled">true</bool>
+			<float name="CameraMaxZoomDistance">400</float>
+			<float name="CameraMinZoomDistance">0.5</float>
+			<token name="CameraMode">0</token>
+			<float name="CharacterJumpHeight">7.19999981</float>
+			<float name="CharacterJumpPower">50</float>
+			<float name="CharacterMaxSlopeAngle">89</float>
+			<bool name="CharacterUseJumpPower">true</bool>
+			<float name="CharacterWalkSpeed">16</float>
+			<token name="DevCameraOcclusionMode">0</token>
+			<token name="DevComputerCameraMovementMode">0</token>
+			<token name="DevComputerMovementMode">0</token>
+			<token name="DevTouchCameraMovementMode">0</token>
+			<token name="DevTouchMovementMode">0</token>
+			<bool name="EnableMouseLockOption">true</bool>
+			<int64 name="GameSettingsAssetIDFace">0</int64>
+			<int64 name="GameSettingsAssetIDHead">0</int64>
+			<int64 name="GameSettingsAssetIDLeftArm">0</int64>
+			<int64 name="GameSettingsAssetIDLeftLeg">0</int64>
+			<int64 name="GameSettingsAssetIDPants">0</int64>
+			<int64 name="GameSettingsAssetIDRightArm">0</int64>
+			<int64 name="GameSettingsAssetIDRightLeg">0</int64>
+			<int64 name="GameSettingsAssetIDShirt">0</int64>
+			<int64 name="GameSettingsAssetIDTeeShirt">0</int64>
+			<int64 name="GameSettingsAssetIDTorso">0</int64>
+			<token name="GameSettingsAvatar">1</token>
+			<token name="GameSettingsR15Collision">0</token>
+			<NumberRange name="GameSettingsScaleRangeBodyType">0 1 </NumberRange>
+			<NumberRange name="GameSettingsScaleRangeHead">0.95 1 </NumberRange>
+			<NumberRange name="GameSettingsScaleRangeHeight">0.9 1.05 </NumberRange>
+			<NumberRange name="GameSettingsScaleRangeProportion">0 1 </NumberRange>
+			<NumberRange name="GameSettingsScaleRangeWidth">0.7 1 </NumberRange>
+			<float name="HealthDisplayDistance">100</float>
+			<bool name="LoadCharacterAppearance">true</bool>
+			<token name="LoadCharacterLayeredClothing">0</token>
+			<string name="Name">StarterPlayer</string>
+			<float name="NameDisplayDistance">100</float>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4de</UniqueId>
+			<bool name="UserEmotesEnabled">true</bool>
+		</Properties>
+		<Item class="StarterPlayerScripts" referent="6">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">StarterPlayerScripts</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a586</UniqueId>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX72D859F14B5040BD88C9939906DD9F8E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">TestEZ</string>
+					<string name="ScriptGuid">{388DD4A5-8F92-415A-975E-6E90DE245281}</string>
+					<ProtectedString name="Source"><![CDATA[local Expectation = require(script.Expectation)
+local TestBootstrap = require(script.TestBootstrap)
+local TestEnum = require(script.TestEnum)
+local TestPlan = require(script.TestPlan)
+local TestPlanner = require(script.TestPlanner)
+local TestResults = require(script.TestResults)
+local TestRunner = require(script.TestRunner)
+local TestSession = require(script.TestSession)
+local TextReporter = require(script.Reporters.TextReporter)
+local TextReporterQuiet = require(script.Reporters.TextReporterQuiet)
+local TeamCityReporter = require(script.Reporters.TeamCityReporter)
+
+local function run(testRoot, callback)
+	local modules = TestBootstrap:getModules(testRoot)
+	local plan = TestPlanner.createPlan(modules)
+	local results = TestRunner.runPlan(plan)
+
+	callback(results)
+end
+
+local TestEZ = {
+	run = run,
+
+	Expectation = Expectation,
+	TestBootstrap = TestBootstrap,
+	TestEnum = TestEnum,
+	TestPlan = TestPlan,
+	TestPlanner = TestPlanner,
+	TestResults = TestResults,
+	TestRunner = TestRunner,
+	TestSession = TestSession,
+
+	Reporters = {
+		TextReporter = TextReporter,
+		TextReporterQuiet = TextReporterQuiet,
+		TeamCityReporter = TeamCityReporter,
+	},
+}
+
+return TestEZ]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002483f</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXBD4A84BED26A4726811647F050F29664">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Context</string>
+						<string name="ScriptGuid">{FC608A44-EEA0-40D8-AE5D-305400AB3BBF}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	The Context object implements a write-once key-value store. It also allows
+	for a new Context object to inherit the entries from an existing one.
+]]
+local Context = {}
+
+function Context.new(parent)
+	local meta = {}
+	local index = {}
+	meta.__index = index
+
+	if parent then
+		for key, value in pairs(getmetatable(parent).__index) do
+			index[key] = value
+		end
+	end
+
+	function meta.__newindex(_obj, key, value)
+		assert(index[key] == nil, string.format("Cannot reassign %s in context", tostring(key)))
+		index[key] = value
+	end
+
+	return setmetatable({}, meta)
+end
+
+return Context
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024840</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX6284731A7E7045DBAF999F42A4FC7955">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Expectation</string>
+						<string name="ScriptGuid">{D16C881C-7E6A-495B-AA14-2C188D1C54B9}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Allows creation of expectation statements designed for behavior-driven
+	testing (BDD). See Chai (JS) or RSpec (Ruby) for examples of other BDD
+	frameworks.
+
+	The Expectation class is exposed to tests as a function called `expect`:
+
+		expect(5).to.equal(5)
+		expect(foo()).to.be.ok()
+
+	Expectations can be negated using .never:
+
+		expect(true).never.to.equal(false)
+
+	Expectations throw errors when their conditions are not met.
+]]
+
+local Expectation = {}
+
+--[[
+	These keys don't do anything except make expectations read more cleanly
+]]
+local SELF_KEYS = {
+	to = true,
+	be = true,
+	been = true,
+	have = true,
+	was = true,
+	at = true,
+}
+
+--[[
+	These keys invert the condition expressed by the Expectation.
+]]
+local NEGATION_KEYS = {
+	never = true,
+}
+
+--[[
+	Extension of Lua's 'assert' that lets you specify an error level.
+]]
+local function assertLevel(condition, message, level)
+	message = message or "Assertion failed!"
+	level = level or 1
+
+	if not condition then
+		error(message, level + 1)
+	end
+end
+
+--[[
+	Returns a version of the given method that can be called with either . or :
+]]
+local function bindSelf(self, method)
+	return function(firstArg, ...)
+		if firstArg == self then
+			return method(self, ...)
+		else
+			return method(self, firstArg, ...)
+		end
+	end
+end
+
+local function formatMessage(result, trueMessage, falseMessage)
+	if result then
+		return trueMessage
+	else
+		return falseMessage
+	end
+end
+
+--[[
+	Create a new expectation
+]]
+function Expectation.new(value)
+	local self = {
+		value = value,
+		successCondition = true,
+		condition = false,
+		matchers = {},
+		_boundMatchers = {},
+	}
+
+	setmetatable(self, Expectation)
+
+	self.a = bindSelf(self, self.a)
+	self.an = self.a
+	self.ok = bindSelf(self, self.ok)
+	self.equal = bindSelf(self, self.equal)
+	self.throw = bindSelf(self, self.throw)
+	self.near = bindSelf(self, self.near)
+
+	return self
+end
+
+function Expectation.checkMatcherNameCollisions(name)
+	if SELF_KEYS[name] or NEGATION_KEYS[name] or Expectation[name] then
+		return false
+	end
+
+	return true
+end
+
+function Expectation:extend(matchers)
+	self.matchers = matchers or {}
+
+	for name, implementation in pairs(self.matchers) do
+		self._boundMatchers[name] = bindSelf(self, function(_self, ...)
+			local result = implementation(self.value, ...)
+			local pass = result.pass == self.successCondition
+
+			assertLevel(pass, result.message, 3)
+			self:_resetModifiers()
+			return self
+		end)
+	end
+
+	return self
+end
+
+function Expectation.__index(self, key)
+	-- Keys that don't do anything except improve readability
+	if SELF_KEYS[key] then
+		return self
+	end
+
+	-- Invert your assertion
+	if NEGATION_KEYS[key] then
+		local newExpectation = Expectation.new(self.value):extend(self.matchers)
+		newExpectation.successCondition = not self.successCondition
+
+		return newExpectation
+	end
+
+	if self._boundMatchers[key] then
+		return self._boundMatchers[key]
+	end
+
+	-- Fall back to methods provided by Expectation
+	return Expectation[key]
+end
+
+--[[
+	Called by expectation terminators to reset modifiers in a statement.
+
+	This makes chains like:
+
+		expect(5)
+			.never.to.equal(6)
+			.to.equal(5)
+
+	Work as expected.
+]]
+function Expectation:_resetModifiers()
+	self.successCondition = true
+end
+
+--[[
+	Assert that the expectation value is the given type.
+
+	expect(5).to.be.a("number")
+]]
+function Expectation:a(typeName)
+	local result = (type(self.value) == typeName) == self.successCondition
+
+	local message = formatMessage(self.successCondition,
+		("Expected value of type %q, got value %q of type %s"):format(
+			typeName,
+			tostring(self.value),
+			type(self.value)
+		),
+		("Expected value not of type %q, got value %q of type %s"):format(
+			typeName,
+			tostring(self.value),
+			type(self.value)
+		)
+	)
+
+	assertLevel(result, message, 3)
+	self:_resetModifiers()
+
+	return self
+end
+
+-- Make alias public on class
+Expectation.an = Expectation.a
+
+--[[
+	Assert that our expectation value is truthy
+]]
+function Expectation:ok()
+	local result = (self.value ~= nil) == self.successCondition
+
+	local message = formatMessage(self.successCondition,
+		("Expected value %q to be non-nil"):format(
+			tostring(self.value)
+		),
+		("Expected value %q to be nil"):format(
+			tostring(self.value)
+		)
+	)
+
+	assertLevel(result, message, 3)
+	self:_resetModifiers()
+
+	return self
+end
+
+--[[
+	Assert that our expectation value is equal to another value
+]]
+function Expectation:equal(otherValue)
+	local result = (self.value == otherValue) == self.successCondition
+
+	local message = formatMessage(self.successCondition,
+		("Expected value %q (%s), got %q (%s) instead"):format(
+			tostring(otherValue),
+			type(otherValue),
+			tostring(self.value),
+			type(self.value)
+		),
+		("Expected anything but value %q (%s)"):format(
+			tostring(otherValue),
+			type(otherValue)
+		)
+	)
+
+	assertLevel(result, message, 3)
+	self:_resetModifiers()
+
+	return self
+end
+
+--[[
+	Assert that our expectation value is equal to another value within some
+	inclusive limit.
+]]
+function Expectation:near(otherValue, limit)
+	assert(type(self.value) == "number", "Expectation value must be a number to use 'near'")
+	assert(type(otherValue) == "number", "otherValue must be a number")
+	assert(type(limit) == "number" or limit == nil, "limit must be a number or nil")
+
+	limit = limit or 1e-7
+
+	local result = (math.abs(self.value - otherValue) <= limit) == self.successCondition
+
+	local message = formatMessage(self.successCondition,
+		("Expected value to be near %f (within %f) but got %f instead"):format(
+			otherValue,
+			limit,
+			self.value
+		),
+		("Expected value to not be near %f (within %f) but got %f instead"):format(
+			otherValue,
+			limit,
+			self.value
+		)
+	)
+
+	assertLevel(result, message, 3)
+	self:_resetModifiers()
+
+	return self
+end
+
+--[[
+	Assert that our functoid expectation value throws an error when called.
+	An optional error message can be passed to assert that the error message
+	contains the given value.
+]]
+function Expectation:throw(messageSubstring)
+	local ok, err = pcall(self.value)
+	local result = ok ~= self.successCondition
+
+	if messageSubstring and not ok then
+		if self.successCondition then
+			result = err:find(messageSubstring, 1, true) ~= nil
+		else
+			result = err:find(messageSubstring, 1, true) == nil
+		end
+	end
+
+	local message
+
+	if messageSubstring then
+		message = formatMessage(self.successCondition,
+			("Expected function to throw an error containing %q, but it %s"):format(
+				messageSubstring,
+				err and ("threw: %s"):format(err) or "did not throw."
+			),
+			("Expected function to never throw an error containing %q, but it threw: %s"):format(
+				messageSubstring,
+				tostring(err)
+			)
+		)
+	else
+		message = formatMessage(self.successCondition,
+			"Expected function to throw an error, but it did not throw.",
+			("Expected function to succeed, but it threw an error: %s"):format(
+				tostring(err)
+			)
+		)
+	end
+
+	assertLevel(result, message, 3)
+	self:_resetModifiers()
+
+	return self
+end
+
+return Expectation
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024841</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXCF783631E67E46D98046C14655C96374">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">ExpectationContext</string>
+						<string name="ScriptGuid">{54EB836A-9411-4E4B-A84C-1366A920B4F5}</string>
+						<ProtectedString name="Source"><![CDATA[local Expectation = require(script.Parent.Expectation)
+local checkMatcherNameCollisions = Expectation.checkMatcherNameCollisions
+
+local function copy(t)
+	local result = {}
+
+	for key, value in pairs(t) do
+		result[key] = value
+	end
+
+	return result
+end
+
+local ExpectationContext = {}
+ExpectationContext.__index = ExpectationContext
+
+function ExpectationContext.new(parent)
+	local self = {
+		_extensions = parent and copy(parent._extensions) or {},
+	}
+
+	return setmetatable(self, ExpectationContext)
+end
+
+function ExpectationContext:startExpectationChain(...)
+	return Expectation.new(...):extend(self._extensions)
+end
+
+function ExpectationContext:extend(config)
+	for key, value in pairs(config) do
+		assert(self._extensions[key] == nil, string.format("Cannot reassign %q in expect.extend", key))
+		assert(checkMatcherNameCollisions(key), string.format("Cannot overwrite matcher %q; it already exists", key))
+
+		self._extensions[key] = value
+	end
+end
+
+return ExpectationContext
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024842</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX64C700E7F9294DD5A3488D30814559BD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">LifecycleHooks</string>
+						<string name="ScriptGuid">{E465158F-1017-45A6-86DF-3BE380E7B4AF}</string>
+						<ProtectedString name="Source"><![CDATA[local TestEnum = require(script.Parent.TestEnum)
+
+local LifecycleHooks = {}
+LifecycleHooks.__index = LifecycleHooks
+
+function LifecycleHooks.new()
+	local self = {
+		_stack = {},
+	}
+	return setmetatable(self, LifecycleHooks)
+end
+
+--[[
+	Returns an array of `beforeEach` hooks in FIFO order
+]]
+function LifecycleHooks:getBeforeEachHooks()
+	local key = TestEnum.NodeType.BeforeEach
+	local hooks = {}
+
+	for _, level in ipairs(self._stack) do
+		for _, hook in ipairs(level[key]) do
+			table.insert(hooks, hook)
+		end
+	end
+
+	return hooks
+end
+
+--[[
+	Returns an array of `afterEach` hooks in FILO order
+]]
+function LifecycleHooks:getAfterEachHooks()
+	local key = TestEnum.NodeType.AfterEach
+	local hooks = {}
+
+	for _, level in ipairs(self._stack) do
+		for _, hook in ipairs(level[key]) do
+			table.insert(hooks, 1, hook)
+		end
+	end
+
+	return hooks
+end
+
+--[[
+	Pushes uncalled beforeAll and afterAll hooks back up the stack
+]]
+function LifecycleHooks:popHooks()
+	table.remove(self._stack, #self._stack)
+end
+
+function LifecycleHooks:pushHooksFrom(planNode)
+	assert(planNode ~= nil)
+
+	table.insert(self._stack, {
+		[TestEnum.NodeType.BeforeAll] = self:_getHooksOfType(planNode.children, TestEnum.NodeType.BeforeAll),
+		[TestEnum.NodeType.AfterAll] = self:_getHooksOfType(planNode.children, TestEnum.NodeType.AfterAll),
+		[TestEnum.NodeType.BeforeEach] = self:_getHooksOfType(planNode.children, TestEnum.NodeType.BeforeEach),
+		[TestEnum.NodeType.AfterEach] = self:_getHooksOfType(planNode.children, TestEnum.NodeType.AfterEach),
+	})
+end
+
+--[[
+	Get the beforeAll hooks from the current level.
+]]
+function LifecycleHooks:getBeforeAllHooks()
+	return self._stack[#self._stack][TestEnum.NodeType.BeforeAll]
+end
+
+--[[
+	Get the afterAll hooks from the current level.
+]]
+function LifecycleHooks:getAfterAllHooks()
+	return self._stack[#self._stack][TestEnum.NodeType.AfterAll]
+end
+
+function LifecycleHooks:_getHooksOfType(nodes, key)
+	local hooks = {}
+
+	for _, node in ipairs(nodes) do
+		if node.type == key then
+			table.insert(hooks, node.callback)
+		end
+	end
+
+	return hooks
+end
+
+return LifecycleHooks
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024843</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="Folder" referent="RBX777405CEA274433C83DACCD012A8A081">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Reporters</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024844</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBXD486090AC8324C208C866F6E3C51E62B">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">TeamCityReporter</string>
+							<string name="ScriptGuid">{2A786F68-A72B-43E2-AFAE-689AE0C058B5}</string>
+							<ProtectedString name="Source"><![CDATA[local TestService = game:GetService("TestService")
+
+local TestEnum = require(script.Parent.Parent.TestEnum)
+
+local TeamCityReporter = {}
+
+local function teamCityEscape(str)
+	str = string.gsub(str, "([]|'[])","|%1")
+	str = string.gsub(str, "\r", "|r")
+	str = string.gsub(str, "\n", "|n")
+	return str
+end
+
+local function teamCityEnterSuite(suiteName)
+	return string.format("##teamcity[testSuiteStarted name='%s']", teamCityEscape(suiteName))
+end
+
+local function teamCityLeaveSuite(suiteName)
+	return string.format("##teamcity[testSuiteFinished name='%s']", teamCityEscape(suiteName))
+end
+
+local function teamCityEnterCase(caseName)
+	return string.format("##teamcity[testStarted name='%s']", teamCityEscape(caseName))
+end
+
+local function teamCityLeaveCase(caseName)
+	return string.format("##teamcity[testFinished name='%s']", teamCityEscape(caseName))
+end
+
+local function teamCityFailCase(caseName, errorMessage)
+	return string.format("##teamcity[testFailed name='%s' message='%s']",
+		teamCityEscape(caseName), teamCityEscape(errorMessage))
+end
+
+local function reportNode(node, buffer, level)
+	buffer = buffer or {}
+	level = level or 0
+	if node.status == TestEnum.TestStatus.Skipped then
+		return buffer
+	end
+	if node.planNode.type == TestEnum.NodeType.Describe then
+		table.insert(buffer, teamCityEnterSuite(node.planNode.phrase))
+		for _, child in ipairs(node.children) do
+			reportNode(child, buffer, level + 1)
+		end
+		table.insert(buffer, teamCityLeaveSuite(node.planNode.phrase))
+	else
+		table.insert(buffer, teamCityEnterCase(node.planNode.phrase))
+		if node.status == TestEnum.TestStatus.Failure then
+			table.insert(buffer, teamCityFailCase(node.planNode.phrase, table.concat(node.errors,"\n")))
+		end
+		table.insert(buffer, teamCityLeaveCase(node.planNode.phrase))
+	end
+end
+
+local function reportRoot(node)
+	local buffer = {}
+
+	for _, child in ipairs(node.children) do
+		reportNode(child, buffer, 0)
+	end
+
+	return buffer
+end
+
+local function report(root)
+	local buffer = reportRoot(root)
+
+	return table.concat(buffer, "\n")
+end
+
+function TeamCityReporter.report(results)
+	local resultBuffer = {
+		"Test results:",
+		report(results),
+		("%d passed, %d failed, %d skipped"):format(
+			results.successCount,
+			results.failureCount,
+			results.skippedCount
+		)
+	}
+
+	print(table.concat(resultBuffer, "\n"))
+
+	if results.failureCount > 0 then
+		print(("%d test nodes reported failures."):format(results.failureCount))
+	end
+
+	if #results.errors > 0 then
+		print("Errors reported by tests:")
+		print("")
+
+		for _, message in ipairs(results.errors) do
+			TestService:Error(message)
+
+			-- Insert a blank line after each error
+			print("")
+		end
+	end
+end
+
+return TeamCityReporter]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024845</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX4CDA7FFC17C0463B9D6C8EAD3F8431D6">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">TextReporter</string>
+							<string name="ScriptGuid">{FCE50813-9C62-475E-BB5E-7ED6299B8FB5}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+	The TextReporter uses the results from a completed test to output text to
+	standard output and TestService.
+]]
+
+local TestService = game:GetService("TestService")
+
+local TestEnum = require(script.Parent.Parent.TestEnum)
+
+local INDENT = (" "):rep(3)
+local STATUS_SYMBOLS = {
+	[TestEnum.TestStatus.Success] = "+",
+	[TestEnum.TestStatus.Failure] = "-",
+	[TestEnum.TestStatus.Skipped] = "~"
+}
+local UNKNOWN_STATUS_SYMBOL = "?"
+
+local TextReporter = {}
+
+local function compareNodes(a, b)
+	return a.planNode.phrase:lower() < b.planNode.phrase:lower()
+end
+
+local function reportNode(node, buffer, level)
+	buffer = buffer or {}
+	level = level or 0
+
+	if node.status == TestEnum.TestStatus.Skipped then
+		return buffer
+	end
+
+	local line
+
+	if node.status then
+		local symbol = STATUS_SYMBOLS[node.status] or UNKNOWN_STATUS_SYMBOL
+
+		line = ("%s[%s] %s"):format(
+			INDENT:rep(level),
+			symbol,
+			node.planNode.phrase
+		)
+	else
+		line = ("%s%s"):format(
+			INDENT:rep(level),
+			node.planNode.phrase
+		)
+	end
+
+	table.insert(buffer, line)
+	table.sort(node.children, compareNodes)
+
+	for _, child in ipairs(node.children) do
+		reportNode(child, buffer, level + 1)
+	end
+
+	return buffer
+end
+
+local function reportRoot(node)
+	local buffer = {}
+	table.sort(node.children, compareNodes)
+
+	for _, child in ipairs(node.children) do
+		reportNode(child, buffer, 0)
+	end
+
+	return buffer
+end
+
+local function report(root)
+	local buffer = reportRoot(root)
+
+	return table.concat(buffer, "\n")
+end
+
+function TextReporter.report(results)
+	local resultBuffer = {
+		"Test results:",
+		report(results),
+		("%d passed, %d failed, %d skipped"):format(
+			results.successCount,
+			results.failureCount,
+			results.skippedCount
+		)
+	}
+
+	print(table.concat(resultBuffer, "\n"))
+
+	if results.failureCount > 0 then
+		print(("%d test nodes reported failures."):format(results.failureCount))
+	end
+
+	if #results.errors > 0 then
+		print("Errors reported by tests:")
+		print("")
+
+		for _, message in ipairs(results.errors) do
+			TestService:Error(message)
+
+			-- Insert a blank line after each error
+			print("")
+		end
+	end
+end
+
+return TextReporter]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024846</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX6471DBD0AFB44801BA7D4361C998E932">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">TextReporterQuiet</string>
+							<string name="ScriptGuid">{566D1FAE-4CB0-4C2F-A489-2F3279A2F48B}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+	Copy of TextReporter that doesn't output successful tests.
+
+	This should be temporary, it's just a workaround to make CI environments
+	happy in the short-term.
+]]
+
+local TestService = game:GetService("TestService")
+
+local TestEnum = require(script.Parent.Parent.TestEnum)
+
+local INDENT = (" "):rep(3)
+local STATUS_SYMBOLS = {
+	[TestEnum.TestStatus.Success] = "+",
+	[TestEnum.TestStatus.Failure] = "-",
+	[TestEnum.TestStatus.Skipped] = "~"
+}
+local UNKNOWN_STATUS_SYMBOL = "?"
+
+local TextReporterQuiet = {}
+
+local function reportNode(node, buffer, level)
+	buffer = buffer or {}
+	level = level or 0
+
+	if node.status == TestEnum.TestStatus.Skipped then
+		return buffer
+	end
+
+	local line
+
+	if node.status ~= TestEnum.TestStatus.Success then
+		local symbol = STATUS_SYMBOLS[node.status] or UNKNOWN_STATUS_SYMBOL
+
+		line = ("%s[%s] %s"):format(
+			INDENT:rep(level),
+			symbol,
+			node.planNode.phrase
+		)
+	end
+
+	table.insert(buffer, line)
+
+	for _, child in ipairs(node.children) do
+		reportNode(child, buffer, level + 1)
+	end
+
+	return buffer
+end
+
+local function reportRoot(node)
+	local buffer = {}
+
+	for _, child in ipairs(node.children) do
+		reportNode(child, buffer, 0)
+	end
+
+	return buffer
+end
+
+local function report(root)
+	local buffer = reportRoot(root)
+
+	return table.concat(buffer, "\n")
+end
+
+function TextReporterQuiet.report(results)
+	local resultBuffer = {
+		"Test results:",
+		report(results),
+		("%d passed, %d failed, %d skipped"):format(
+			results.successCount,
+			results.failureCount,
+			results.skippedCount
+		)
+	}
+
+	print(table.concat(resultBuffer, "\n"))
+
+	if results.failureCount > 0 then
+		print(("%d test nodes reported failures."):format(results.failureCount))
+	end
+
+	if #results.errors > 0 then
+		print("Errors reported by tests:")
+		print("")
+
+		for _, message in ipairs(results.errors) do
+			TestService:Error(message)
+
+			-- Insert a blank line after each error
+			print("")
+		end
+	end
+end
+
+return TextReporterQuiet]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024847</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="ModuleScript" referent="RBX2D5BAB307B2D458C9B91EE13E376797C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestBootstrap</string>
+						<string name="ScriptGuid">{12C684BD-5F00-446C-949D-A49DE08541E2}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Provides an interface to quickly run and report tests from a given object.
+]]
+
+local TestPlanner = require(script.Parent.TestPlanner)
+local TestRunner = require(script.Parent.TestRunner)
+local TextReporter = require(script.Parent.Reporters.TextReporter)
+
+local TestBootstrap = {}
+
+local function stripSpecSuffix(name)
+	return (name:gsub("%.spec$", ""))
+end
+local function isSpecScript(aScript)
+	return aScript:IsA("ModuleScript") and aScript.Name:match("%.spec$")
+end
+
+local function getPath(module, root)
+	root = root or game
+
+	local path = {}
+	local last = module
+
+	if last.Name == "init.spec" then
+		-- Use the directory's node for init.spec files.
+		last = last.Parent
+	end
+
+	while last ~= nil and last ~= root do
+		table.insert(path, stripSpecSuffix(last.Name))
+		last = last.Parent
+	end
+	table.insert(path, stripSpecSuffix(root.Name))
+
+	return path
+end
+
+local function toStringPath(tablePath)
+	local stringPath = ""
+	local first = true
+	for _, element in ipairs(tablePath) do
+		if first then
+			stringPath = element
+			first = false
+		else
+			stringPath = element .. " " .. stringPath
+		end
+	end
+	return stringPath
+end
+
+function TestBootstrap:getModulesImpl(root, modules, current)
+	modules = modules or {}
+	current = current or root
+
+	if isSpecScript(current) then
+		local method = require(current)
+		local path = getPath(current, root)
+		local pathString = toStringPath(path)
+
+		table.insert(modules, {
+			method = method,
+			path = path,
+			pathStringForSorting = pathString:lower()
+		})
+	end
+end
+
+--[[
+	Find all the ModuleScripts in this tree that are tests.
+]]
+function TestBootstrap:getModules(root)
+	local modules = {}
+
+	self:getModulesImpl(root, modules)
+
+	for _, child in ipairs(root:GetDescendants()) do
+		self:getModulesImpl(root, modules, child)
+	end
+
+	return modules
+end
+
+--[[
+	Runs all test and reports the results using the given test reporter.
+
+	If no reporter is specified, a reasonable default is provided.
+
+	This function demonstrates the expected workflow with this testing system:
+	1. Locate test modules
+	2. Generate test plan
+	3. Run test plan
+	4. Report test results
+
+	This means we could hypothetically present a GUI to the developer that shows
+	the test plan before we execute it, allowing them to toggle specific tests
+	before they're run, but after they've been identified!
+]]
+function TestBootstrap:run(roots, reporter, otherOptions)
+	reporter = reporter or TextReporter
+
+	otherOptions = otherOptions or {}
+	local showTimingInfo = otherOptions["showTimingInfo"] or false
+	local testNamePattern = otherOptions["testNamePattern"]
+	local extraEnvironment = otherOptions["extraEnvironment"] or {}
+
+	if type(roots) ~= "table" then
+		error(("Bad argument #1 to TestBootstrap:run. Expected table, got %s"):format(typeof(roots)), 2)
+	end
+
+	local startTime = tick()
+
+	local modules = {}
+	for _, subRoot in ipairs(roots) do
+		local newModules = self:getModules(subRoot)
+
+		for _, newModule in ipairs(newModules) do
+			table.insert(modules, newModule)
+		end
+	end
+
+	local afterModules = tick()
+
+	local plan = TestPlanner.createPlan(modules, testNamePattern, extraEnvironment)
+	local afterPlan = tick()
+
+	local results = TestRunner.runPlan(plan)
+	local afterRun = tick()
+
+	reporter.report(results)
+	local afterReport = tick()
+
+	if showTimingInfo then
+		local timing = {
+			("Took %f seconds to locate test modules"):format(afterModules - startTime),
+			("Took %f seconds to create test plan"):format(afterPlan - afterModules),
+			("Took %f seconds to run tests"):format(afterRun - afterPlan),
+			("Took %f seconds to report tests"):format(afterReport - afterRun),
+		}
+
+		print(table.concat(timing, "\n"))
+	end
+
+	return results
+end
+
+return TestBootstrap]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024848</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX4D76DE89CD8C44168C581B24D761D01F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestEnum</string>
+						<string name="ScriptGuid">{79485E0A-02A7-4108-B854-3E497ABFF0FF}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Constants used throughout the testing framework.
+]]
+
+local TestEnum = {}
+
+TestEnum.TestStatus = {
+	Success = "Success",
+	Failure = "Failure",
+	Skipped = "Skipped"
+}
+
+TestEnum.NodeType = {
+	Describe = "Describe",
+	It = "It",
+	BeforeAll = "BeforeAll",
+	AfterAll = "AfterAll",
+	BeforeEach = "BeforeEach",
+	AfterEach = "AfterEach"
+}
+
+TestEnum.NodeModifier = {
+	None = "None",
+	Skip = "Skip",
+	Focus = "Focus"
+}
+
+return TestEnum]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024849</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX6066DF50724A4CBF9E89861CCC58388F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestPlan</string>
+						<string name="ScriptGuid">{3262A457-FAD3-48CF-A07D-A772A1388FE7}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Represents a tree of tests that have been loaded but not necessarily
+	executed yet.
+
+	TestPlan objects are produced by TestPlanner.
+]]
+
+local TestEnum = require(script.Parent.TestEnum)
+local Expectation = require(script.Parent.Expectation)
+
+local function newEnvironment(currentNode, extraEnvironment)
+	local env = {}
+
+	if extraEnvironment then
+		if type(extraEnvironment) ~= "table" then
+			error(("Bad argument #2 to newEnvironment. Expected table, got %s"):format(
+				typeof(extraEnvironment)), 2)
+		end
+
+		for key, value in pairs(extraEnvironment) do
+			env[key] = value
+		end
+	end
+
+	local function addChild(phrase, callback, nodeType, nodeModifier)
+		local node = currentNode:addChild(phrase, nodeType, nodeModifier)
+		node.callback = callback
+		if nodeType == TestEnum.NodeType.Describe then
+			node:expand()
+		end
+		return node
+	end
+
+	function env.describeFOCUS(phrase, callback)
+		addChild(phrase, callback, TestEnum.NodeType.Describe, TestEnum.NodeModifier.Focus)
+	end
+
+	function env.describeSKIP(phrase, callback)
+		addChild(phrase, callback, TestEnum.NodeType.Describe, TestEnum.NodeModifier.Skip)
+	end
+
+	function env.describe(phrase, callback, nodeModifier)
+		addChild(phrase, callback, TestEnum.NodeType.Describe, TestEnum.NodeModifier.None)
+	end
+
+	function env.itFOCUS(phrase, callback)
+		addChild(phrase, callback, TestEnum.NodeType.It, TestEnum.NodeModifier.Focus)
+	end
+
+	function env.itSKIP(phrase, callback)
+		addChild(phrase, callback, TestEnum.NodeType.It, TestEnum.NodeModifier.Skip)
+	end
+
+	function env.itFIXME(phrase, callback)
+		local node = addChild(phrase, callback, TestEnum.NodeType.It, TestEnum.NodeModifier.Skip)
+		warn("FIXME: broken test", node:getFullName())
+	end
+
+	function env.it(phrase, callback, nodeModifier)
+		addChild(phrase, callback, TestEnum.NodeType.It, TestEnum.NodeModifier.None)
+	end
+
+	-- Incrementing counter used to ensure that beforeAll, afterAll, beforeEach, afterEach have unique phrases
+	local lifecyclePhaseId = 0
+
+	local lifecycleHooks = {
+		[TestEnum.NodeType.BeforeAll] = "beforeAll",
+		[TestEnum.NodeType.AfterAll] = "afterAll",
+		[TestEnum.NodeType.BeforeEach] = "beforeEach",
+		[TestEnum.NodeType.AfterEach] = "afterEach"
+	}
+
+	for nodeType, name in pairs(lifecycleHooks) do
+		env[name] = function(callback)
+			addChild(name .. "_" .. tostring(lifecyclePhaseId), callback, nodeType, TestEnum.NodeModifier.None)
+			lifecyclePhaseId = lifecyclePhaseId + 1
+		end
+	end
+
+	function env.FIXME(optionalMessage)
+		warn("FIXME: broken test", currentNode:getFullName(), optionalMessage or "")
+
+		currentNode.modifier = TestEnum.NodeModifier.Skip
+	end
+
+	function env.FOCUS()
+		currentNode.modifier = TestEnum.NodeModifier.Focus
+	end
+
+	function env.SKIP()
+		currentNode.modifier = TestEnum.NodeModifier.Skip
+	end
+
+	--[[
+		This function is deprecated. Calling it is a no-op beyond generating a
+		warning.
+	]]
+	function env.HACK_NO_XPCALL()
+		warn("HACK_NO_XPCALL is deprecated. It is now safe to yield in an " ..
+			"xpcall, so this is no longer necessary. It can be safely deleted.")
+	end
+
+	env.fit = env.itFOCUS
+	env.xit = env.itSKIP
+	env.fdescribe = env.describeFOCUS
+	env.xdescribe = env.describeSKIP
+
+	env.expect = setmetatable({
+		extend = function(...)
+			error("Cannot call \"expect.extend\" from within a \"describe\" node.")
+		end,
+	}, {
+		__call = function(_self, ...)
+			return Expectation.new(...)
+		end,
+	})
+
+	return env
+end
+
+local TestNode = {}
+TestNode.__index = TestNode
+
+--[[
+	Create a new test node. A pointer to the test plan, a phrase to describe it
+	and the type of node it is are required. The modifier is optional and will
+	be None if left blank.
+]]
+function TestNode.new(plan, phrase, nodeType, nodeModifier)
+	nodeModifier = nodeModifier or TestEnum.NodeModifier.None
+
+	local node = {
+		plan = plan,
+		phrase = phrase,
+		type = nodeType,
+		modifier = nodeModifier,
+		children = {},
+		callback = nil,
+		parent = nil,
+	}
+
+	node.environment = newEnvironment(node, plan.extraEnvironment)
+	return setmetatable(node, TestNode)
+end
+
+local function getModifier(name, pattern, modifier)
+	if pattern and (modifier == nil or modifier == TestEnum.NodeModifier.None) then
+		if name:match(pattern) then
+			return TestEnum.NodeModifier.Focus
+		else
+			return TestEnum.NodeModifier.Skip
+		end
+	end
+	return modifier
+end
+
+function TestNode:addChild(phrase, nodeType, nodeModifier)
+	if nodeType == TestEnum.NodeType.It then
+		for _, child in pairs(self.children) do
+			if child.phrase == phrase then
+				error("Duplicate it block found: " .. child:getFullName())
+			end
+		end
+	end
+
+	local childName = self:getFullName() .. " " .. phrase
+	nodeModifier = getModifier(childName, self.plan.testNamePattern, nodeModifier)
+	local child = TestNode.new(self.plan, phrase, nodeType, nodeModifier)
+	child.parent = self
+	table.insert(self.children, child)
+	return child
+end
+
+--[[
+	Join the names of all the nodes back to the parent.
+]]
+function TestNode:getFullName()
+	if self.parent then
+		local parentPhrase = self.parent:getFullName()
+		if parentPhrase then
+			return parentPhrase .. " " .. self.phrase
+		end
+	end
+	return self.phrase
+end
+
+--[[
+	Expand a node by setting its callback environment and then calling it. Any
+	further it and describe calls within the callback will be added to the tree.
+]]
+function TestNode:expand()
+	local originalEnv = getfenv(self.callback)
+	local callbackEnv = setmetatable({}, { __index = originalEnv })
+	for key, value in pairs(self.environment) do
+		callbackEnv[key] = value
+	end
+	-- Copy 'script' directly to new env to make Studio debugger happy.
+	-- Studio debugger does not look into __index, because of security reasons
+	callbackEnv.script = originalEnv.script
+	setfenv(self.callback, callbackEnv)
+
+	local success, result = xpcall(self.callback, function(message)
+		return debug.traceback(tostring(message), 2)
+	end)
+
+	if not success then
+		self.loadError = result
+	end
+end
+
+local TestPlan = {}
+TestPlan.__index = TestPlan
+
+--[[
+	Create a new, empty TestPlan.
+]]
+function TestPlan.new(testNamePattern, extraEnvironment)
+	local plan = {
+		children = {},
+		testNamePattern = testNamePattern,
+		extraEnvironment = extraEnvironment,
+	}
+
+	return setmetatable(plan, TestPlan)
+end
+
+--[[
+	Add a new child under the test plan's root node.
+]]
+function TestPlan:addChild(phrase, nodeType, nodeModifier)
+	nodeModifier = getModifier(phrase, self.testNamePattern, nodeModifier)
+	local child = TestNode.new(self, phrase, nodeType, nodeModifier)
+	table.insert(self.children, child)
+	return child
+end
+
+--[[
+	Add a new describe node with the given method as a callback. Generates or
+	reuses all the describe nodes along the path.
+]]
+function TestPlan:addRoot(path, method)
+	local curNode = self
+	for i = #path, 1, -1 do
+		local nextNode = nil
+
+		for _, child in ipairs(curNode.children) do
+			if child.phrase == path[i] then
+				nextNode = child
+				break
+			end
+		end
+
+		if nextNode == nil then
+			nextNode = curNode:addChild(path[i], TestEnum.NodeType.Describe)
+		end
+
+		curNode = nextNode
+	end
+
+	curNode.callback = method
+	curNode:expand()
+end
+
+--[[
+	Calls the given callback on all nodes in the tree, traversed depth-first.
+]]
+function TestPlan:visitAllNodes(callback, root, level)
+	root = root or self
+	level = level or 0
+
+	for _, child in ipairs(root.children) do
+		callback(child, level)
+
+		self:visitAllNodes(callback, child, level + 1)
+	end
+end
+
+--[[
+	Visualizes the test plan in a simple format, suitable for debugging the test
+	plan's structure.
+]]
+function TestPlan:visualize()
+	local buffer = {}
+	self:visitAllNodes(function(node, level)
+		table.insert(buffer, (" "):rep(3 * level) .. node.phrase)
+	end)
+	return table.concat(buffer, "\n")
+end
+
+--[[
+	Gets a list of all nodes in the tree for which the given callback returns
+	true.
+]]
+function TestPlan:findNodes(callback)
+	local results = {}
+	self:visitAllNodes(function(node)
+		if callback(node) then
+			table.insert(results, node)
+		end
+	end)
+	return results
+end
+
+return TestPlan
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002484a</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX45C73EBBFBE94126A027DD26BB3DFF4C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestPlanner</string>
+						<string name="ScriptGuid">{5EA01EE5-47B3-4254-A6E8-BD9DC8358770}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Turns a series of specification functions into a test plan.
+
+	Uses a TestPlanBuilder to keep track of the state of the tree being built.
+]]
+local TestPlan = require(script.Parent.TestPlan)
+
+local TestPlanner = {}
+
+--[[
+	Create a new TestPlan from a list of specification functions.
+
+	These functions should call a combination of `describe` and `it` (and their
+	variants), which will be turned into a test plan to be executed.
+
+	Parameters:
+		- modulesList - list of tables describing test modules {
+			method, -- specification function described above
+			path, -- array of parent entires, first element is the leaf that owns `method`
+			pathStringForSorting -- a string representation of `path`, used for sorting of the test plan
+		}
+		- testNamePattern - Only tests matching this Lua pattern string will run. Pass empty or nil to run all tests
+		- extraEnvironment - Lua table holding additional functions and variables to be injected into the specification
+							function during execution
+]]
+function TestPlanner.createPlan(modulesList, testNamePattern, extraEnvironment)
+	local plan = TestPlan.new(testNamePattern, extraEnvironment)
+
+	table.sort(modulesList, function(a, b)
+		return a.pathStringForSorting < b.pathStringForSorting
+	end)
+
+	for _, module in ipairs(modulesList) do
+		plan:addRoot(module.path, module.method)
+	end
+
+	return plan
+end
+
+return TestPlanner]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002484b</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX0EB9E4A2580945F082A4CDED8C6AFB27">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestResults</string>
+						<string name="ScriptGuid">{BF2F930C-121D-459B-AB01-9F9BF418EA58}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Represents a tree of test results.
+
+	Each node in the tree corresponds directly to a node in a corresponding
+	TestPlan, accessible via the 'planNode' field.
+
+	TestResults objects are produced by TestRunner using TestSession as state.
+]]
+
+local TestEnum = require(script.Parent.TestEnum)
+
+local STATUS_SYMBOLS = {
+	[TestEnum.TestStatus.Success] = "+",
+	[TestEnum.TestStatus.Failure] = "-",
+	[TestEnum.TestStatus.Skipped] = "~"
+}
+
+local TestResults = {}
+
+TestResults.__index = TestResults
+
+--[[
+	Create a new TestResults tree that's linked to the given TestPlan.
+]]
+function TestResults.new(plan)
+	local self = {
+		successCount = 0,
+		failureCount = 0,
+		skippedCount = 0,
+		planNode = plan,
+		children = {},
+		errors = {}
+	}
+
+	setmetatable(self, TestResults)
+
+	return self
+end
+
+--[[
+	Create a new result node that can be inserted into a TestResult tree.
+]]
+function TestResults.createNode(planNode)
+	local node = {
+		planNode = planNode,
+		children = {},
+		errors = {},
+		status = nil
+	}
+
+	return node
+end
+
+--[[
+	Visit all test result nodes, depth-first.
+]]
+function TestResults:visitAllNodes(callback, root)
+	root = root or self
+
+	for _, child in ipairs(root.children) do
+		callback(child)
+
+		self:visitAllNodes(callback, child)
+	end
+end
+
+--[[
+	Creates a debug visualization of the test results.
+]]
+function TestResults:visualize(root, level)
+	root = root or self
+	level = level or 0
+
+	local buffer = {}
+
+	for _, child in ipairs(root.children) do
+		if child.planNode.type == TestEnum.NodeType.It then
+			local symbol = STATUS_SYMBOLS[child.status] or "?"
+			local str = ("%s[%s] %s"):format(
+				(" "):rep(3 * level),
+				symbol,
+				child.planNode.phrase
+			)
+
+			if child.messages and #child.messages > 0 then
+				str = str .. "\n " .. (" "):rep(3 * level) .. table.concat(child.messages, "\n " .. (" "):rep(3 * level))
+			end
+
+			table.insert(buffer, str)
+		else
+			local str = ("%s%s"):format(
+				(" "):rep(3 * level),
+				child.planNode.phrase or ""
+			)
+
+			if child.status then
+				str = str .. (" (%s)"):format(child.status)
+			end
+
+			table.insert(buffer, str)
+
+			if #child.children > 0 then
+				local text = self:visualize(child, level + 1)
+				table.insert(buffer, text)
+			end
+		end
+	end
+
+	return table.concat(buffer, "\n")
+end
+
+return TestResults]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002484c</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXB37C38659A3B49CF8CDDB4FF3B9F86F8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestRunner</string>
+						<string name="ScriptGuid">{507D2A53-BD07-44BB-ABC7-BFED651B4032}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Contains the logic to run a test plan and gather test results from it.
+
+	TestRunner accepts a TestPlan object, executes the planned tests, and
+	produces a TestResults object. While the tests are running, the system's
+	state is contained inside a TestSession object.
+]]
+
+local TestEnum = require(script.Parent.TestEnum)
+local TestSession = require(script.Parent.TestSession)
+local LifecycleHooks = require(script.Parent.LifecycleHooks)
+
+local RUNNING_GLOBAL = "__TESTEZ_RUNNING_TEST__"
+
+local TestRunner = {
+	environment = {}
+}
+
+local function wrapExpectContextWithPublicApi(expectationContext)
+	return setmetatable({
+		extend = function(...)
+			expectationContext:extend(...)
+		end,
+	}, {
+		__call = function(_self, ...)
+			return expectationContext:startExpectationChain(...)
+		end,
+	})
+end
+
+--[[
+	Runs the given TestPlan and returns a TestResults object representing the
+	results of the run.
+]]
+function TestRunner.runPlan(plan)
+	local session = TestSession.new(plan)
+	local lifecycleHooks = LifecycleHooks.new()
+
+	local exclusiveNodes = plan:findNodes(function(node)
+		return node.modifier == TestEnum.NodeModifier.Focus
+	end)
+
+	session.hasFocusNodes = #exclusiveNodes > 0
+
+	TestRunner.runPlanNode(session, plan, lifecycleHooks)
+
+	return session:finalize()
+end
+
+--[[
+	Run the given test plan node and its descendants, using the given test
+	session to store all of the results.
+]]
+function TestRunner.runPlanNode(session, planNode, lifecycleHooks)
+	local function runCallback(callback, messagePrefix)
+		local success = true
+		local errorMessage
+		-- Any code can check RUNNING_GLOBAL to fork behavior based on
+		-- whether a test is running. We use this to avoid accessing
+		-- protected APIs; it's a workaround that will go away someday.
+		_G[RUNNING_GLOBAL] = true
+
+		messagePrefix = messagePrefix or ""
+
+		local testEnvironment = getfenv(callback)
+
+		for key, value in pairs(TestRunner.environment) do
+			testEnvironment[key] = value
+		end
+
+		testEnvironment.fail = function(message)
+			if message == nil then
+				message = "fail() was called."
+			end
+
+			success = false
+			errorMessage = messagePrefix .. debug.traceback(tostring(message), 2)
+		end
+
+		testEnvironment.expect = wrapExpectContextWithPublicApi(session:getExpectationContext())
+
+		local context = session:getContext()
+
+		local nodeSuccess, nodeResult = xpcall(
+			function()
+				callback(context)
+			end,
+			function(message)
+				return messagePrefix .. debug.traceback(tostring(message), 2)
+			end
+		)
+
+		-- If a node threw an error, we prefer to use that message over
+		-- one created by fail() if it was set.
+		if not nodeSuccess then
+			success = false
+			errorMessage = nodeResult
+		end
+
+		_G[RUNNING_GLOBAL] = nil
+
+		return success, errorMessage
+	end
+
+	local function runNode(childPlanNode)
+		-- Errors can be set either via `error` propagating upwards or
+		-- by a test calling fail([message]).
+
+		for _, hook in ipairs(lifecycleHooks:getBeforeEachHooks()) do
+			local success, errorMessage = runCallback(hook, "beforeEach hook: ")
+			if not success then
+				return false, errorMessage
+			end
+		end
+
+		local testSuccess, testErrorMessage = runCallback(childPlanNode.callback)
+
+		for _, hook in ipairs(lifecycleHooks:getAfterEachHooks()) do
+			local success, errorMessage = runCallback(hook, "afterEach hook: ")
+			if not success then
+				if not testSuccess then
+					return false, testErrorMessage .. "\nWhile cleaning up the failed test another error was found:\n" .. errorMessage
+				end
+				return false, errorMessage
+			end
+		end
+
+		if not testSuccess then
+			return false, testErrorMessage
+		end
+
+		return true, nil
+	end
+
+	lifecycleHooks:pushHooksFrom(planNode)
+
+	local halt = false
+	for _, hook in ipairs(lifecycleHooks:getBeforeAllHooks()) do
+		local success, errorMessage = runCallback(hook, "beforeAll hook: ")
+		if not success then
+			session:addDummyError("beforeAll", errorMessage)
+			halt = true
+		end
+	end
+
+	if not halt then
+		for _, childPlanNode in ipairs(planNode.children) do
+			if childPlanNode.type == TestEnum.NodeType.It then
+				session:pushNode(childPlanNode)
+				if session:shouldSkip() then
+					session:setSkipped()
+				else
+					local success, errorMessage = runNode(childPlanNode)
+
+					if success then
+						session:setSuccess()
+					else
+						session:setError(errorMessage)
+					end
+				end
+				session:popNode()
+			elseif childPlanNode.type == TestEnum.NodeType.Describe then
+				session:pushNode(childPlanNode)
+				TestRunner.runPlanNode(session, childPlanNode, lifecycleHooks)
+
+				-- Did we have an error trying build a test plan?
+				if childPlanNode.loadError then
+					local message = "Error during planning: " .. childPlanNode.loadError
+					session:setError(message)
+				else
+					session:setStatusFromChildren()
+				end
+				session:popNode()
+			end
+		end
+	end
+
+	for _, hook in ipairs(lifecycleHooks:getAfterAllHooks()) do
+		local success, errorMessage = runCallback(hook, "afterAll hook: ")
+		if not success then
+			session:addDummyError("afterAll", errorMessage)
+		end
+	end
+
+	lifecycleHooks:popHooks()
+end
+
+return TestRunner
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002484d</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXA905D7E57EE74CB588FA3AC5DA1D602D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TestSession</string>
+						<string name="ScriptGuid">{F3C07A3E-3349-4CE7-97AF-A1FF3CBF91A7}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+	Represents the state relevant while executing a test plan.
+
+	Used by TestRunner to produce a TestResults object.
+
+	Uses the same tree building structure as TestPlanBuilder; TestSession keeps
+	track of a stack of nodes that represent the current path through the tree.
+]]
+
+local TestEnum = require(script.Parent.TestEnum)
+local TestResults = require(script.Parent.TestResults)
+local Context = require(script.Parent.Context)
+local ExpectationContext = require(script.Parent.ExpectationContext)
+
+local TestSession = {}
+
+TestSession.__index = TestSession
+
+--[[
+	Create a TestSession related to the given TestPlan.
+
+	The resulting TestResults object will be linked to this TestPlan.
+]]
+function TestSession.new(plan)
+	local self = {
+		results = TestResults.new(plan),
+		nodeStack = {},
+		contextStack = {},
+		expectationContextStack = {},
+		hasFocusNodes = false
+	}
+
+	setmetatable(self, TestSession)
+
+	return self
+end
+
+--[[
+	Calculate success, failure, and skipped test counts in the tree at the
+	current point in the execution.
+]]
+function TestSession:calculateTotals()
+	local results = self.results
+
+	results.successCount = 0
+	results.failureCount = 0
+	results.skippedCount = 0
+
+	results:visitAllNodes(function(node)
+		local status = node.status
+		local nodeType = node.planNode.type
+
+		if nodeType == TestEnum.NodeType.It then
+			if status == TestEnum.TestStatus.Success then
+				results.successCount = results.successCount + 1
+			elseif status == TestEnum.TestStatus.Failure then
+				results.failureCount = results.failureCount + 1
+			elseif status == TestEnum.TestStatus.Skipped then
+				results.skippedCount = results.skippedCount + 1
+			end
+		end
+	end)
+end
+
+--[[
+	Gathers all of the errors reported by tests and puts them at the top level
+	of the TestResults object.
+]]
+function TestSession:gatherErrors()
+	local results = self.results
+
+	results.errors = {}
+
+	results:visitAllNodes(function(node)
+		if #node.errors > 0 then
+			for _, message in ipairs(node.errors) do
+				table.insert(results.errors, message)
+			end
+		end
+	end)
+end
+
+--[[
+	Calculates test totals, verifies the tree is valid, and returns results.
+]]
+function TestSession:finalize()
+	if #self.nodeStack ~= 0 then
+		error("Cannot finalize TestResults with nodes still on the stack!", 2)
+	end
+
+	self:calculateTotals()
+	self:gatherErrors()
+
+	return self.results
+end
+
+--[[
+	Create a new test result node and push it onto the navigation stack.
+]]
+function TestSession:pushNode(planNode)
+	local node = TestResults.createNode(planNode)
+	local lastNode = self.nodeStack[#self.nodeStack] or self.results
+	table.insert(lastNode.children, node)
+	table.insert(self.nodeStack, node)
+
+	local lastContext = self.contextStack[#self.contextStack]
+	local context = Context.new(lastContext)
+	table.insert(self.contextStack, context)
+
+	local lastExpectationContext = self.expectationContextStack[#self.expectationContextStack]
+	local expectationContext = ExpectationContext.new(lastExpectationContext)
+	table.insert(self.expectationContextStack, expectationContext)
+end
+
+--[[
+	Pops a node off of the navigation stack.
+]]
+function TestSession:popNode()
+	assert(#self.nodeStack > 0, "Tried to pop from an empty node stack!")
+	table.remove(self.nodeStack, #self.nodeStack)
+	table.remove(self.contextStack, #self.contextStack)
+	table.remove(self.expectationContextStack, #self.expectationContextStack)
+end
+
+--[[
+	Gets the Context object for the current node.
+]]
+function TestSession:getContext()
+	assert(#self.contextStack > 0, "Tried to get context from an empty stack!")
+	return self.contextStack[#self.contextStack]
+end
+
+
+function TestSession:getExpectationContext()
+	assert(#self.expectationContextStack > 0, "Tried to get expectationContext from an empty stack!")
+	return self.expectationContextStack[#self.expectationContextStack]
+end
+
+--[[
+	Tells whether the current test we're in should be skipped.
+]]
+function TestSession:shouldSkip()
+	-- If our test tree had any exclusive tests, then normal tests are skipped!
+	if self.hasFocusNodes then
+		for i = #self.nodeStack, 1, -1 do
+			local node = self.nodeStack[i]
+
+			-- Skipped tests are still skipped
+			if node.planNode.modifier == TestEnum.NodeModifier.Skip then
+				return true
+			end
+
+			-- Focused tests are the only ones that aren't skipped
+			if node.planNode.modifier == TestEnum.NodeModifier.Focus then
+				return false
+			end
+		end
+
+		return true
+	else
+		for i = #self.nodeStack, 1, -1 do
+			local node = self.nodeStack[i]
+
+			if node.planNode.modifier == TestEnum.NodeModifier.Skip then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
+--[[
+	Set the current node's status to Success.
+]]
+function TestSession:setSuccess()
+	assert(#self.nodeStack > 0, "Attempting to set success status on empty stack")
+	self.nodeStack[#self.nodeStack].status = TestEnum.TestStatus.Success
+end
+
+--[[
+	Set the current node's status to Skipped.
+]]
+function TestSession:setSkipped()
+	assert(#self.nodeStack > 0, "Attempting to set skipped status on empty stack")
+	self.nodeStack[#self.nodeStack].status = TestEnum.TestStatus.Skipped
+end
+
+--[[
+	Set the current node's status to Failure and adds a message to its list of
+	errors.
+]]
+function TestSession:setError(message)
+	assert(#self.nodeStack > 0, "Attempting to set error status on empty stack")
+	local last = self.nodeStack[#self.nodeStack]
+	last.status = TestEnum.TestStatus.Failure
+	table.insert(last.errors, message)
+end
+
+--[[
+	Add a dummy child node to the current node to hold the given error. This
+	allows an otherwise empty describe node to report an error in a more natural
+	way.
+]]
+function TestSession:addDummyError(phrase, message)
+	self:pushNode({type = TestEnum.NodeType.It, phrase = phrase})
+	self:setError(message)
+	self:popNode()
+	self.nodeStack[#self.nodeStack].status = TestEnum.TestStatus.Failure
+end
+
+--[[
+	Set the current node's status based on that of its children. If all children
+	are skipped, mark it as skipped. If any are fails, mark it as failed.
+	Otherwise, mark it as success.
+]]
+function TestSession:setStatusFromChildren()
+	assert(#self.nodeStack > 0, "Attempting to set status from children on empty stack")
+
+	local last = self.nodeStack[#self.nodeStack]
+	local status = TestEnum.TestStatus.Success
+	local skipped = true
+
+	-- If all children were skipped, then we were skipped
+	-- If any child failed, then we failed!
+	for _, child in ipairs(last.children) do
+		if child.status ~= TestEnum.TestStatus.Skipped then
+			skipped = false
+
+			if child.status == TestEnum.TestStatus.Failure then
+				status = TestEnum.TestStatus.Failure
+			end
+		end
+	end
+
+	if skipped then
+		status = TestEnum.TestStatus.Skipped
+	end
+
+	last.status = status
+end
+
+return TestSession
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002484e</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="LocalScript" referent="RBX5B4CF5BF8C034803A7A9BA4408BEFE7A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Runner</string>
+					<string name="ScriptGuid">{3AD6EAA5-DF9A-4D06-B2CB-599596D62A58}</string>
+					<ProtectedString name="Source"><![CDATA[--[[
+    Test runner, from fusion: https://github.com/Elttob/Fusion/blob/main/test-runner/Run.client.lua
+    HawDevelopment
+    12/11/2021
+--]]
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local StarterPlayerScripts = game:GetService("StarterPlayer"):WaitForChild("StarterPlayerScripts")
+
+local TestEZ = require(StarterPlayerScripts.TestEZ)
+
+local RUN_TESTS = false
+local RUN_BENCHMARKS = false
+
+-- run unit tests
+if RUN_TESTS then
+	print("Running unit tests...")
+	local data = TestEZ.TestBootstrap:run({
+		ReplicatedStorage:WaitForChild("Tests"):WaitForChild("Test"),
+	})
+
+	if data.failureCount > 0 then
+		warn("Unit tests failed! Wont be running benchmarks.")
+		return
+	end
+end
+
+-- run benchmarks
+if RUN_BENCHMARKS then
+	print("Running benchmarks...")
+
+	-- wait for a bit to allow initial load to pass - this means the lag from a ton
+	-- of things starting up shouldn't impact the benchmarks (as much)
+	task.wait(5)
+
+	local results = {}
+	local maxNameLength = 0
+
+	for _, instance in pairs(ReplicatedStorage.Tests.Benchmark:GetDescendants()) do
+		if instance:IsA("ModuleScript") and instance.Name:match("%.bench$") then
+			-- yield between benchmarks so we don't freeze Studio
+			task.wait(0.5)
+
+			local benchmarks = require(instance)
+
+			local fileName = instance.Name:gsub("%.bench$", "")
+			local fileResults = {}
+
+			for index, benchmarkInfo in ipairs(benchmarks) do
+				-- yield between benchmarks so we don't freeze Studio
+				task.wait()
+
+				local name = benchmarkInfo.name
+				local calls = benchmarkInfo.calls
+
+				local preRun = benchmarkInfo.preRun
+				local run = benchmarkInfo.run
+				local postRun = benchmarkInfo.postRun
+
+				maxNameLength = math.max(maxNameLength, #name)
+
+				local state
+
+				if preRun ~= nil then
+					state = preRun()
+				end
+
+				local start = os.clock()
+				for n = 1, calls do
+					run(state)
+				end
+				local fin = os.clock()
+
+				if postRun ~= nil then
+					postRun(state)
+				end
+
+				local timeMicros = (fin - start) * 1000000 / calls
+
+				fileResults[index] = { name = name, time = timeMicros }
+			end
+
+			table.sort(fileResults, function(a, b)
+				return a.name < b.name
+			end)
+
+			table.insert(results, { fileName = fileName, results = fileResults })
+		end
+	end
+
+	table.sort(results, function(a, b)
+		return a.fileName < b.fileName
+	end)
+
+	local resultsString = "Benchmark results:"
+
+	for _, fileInfo in ipairs(results) do
+		resultsString ..= "\n[+] " .. fileInfo.fileName
+
+		for _, testInfo in ipairs(fileInfo.results) do
+			resultsString ..= "\n   [+] "
+			resultsString ..= testInfo.name .. " "
+			resultsString ..= ("."):rep(maxNameLength - #testInfo.name + 4) .. " "
+			resultsString ..= ("%.2f μs"):format(testInfo.time)
+		end
+	end
+
+	print(resultsString)
+end
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac007ed257</UniqueId>
+				</Properties>
+			</Item>
+			<Item class="LocalScript" referent="RBX3D56CA5C14E84A69AB79E4BD5EF438A0">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Test</string>
+					<string name="ScriptGuid">{29C041FC-06BE-45AE-9322-38109D4DE927}</string>
+					<ProtectedString name="Source"><![CDATA[-- local Fission = require(game.ReplicatedStorage.Fission)
+
+-- local New = Fission.New
+-- local Children = Fission.Children
+-- local Value = Fission.Value
+-- local Computed = Fission.Computed
+-- local OnEvent = Fission.OnEvent
+
+-- local clicked = Value(0)
+
+-- New("ScreenGui")({
+-- 	Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"),
+-- 	[Children] = New("TextButton")({
+-- 		Size = UDim2.fromOffset(100, 100),
+-- 		Text = Computed(function()
+-- 			return "Clicked " .. clicked:get() .. " times"
+-- 		end, false),
+-- 		[OnEvent("Activated")] = function()
+-- 			clicked:set(clicked:get() + 1)
+-- 		end,
+-- 	}),
+-- })
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">52af2c502b6f79fe01cd0532000248cb</UniqueId>
+				</Properties>
+			</Item>
+			<Item class="LocalScript" referent="RBX4F60F632D7D34C7D9EF24E3B482986C7">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="Disabled">false</bool>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Stress</string>
+					<string name="ScriptGuid">{974A7387-1AB0-4D8A-AF8F-330B89B25E32}</string>
+					<ProtectedString name="Source"><![CDATA[local RunService = game:GetService("RunService")
+local Fission = require(game.ReplicatedStorage.Fission)
+
+local NODE_SIZE = 10
+local GRID_SIZE = 50
+
+local New = Fission.New
+local Value = Fission.Value
+local Children = Fission.Children
+local Computed = Fission.Computed
+
+local function StressTester()
+	local TimeState = Value(time())
+
+	RunService.Heartbeat:Connect(function()
+		TimeState:set(time())
+	end)
+
+	local Nodes = {}
+	local Length = 0
+	for X = 0, GRID_SIZE - 1 do
+		for Y = 0, GRID_SIZE - 1 do
+			Length += 1
+			Nodes[Length] = New("Frame")({
+				BackgroundColor3 = Computed(function()
+					return Color3.new(0.5 + 0.5 * math.sin(TimeState:get() + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
+				end, false),
+
+				Position = UDim2.fromOffset(NODE_SIZE * X, NODE_SIZE * Y),
+				Size = UDim2.fromOffset(NODE_SIZE, NODE_SIZE),
+			})
+		end
+	end
+
+	local Frame = New("Frame")({
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		Position = UDim2.fromScale(0.5, 0.5),
+		Size = UDim2.fromOffset(GRID_SIZE * NODE_SIZE, GRID_SIZE * NODE_SIZE),
+		[Children] = Nodes,
+	}) :: Frame
+
+	return Frame
+end
+
+local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
+
+New("ScreenGui")({
+	Parent = PlayerGui,
+	[Fission.Children] = { StressTester() },
+})
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">01c7fa13631eb83601cd1977000247a5</UniqueId>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="StarterCharacterScripts" referent="RBXC8CAA5E969EB46C7AAD3010775964719">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">StarterCharacterScripts</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a589</UniqueId>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="StarterPack" referent="RBXCBAA849FAC784EBD9831087A34B8F50D">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">StarterPack</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4df</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="StarterGui" referent="RBX6DDBFA7A9A804B16AC6C2C61478E27E5">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">StarterGui</string>
+			<bool name="ResetPlayerGuiOnSpawn">true</bool>
+			<token name="ScreenOrientation">2</token>
+			<bool name="ShowDevelopmentGui">true</bool>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4e0</UniqueId>
+			<token name="VirtualCursorMode">0</token>
+		</Properties>
+	</Item>
+	<Item class="LocalizationService" referent="RBXC4CB4E3A94394DE3AF640FD0DCDB8BFD">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">LocalizationService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4e2</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="TeleportService" referent="RBX936286CBCA0B42B8A031D775BF0D0C76">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Teleport Service</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4e6</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="CollectionService" referent="RBXE6A8E00754E242C4A7E8E781AC870177">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">CollectionService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4e8</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="PhysicsService" referent="RBXCAAD9B1ABDE6423FA10950B3DE17F1E7">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">PhysicsService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4e9</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="Geometry" referent="RBX3AD4A3E36B0141FA8710CE4279F780C8">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Geometry</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4eb</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="InsertService" referent="RBX10CBC3B06AC14E4FAB3CE25C13CE70DC">
+		<Properties>
+			<bool name="AllowClientInsertModels">false</bool>
+			<bool name="AllowInsertFreeModels">false</bool>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">InsertService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4ed</UniqueId>
+		</Properties>
+		<Item class="StringValue" referent="RBX140C4D18242A4279AE2A000D4816D687">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">InsertionHash</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000d08d3</UniqueId>
+				<string name="Value">{E9B1ED12-6CE5-466F-AFA8-F5C1C8BFE419}</string>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="GamePassService" referent="RBX9A23265511A340E28A255647CD40A724">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">GamePassService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4ee</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="Debris" referent="RBXDF85623395CE4442BF17F7A5B97D8654">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<int name="MaxItems">1000</int>
+			<string name="Name">Debris</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4ef</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="CookiesService" referent="RBX4A076DAEE39D453E91F3A32A053BCA99">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">CookiesService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4f0</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="VRService" referent="RBXEC815F594EFD474184900F78945282CB">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">VRService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4fa</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ContextActionService" referent="RBX2C6601DE84CC40E383D583975EC9C0AA">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">ContextActionService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4fb</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ScriptService" referent="RBX9E58FAAA6F224D2187DD0F1690E8B865">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4fd</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="AssetService" referent="RBX17BB64FD413144809D23BDDDD3F52E24">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">AssetService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4fe</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="TouchInputService" referent="RBXF4D2F72F507D42E295CE3308F11858FF">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">TouchInputService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a4ff</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="AnalyticsService" referent="RBX35A7CFCECAB24E5EA4CC75E5BBA23575">
+		<Properties>
+			<string name="ApiKey"></string>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">AnalyticsService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a502</UniqueId>
+		</Properties>
+		<Item class="ModuleScript" referent="RBX346C1A31D467478EA9A86C0A706BCB19">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">RobloxLSP_Settings</string>
+				<string name="ScriptGuid">{4E92D598-D3E2-427E-9681-5C1B2A83B4D0}</string>
+				<ProtectedString name="Source"><![CDATA[return {
+	port = 27843,
+	startAutomatically = false,
+	exclude = {
+		-- game:GetService("Workspace")
+	}
+}]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000240e1</UniqueId>
+			</Properties>
+		</Item>
+	</Item>
+	<Item class="Selection" referent="RBX8DD0545BF08341B687669E37A0DC9C83">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Selection</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a505</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ServerScriptService" referent="RBXC89B2E5D26C84C9AA409BCD6743AAFE5">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="LoadStringEnabled">false</bool>
+			<string name="Name">ServerScriptService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a507</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ServerStorage" referent="RBX967AE822AE9A4FBC939C0F5C5AB8E65B">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">ServerStorage</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a508</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ReplicatedStorage" referent="0">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">ReplicatedStorage</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a509</UniqueId>
+		</Properties>
+		<Item class="Folder" referent="2">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">Tests</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a583</UniqueId>
+			</Properties>
+			<Item class="Folder" referent="3">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Benchmark</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a584</UniqueId>
+				</Properties>
+				<Item class="Folder" referent="RBX7F8DF1F229254ECDA572ABD5C9DBF940">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Dependencies</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">7e8a7212a5ad24ea01c7c7140005d761</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBXD0328BE371FE4EB98283E37A27519D6C">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Capture.bench</string>
+							<string name="ScriptGuid">{A398CAEF-D375-4FCB-8BE2-C2A2435B53EA}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/benchmark/Dependencies/captureDependencies.bench.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local Capture = require(Package.Dependencies.Capture)
+local Value = require(Package.State.Value)
+
+local function callback() end
+local value = Value(10)
+local function callback2()
+	value:get()
+end
+
+return {
+
+	{
+		name = "Capture dependencies from callback",
+		calls = 10000,
+
+		preRun = function()
+			return {}
+		end,
+
+		run = function(set)
+			Capture(set, callback)
+		end,
+	},
+	{
+		name = "Capture dependencies from callback - Populated function",
+		calls = 10000,
+
+		preRun = function()
+			return {}
+		end,
+
+		run = function(set)
+			Capture(set, callback2)
+		end,
+	},
+}
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">7e8a7212a5ad24ea01c7c7140005d762</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX2051722E565B410690BE49ADDBE8B70F">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">UpdateAll.bench</string>
+							<string name="ScriptGuid">{D361BA82-7C5D-42BA-B793-7FFDEECBE048}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/benchmark/Dependencies/updateAll.bench.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local UpdateAll = require(Package.Dependencies.UpdateAll)
+
+local function update()
+	return true
+end
+
+local function makeDependency(dependency, dependent)
+	dependent.dependencySet[dependency] = true
+	dependency.dependentSet[dependent] = true
+end
+
+return {
+
+	{
+		name = "Update empty tree",
+		calls = 50000,
+
+		preRun = function()
+			local root = { dependentSet = {} }
+			return root
+		end,
+
+		run = function(state)
+			UpdateAll(state)
+		end,
+	},
+
+	{
+		name = "Update shallow tree",
+		calls = 50000,
+
+		preRun = function()
+			local root = { dependentSet = {} }
+			local A = { dependentSet = {}, dependencySet = {}, update = update }
+			local B = { dependentSet = {}, dependencySet = {}, update = update }
+			local C = { dependentSet = {}, dependencySet = {}, update = update }
+			local D = { dependentSet = {}, dependencySet = {}, update = update }
+
+			makeDependency(root, A)
+			makeDependency(root, B)
+			makeDependency(root, C)
+			makeDependency(root, D)
+
+			return root
+		end,
+
+		run = function(state)
+			UpdateAll(state)
+		end,
+	},
+
+	{
+		name = "Update deep tree",
+		calls = 50000,
+
+		preRun = function()
+			local root = { dependentSet = {} }
+			local A = { dependentSet = {}, dependencySet = {}, update = update }
+			local B = { dependentSet = {}, dependencySet = {}, update = update }
+			local C = { dependentSet = {}, dependencySet = {}, update = update }
+			local D = { dependentSet = {}, dependencySet = {}, update = update }
+
+			makeDependency(root, A)
+			makeDependency(A, B)
+			makeDependency(B, C)
+			makeDependency(C, D)
+
+			return root
+		end,
+
+		run = function(state)
+			UpdateAll(state)
+		end,
+	},
+
+	{
+		name = "Update tree with complex dependencies",
+		calls = 50000,
+
+		preRun = function()
+			local root = { dependentSet = {} }
+			local A = { dependentSet = {}, dependencySet = {}, update = update }
+			local B = { dependentSet = {}, dependencySet = {}, update = update }
+			local C = { dependentSet = {}, dependencySet = {}, update = update }
+			local D = { dependentSet = {}, dependencySet = {}, update = update }
+
+			makeDependency(root, A)
+			makeDependency(A, B)
+			makeDependency(B, C)
+			makeDependency(C, D)
+			makeDependency(A, C)
+			makeDependency(A, D)
+			makeDependency(B, D)
+
+			return root
+		end,
+
+		run = function(state)
+			UpdateAll(state)
+		end,
+	},
+}
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">7e8a7212a5ad24ea01c7c7140005d763</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Folder" referent="RBXFCBFE1AB358A4A5C90B82088C09FBE09">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Instances</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">7d616b3ddee25e7201ccab34000247fc</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBXF8DFF87BA7F347E7960C1D4E9389228C">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">New.bench</string>
+							<string name="ScriptGuid">{ABC29CB6-7E2D-4026-B240-69E8DE52B3ED}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/benchmark/Instances/New.bench.lua
+    HawDevelopment
+    12/16/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local New = require(Package.Instances.New)
+local Children = require(Package.Instances.Children)
+local OnEvent = require(Package.Instances.OnEvent)
+local OnChange = require(Package.Instances.OnChange)
+local Value = require(Package.State.Value)
+
+local function callback() end
+
+return {
+
+	{
+		name = "New without properties",
+		calls = 50000,
+
+		run = function()
+			New("Frame")({})
+		end,
+	},
+
+	{
+		name = "New with properties - constant",
+		calls = 50000,
+
+		run = function()
+			New("Frame")({
+				Name = "Foo",
+			})
+		end,
+	},
+
+	{
+		name = "New with properties - state",
+		calls = 50000,
+
+		run = function()
+			New("Frame")({
+				Name = Value("Foo"),
+			})
+		end,
+	},
+
+	{
+		name = "New with Parent - constant",
+		calls = 10000,
+
+		preRun = function() end,
+
+		run = function()
+			New("Folder")({
+				Parent = Instance.new("Folder"),
+			})
+		end,
+	},
+
+	{
+		name = "New with Parent - state",
+		calls = 10000,
+
+		preRun = function()
+			return Instance.new("Folder")
+		end,
+
+		run = function(parent)
+			New("Folder")({
+				Parent = Value(parent),
+			})
+		end,
+
+		postRun = function(parent)
+			parent:Destroy()
+		end,
+	},
+
+	{
+		name = "New with Children - single",
+		calls = 50000,
+
+		preRun = function()
+			return New("Folder")({})
+		end,
+
+		run = function(child)
+			New("Frame")({
+				[Children] = child,
+			})
+		end,
+	},
+
+	{
+		name = "New with Children - array",
+		calls = 50000,
+
+		preRun = function()
+			return {
+				New("Folder")({}),
+			}
+		end,
+
+		run = function(children)
+			New("Frame")({
+				[Children] = children,
+			})
+		end,
+	},
+
+	{
+		name = "New with Children - state",
+		calls = 50000,
+
+		preRun = function()
+			return New("Folder")({})
+		end,
+
+		run = function(child)
+			New("Frame")({
+				[Children] = Value(child),
+			})
+		end,
+	},
+
+	{
+		name = "New with OnEvent",
+		calls = 50000,
+
+		run = function()
+			New("Frame")({
+				[OnEvent("MouseEnter")] = callback,
+			})
+		end,
+	},
+
+	{
+		name = "New with OnChange",
+		calls = 50000,
+
+		run = function()
+			New("Frame")({
+				[OnChange("Name")] = callback,
+			})
+		end,
+	},
+}
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">7d616b3ddee25e7201ccab34000247fd</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="4">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Test</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a585</UniqueId>
+				</Properties>
+				<Item class="Folder" referent="RBXB320C35636CB48B7A686E5A51902FE40">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Dependencies</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002486a</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBX8CC2A2E9C0B0446295EB2B0A6D24CC69">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Capture.spec</string>
+							<string name="ScriptGuid">{F8B362BF-FCDF-41D8-AC34-D236458E043D}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/test/Dependencies/captureDependencies.spec.lua
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local Capture = require(Package.Dependencies.Capture)
+local Shared = require(Package.Dependencies.Shared)
+
+return function()
+	it("should set a dependency set contextually", function()
+		local set = {}
+		Capture(set, function()
+			expect(Shared.CurrentDependencySet).to.equal(set)
+		end)
+
+		expect(Shared.CurrentDependencySet).never.to.equal(set)
+	end)
+
+	it("should correctly contain and resolve errors", function()
+		local ok, err
+		local set = {}
+
+		expect(function()
+			ok, err = Capture(set, function()
+				error("oops")
+			end)
+		end).never.to.throw()
+
+		expect(Shared.CurrentDependencySet).never.to.equal(set)
+
+		expect(ok).to.equal(false)
+		expect(err).to.be.a("table")
+		expect(err.message).to.equal("oops")
+	end)
+
+	it("should pass arguments to the callback", function()
+		local value1, value2, value3
+
+		Capture({}, function(...)
+			value1, value2, value3 = ...
+		end, "foo", nil, "bar")
+
+		expect(value1).to.equal("foo")
+		expect(value2).to.equal(nil)
+		expect(value3).to.equal("bar")
+	end)
+
+	it("should return values from the callback", function()
+		local _, value = Capture({}, function(...)
+			return "foo"
+		end)
+
+		expect(value).to.equal("foo")
+	end)
+end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024893</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBXF13FE44E9DE643C2B6AB75B8AF8E56BC">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">UseState.spec</string>
+							<string name="ScriptGuid">{9A410E89-E1C1-42D6-A52E-FABDEE69BE47}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/test/Dependencies/useDependency.spec.lua
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local UseState = require(Package.Dependencies.UseState)
+local Shared = require(Package.Dependencies.Shared)
+
+return function()
+	it("should add to a dependency set contextually", function()
+		local set = {}
+		Shared.CurrentDependencySet = set
+
+		local dependency = { get = function() end }
+		UseState(dependency)
+
+		Shared.CurrentDependencySet = nil
+
+		expect(set[dependency]).to.be.ok()
+	end)
+
+	it("should do nothing when no dependency set exists", function()
+		expect(function()
+			UseState({ get = function() end })
+		end).never.to.throw()
+
+		expect(Shared.CurrentDependencySet).never.to.be.ok()
+	end)
+
+	-- TODO: test in conjunction with initDependency
+end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10005da36</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Folder" referent="RBXB2832E7376DA4434A4256F0973BF78F3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">State</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a139</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBXEEBF3C20959F42E586DCEFC216B4D058">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Computed.spec</string>
+							<string name="ScriptGuid">{1F253A25-CC01-4138-9652-17B13D470CC2}</string>
+							<ProtectedString name="Source"><![CDATA[local RunService = game:GetService("RunService")
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local Computed = require(Package.State.Computed)
+local Value = require(Package.State.Value)
+
+local function waitForGC()
+	local ref = setmetatable({ {} }, { __mode = "kv" })
+
+	repeat
+		RunService.Heartbeat:Wait()
+	until ref[1] == nil
+end
+
+return function()
+	it("should construct a Computed object", function()
+		local computed = Computed(function() end)
+
+		expect(computed).to.be.a("table")
+		expect(computed.type).to.equal("State")
+		expect(computed.kind).to.equal("Computed")
+	end)
+
+	it("should calculate and retrieve its value", function()
+		local computed = Computed(function()
+			return "foo"
+		end)
+
+		expect(computed:get()).to.equal("foo")
+	end)
+
+	it("should recalculate its value in response to State objects", function()
+		local currentNumber = Value(2)
+		local doubled = Computed(function()
+			return currentNumber:get() * 2
+		end)
+
+		expect(doubled:get()).to.equal(4)
+
+		currentNumber:set(4)
+		expect(doubled:get()).to.equal(8)
+	end)
+
+	it("should recalculate its value in response to Computed objects", function()
+		local currentNumber = Value(2)
+		local doubled = Computed(function()
+			return currentNumber:get() * 2
+		end)
+		local tripled = Computed(function()
+			return doubled:get() * 1.5
+		end)
+
+		expect(tripled:get()).to.equal(6)
+
+		currentNumber:set(4)
+		expect(tripled:get()).to.equal(12)
+	end)
+
+	it("should not corrupt dependencies after an error", function()
+		local state = Value(1)
+		local simulateError = false
+		local computed = Computed(function()
+			if simulateError then
+				-- in a naive implementation, this would corrupt dependencies as
+				-- state:get() hasn't been captured yet, preventing future
+				-- reactive updates from taking place
+				-- to avoid this, dependencies captured when a callback errors
+				-- have to be discarded
+				error("This is an intentional error from a unit test")
+			end
+
+			return state:get()
+		end)
+
+		expect(computed:get()).to.equal(1)
+
+		simulateError = true
+		state:set(5) -- update the computed to invoke the error
+
+		simulateError = false
+		state:set(10) -- if dependencies are corrupt, the computed won't update
+
+		expect(computed:get()).to.equal(10)
+	end)
+
+	it("should garbage-collect unused objects", function()
+		local state = Value(2)
+
+		local counter = 0
+
+		do
+			local computed = Computed(function()
+				counter += 1
+				return state:get()
+			end)
+		end
+
+		waitForGC()
+		state:set(5)
+
+		expect(counter).to.equal(1)
+	end)
+
+	it("should not garbage-collect objects in use", function()
+		local state = Value(2)
+		local computed2
+
+		local counter = 0
+
+		do
+			local computed = Computed(function()
+				counter += 1
+				return state:get()
+			end)
+
+			computed2 = Computed(function()
+				return computed:get()
+			end)
+		end
+
+		waitForGC()
+		state:set(5)
+
+		expect(counter).to.equal(2)
+	end)
+end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a149</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX810A2C99E4EC493D986A04CCE691EB96">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Value.spec</string>
+							<string name="ScriptGuid">{D0227E69-D7AD-46A1-8F8C-36356271B920}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/test/State/State.spec.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local Value = require(Package.State.Value)
+
+return function()
+	it("should construct a State object", function()
+		local state = Value()
+
+		expect(state).to.be.a("table")
+		expect(state.type).to.equal("State")
+		expect(state.kind).to.equal("State")
+	end)
+
+	it("should be able to store arbitrary values", function()
+		local state = Value(0)
+		expect(state:get()).to.equal(0)
+
+		state:set(10)
+		expect(state:get()).to.equal(10)
+
+		state:set(Value)
+		expect(state:get()).to.equal(Value)
+	end)
+end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a174</UniqueId>
+						</Properties>
+					</Item>
+					<Item class="ModuleScript" referent="RBX4DD7CAD938C34C8589497B111715CE5B">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">Observer.spec</string>
+							<string name="ScriptGuid">{9B1B318B-9364-4D1E-8CFB-E25D99977CE6}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    HawDevelopment
+    12/16/2021
+--]]
+
+local Package = game:GetService("ReplicatedStorage").Fission
+
+local Value = require(Package.State.Value)
+local Observer = require(Package.State.Observer)
+
+return function() end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac003e939d</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Folder" referent="RBX7AD52633710D4568AFC3A4B6DA8E67F2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Instances</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">4e4228dbd60401a401c7e83000024836</UniqueId>
+					</Properties>
+					<Item class="ModuleScript" referent="RBXBEEB19E6DA7E49FB965B0AE36367D0D7">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<Content name="LinkedSource"><null></null></Content>
+							<string name="Name">New.spec</string>
+							<string name="ScriptGuid">{4DAFA5CD-0111-43B0-B229-9CA26B502D11}</string>
+							<ProtectedString name="Source"><![CDATA[--[[
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/test/Instances/New.spec.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local RunService = game:GetService("RunService")
+
+local Package = game:GetService("ReplicatedStorage").Fission
+local New = require(Package.Instances.New)
+local Children = require(Package.Instances.Children)
+local OnEvent = require(Package.Instances.OnEvent)
+local OnChange = require(Package.Instances.OnChange)
+
+local Value = require(Package.State.Value)
+local Computed = require(Package.State.Computed)
+
+local function waitForDefer()
+	RunService.RenderStepped:Wait()
+	RunService.RenderStepped:Wait()
+end
+
+return function()
+	it("should create a new instance", function()
+		local ins = New("Frame")({})
+
+		expect(typeof(ins) == "Instance").to.be.ok()
+		expect(ins:IsA("Frame")).to.be.ok()
+	end)
+
+	it("should throw for non-existent class types", function()
+		expect(function()
+			New("This is not a valid class type")({})
+		end).to.throw("cannotCreateClass")
+	end)
+
+	it("should assign properties to instances", function()
+		local ins = New("Folder")({
+			Name = "Bob",
+		})
+
+		expect(ins.Name).to.equal("Bob")
+	end)
+
+	it("should throw for non-existent properties", function()
+		expect(function()
+			New("Folder")({
+				Frobulator = "Frobulateur",
+			})
+		end).to.throw("cannotAssignProperty")
+	end)
+
+	it("should throw for unrecognised keys", function()
+		expect(function()
+			New("Folder")({
+				[2] = true,
+			})
+		end).to.throw("unrecognisedPropertyKey")
+
+		expect(function()
+			New("Folder")({
+				[{
+					type = "Symbol",
+					name = "Fake",
+				}] = true,
+			})
+		end).to.throw("unrecognisedPropertyKey")
+	end)
+
+	it("should assign single children to instances", function()
+		local ins = New("Folder")({
+			Name = "Bob",
+
+			[Children] = New("Folder")({
+				Name = "Fred",
+			}),
+		})
+
+		expect(ins:FindFirstChild("Fred")).to.be.ok()
+	end)
+
+	it("should assign multiple children to instances", function()
+		local ins = New("Folder")({
+			Name = "Bob",
+
+			[Children] = {
+				New("Folder")({
+					Name = "Fred",
+				}),
+				New("Folder")({
+					Name = "George",
+				}),
+				New("Folder")({
+					Name = "Harry",
+				}),
+			},
+		})
+
+		expect(ins:FindFirstChild("Fred")).to.be.ok()
+		expect(ins:FindFirstChild("George")).to.be.ok()
+		expect(ins:FindFirstChild("Harry")).to.be.ok()
+	end)
+
+	it("should flatten children to be assigned", function()
+		local ins = New("Folder")({
+			Name = "Bob",
+
+			[Children] = {
+				New("Folder")({
+					Name = "Fred",
+				}),
+				{
+					New("Folder")({
+						Name = "George",
+					}),
+					{
+						New("Folder")({
+							Name = "Harry",
+						}),
+					},
+				},
+			},
+		})
+
+		expect(ins:FindFirstChild("Fred")).to.be.ok()
+		expect(ins:FindFirstChild("George")).to.be.ok()
+		expect(ins:FindFirstChild("Harry")).to.be.ok()
+	end)
+
+	it("should connect event handlers", function()
+		local fires = 0
+		local ins = New("Folder")({
+			Name = "Foo",
+
+			[OnEvent("AncestryChanged")] = function()
+				fires += 1
+			end,
+		})
+
+		ins.Parent = game
+		ins:Destroy()
+
+		waitForDefer()
+
+		expect(fires).never.to.equal(0)
+	end)
+
+	it("should throw for non-existent events", function()
+		expect(function()
+			New("Folder")({
+				Name = "Foo",
+
+				[OnEvent("Frobulate")] = function() end,
+			})
+		end).to.throw("cannotConnectEvent")
+	end)
+
+	it("should throw for non-event event handlers", function()
+		expect(function()
+			New("Folder")({
+				Name = "Foo",
+
+				[OnEvent("Name")] = function() end,
+			})
+		end).to.throw("cannotConnectEvent")
+	end)
+
+	it("shouldn't fire events during initialisation", function()
+		local fires = 0
+		local ins = New("Folder")({
+			Parent = game,
+			Name = "Foo",
+
+			[OnEvent("ChildAdded")] = function()
+				fires += 1
+			end,
+
+			[OnEvent("Changed")] = function()
+				fires += 1
+			end,
+
+			[OnEvent("AncestryChanged")] = function()
+				fires += 1
+			end,
+
+			[Children] = New("Folder")({
+				Name = "Bar",
+			}),
+		})
+
+		local totalFires = fires
+		ins:Destroy()
+
+		waitForDefer()
+
+		expect(totalFires).to.equal(0)
+	end)
+
+	it("should connect property change handlers", function()
+		local fires = 0
+		local ins = New("Folder")({
+			Name = "Foo",
+
+			[OnChange("Name")] = function()
+				fires += 1
+			end,
+		})
+
+		ins.Name = "Bar"
+
+		waitForDefer()
+
+		expect(fires).never.to.equal(0)
+	end)
+
+	it("should throw when connecting to non-existent property changes", function()
+		expect(function()
+			New("Folder")({
+				Name = "Foo",
+
+				[OnChange("Frobulate")] = function() end,
+			})
+		end).to.throw("cannotConnectChange")
+	end)
+
+	it("shouldn't fire property changes during initialisation", function()
+		local fires = 0
+		local ins = New("Folder")({
+			Parent = game,
+			Name = "Foo",
+
+			[OnChange("Name")] = function()
+				fires += 1
+			end,
+
+			[OnChange("Parent")] = function()
+				fires += 1
+			end,
+		})
+
+		local totalFires = fires
+		ins:Destroy()
+
+		waitForDefer()
+
+		expect(totalFires).to.equal(0)
+	end)
+
+	it("should bind State objects passed as properties", function()
+		local name = Value("Foo")
+		local ins = New("Folder")({
+			Name = name,
+		})
+
+		expect(ins.Name).to.equal("Foo")
+
+		name:set("Bar")
+		waitForDefer()
+		expect(ins.Name).to.equal("Bar")
+	end)
+
+	it("should bind Computed objects passed as properties", function()
+		local name = Value("Foo")
+		local ins = New("Folder")({
+			Name = Computed(function()
+				return "The" .. name:get()
+			end),
+		})
+
+		expect(ins.Name).to.equal("TheFoo")
+
+		name:set("Bar")
+		waitForDefer()
+		expect(ins.Name).to.equal("TheBar")
+	end)
+
+	it("should defer bound state updates", function()
+		local name = Value("Foo")
+		local ins = New("Folder")({
+			Name = name,
+		})
+
+		expect(ins.Name).to.equal("Foo")
+
+		name:set("Bar")
+
+		expect(ins.Name).to.equal("Foo")
+
+		name:set("Baz")
+
+		expect(ins.Name).to.equal("Foo")
+		waitForDefer()
+		expect(ins.Name).to.equal("Baz")
+	end)
+
+	it("should respect Parents of assigned children", function()
+		local targetParent = New("Folder")({})
+		local child = New("Folder")({
+			Parent = targetParent,
+		})
+		local constructedParent = New("Folder")({
+			[Children] = child,
+		})
+
+		expect(child.Parent).to.equal(targetParent)
+	end)
+
+	it("should bind State objects passed as the parent", function()
+		local parent1 = New("Folder")({})
+		local parent2 = New("Folder")({})
+
+		local parent = Value(parent1)
+
+		local child = New("Folder")({
+			Parent = parent,
+		})
+
+		expect(child.Parent).to.equal(parent1)
+
+		parent:set(parent2)
+		expect(child.Parent).to.equal(parent1)
+
+		waitForDefer()
+
+		expect(child.Parent).to.equal(parent2)
+	end)
+
+	it("should bind State objects passed as children", function()
+		local child1 = New("Folder")({})
+		local child2 = New("Folder")({})
+		local child3 = New("Folder")({})
+		local child4 = New("Folder")({})
+
+		local children = Value({ child1 })
+
+		local parent = New("Folder")({
+			[Children] = {
+				children,
+			},
+		})
+		expect(child1.Parent).to.equal(parent)
+
+		children:set({ child2, child3 })
+
+		waitForDefer()
+
+		expect(child1.Parent).to.equal(nil)
+		expect(child2.Parent).to.equal(parent)
+		expect(child3.Parent).to.equal(parent)
+
+		children:set({ child1, child2, child3, child4 })
+
+		waitForDefer()
+
+		expect(child1.Parent).to.equal(parent)
+		expect(child2.Parent).to.equal(parent)
+		expect(child3.Parent).to.equal(parent)
+		expect(child4.Parent).to.equal(parent)
+	end)
+
+	it("should defer updates to State children", function()
+		local child1 = New("Folder")({})
+		local child2 = New("Folder")({})
+
+		local children = Value(child1)
+
+		local parent = New("Folder")({
+			[Children] = {
+				children,
+			},
+		})
+
+		expect(child1.Parent).to.equal(parent)
+
+		children:set(child2)
+
+		expect(child1.Parent).to.equal(parent)
+		expect(child2.Parent).to.equal(nil)
+
+		waitForDefer()
+
+		expect(child1.Parent).to.equal(nil)
+		expect(child2.Parent).to.equal(parent)
+	end)
+
+	it("should recursively bind State children", function()
+		local child1 = New("Folder")({})
+		local child2 = New("Folder")({})
+		local child3 = New("Folder")({})
+		local child4 = New("Folder")({})
+
+		local children = Value({
+			child1,
+			Value(child2),
+			Value({
+				child3,
+				Value(Value(child4)),
+			}),
+		})
+
+		local parent = New("Folder")({
+			[Children] = {
+				children,
+			},
+		})
+
+		expect(child1.Parent).to.equal(parent)
+		expect(child2.Parent).to.equal(parent)
+		expect(child3.Parent).to.equal(parent)
+		expect(child4.Parent).to.equal(parent)
+	end)
+
+	it("should allow for State children to be nil", function()
+		local child = New("Folder")({})
+
+		local children = Value(nil)
+
+		local parent = New("Folder")({
+			[Children] = {
+				children,
+			},
+		})
+
+		expect(child.Parent).to.equal(nil)
+
+		children:set(child)
+
+		waitForDefer()
+
+		expect(child.Parent).to.equal(parent)
+
+		children:set(nil)
+
+		waitForDefer()
+
+		expect(child.Parent).to.equal(nil)
+	end)
+
+	-- TODO: test for garbage collection
+end
+]]></ProtectedString>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">4e4228dbd60401a401c7e83000024837</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="ModuleScript" referent="RBX59729819E4A0495AA083B90ADAC3B959">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Fission</string>
+				<string name="ScriptGuid">{A6B17A5A-F8AD-447C-B64C-55FED2EA70C2}</string>
+				<ProtectedString name="Source"><![CDATA[--[[
+    Imports
+    HawDevelopment
+    12/12/2021
+--]]
+
+return {
+	New = require(script.Instances.New),
+	OnChange = require(script.Instances.OnChange),
+	OnEvent = require(script.Instances.OnEvent),
+	Children = require(script.Instances.Children),
+
+	Value = require(script.State.Value),
+	Computed = require(script.State.Computed),
+	Observer = require(script.State.Observer),
+}
+]]></ProtectedString>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002485e</UniqueId>
+			</Properties>
+			<Item class="Folder" referent="RBX02373F97030745E09B3DA86862D09B08">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Dependencies</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002485f</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXBD2ADF5FF8C74EA2BA2888CCAFFD1859">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Shared</string>
+						<string name="ScriptGuid">{79F42DFF-C459-4992-BED6-DEB008E6316D}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Shared
+    
+    All state is captured and stored here.
+    
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+type Set<T> = { [T]: any }
+
+type Shared = {
+	CurrentDependencySet: Set<Types.Dependency>?,
+}
+
+local Shared = {}
+
+-- The set where state should be updated to.
+Shared.CurrentDependencySet = nil
+
+return Shared :: Shared
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024860</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXD954C3D377824BC9BB5F2B47D4C1846D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Capture</string>
+						<string name="ScriptGuid">{36C9829A-D16C-4656-896F-EE558615E587}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Capture.
+    
+    Gets all the used states in a function.
+    Also returns the return of the function.
+    
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Shared = require(Package.Dependencies.Shared)
+local Error = require(Package.Logging.Error)
+
+type Set<T> = { [T]: any }
+
+return function(saveto: Set<Types.Dependency>, func: (...any) -> any, ...)
+	local prevDependencySet = Shared.CurrentDependencySet
+	Shared.CurrentDependencySet = saveto
+
+	local ok, ret = xpcall(func, Error, ...)
+
+	Shared.CurrentDependencySet = prevDependencySet
+	return ok, ret
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024861</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX7539736B8C434B97BDCFE4137522C31C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">UseState</string>
+						<string name="ScriptGuid">{8913939A-BC7A-48ED-BA5C-D6C7F668F757}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    UseState
+    
+    Adds a state to the shared dependency set.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Shared = require(Package.Dependencies.Shared)
+
+return function(dependency: Types.Dependency)
+	local set = Shared.CurrentDependencySet
+	if set ~= nil then
+		set[dependency] = true
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10005db1a</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXD14317477A5F49DC8F0A2B9D9E8E97DD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">UpdateAll</string>
+						<string name="ScriptGuid">{9760A2AA-22BE-4B8E-9F70-0A3E225C4A26}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    UpdateAll.
+    
+    Updates all state dependencies.
+    Will bot update the child elements, if there werent any changes.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+type Set<T> = { [T]: any }
+
+return function(state: Types.Dependency)
+	local processed = {}
+	local processNow, processNext = {}, {}
+	local processNowSize, processNextSize = 0, 0
+
+	for dependent, _ in pairs(state.dependentSet) do
+		processNowSize += 1
+		processNow[processNowSize] = dependent
+	end
+
+	repeat
+		local done = true
+		for _, member in pairs(processNow) do
+			if processed[member] then
+				continue
+			end
+			processed[member] = true
+			local changed = member:update()
+
+			if changed and member.dependentSet then
+				for dependent, _ in pairs(member.dependentSet) do
+					if not processed[dependent] then
+						for dependency, _ in pairs(dependent.dependencySet) do
+							if not processed[dependency] then
+								processNextSize += 1
+								processNext[processNextSize] = dependency
+							end
+						end
+						processNextSize += 1
+						processNext[processNextSize] = dependent
+						done = false
+					end
+				end
+			end
+		end
+		if not done then
+			processNow, processNext = processNext, processNow
+			table.clear(processNext)
+			processNowSize, processNextSize = processNextSize, 0
+		end
+	until done
+
+	-- Clear any refrences
+    table.clear(processNow)
+    table.clear(processNext)
+	table.clear(processed)
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000d0772</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="ModuleScript" referent="RBX42EA90836E264DDDBB65DAACCEAECA28">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Types</string>
+					<string name="ScriptGuid">{C66DCD2C-29E1-4DA2-9AA3-84118BCFAF1B}</string>
+					<ProtectedString name="Source"><![CDATA[--[[
+    Types.
+    
+    A module where alle types are defined.
+    
+    HawDevelopment
+    12/11/2021
+--]]
+
+type Set<T> = { [T]: any }
+type Symbol = {
+	type: string,
+	name: string,
+}
+
+export type Dependent = {
+	update: (Dependent) -> boolean,
+	dependencySet: Set<Dependency>,
+}
+
+export type Dependency = {
+	dependentSet: Set<Dependent>,
+}
+
+export type Error = {
+	type: string,
+	raw: string,
+	message: string,
+	trace: string,
+}
+
+export type Value<T> = {
+	type: string,
+	kind: string,
+	_value: T,
+	dependentSet: Set<Dependent>,
+
+	set: (Value<T>, newValue: any, force: boolean?) -> nil,
+	get: (Value<T>, asDependency: boolean?) -> T,
+    recalculate: (Value<T>) -> nil,
+
+	observer: Observer?,
+}
+
+export type Computed<T> = {
+	type: string,
+	kind: string,
+	recapture: boolean?,
+	_value: T,
+	dependentSet: Set<Dependent>,
+	dependencySet: Set<Dependency>,
+	_oldDependencySet: Set<Dependency>,
+	_callbacks: () -> T,
+
+	get: (Computed<T>, asDependency: boolean?) -> T,
+	update: (Computed<T>) -> boolean,
+
+	observer: Observer?,
+}
+
+export type Observer = {
+	type: string,
+	kind: string,
+	callbacks: { [() -> nil]: boolean },
+	dependentSet: Set<Dependent>,
+	dependencySet: Set<Dependency>,
+
+	onChange: (Observer, callback: () -> nil) -> () -> nil,
+	update: (Observer, Dependent) -> boolean,
+}
+
+export type State<T> = Value<T> | Computed<T>
+
+export type Children = Symbol
+
+export type OnChange = Symbol & {
+	key: string,
+}
+
+export type OnEvent = Symbol & {
+	key: string,
+}
+export type None = Symbol
+
+export type PropertyTable = {
+	[string | OnEvent | OnChange | Children]: any,
+}
+
+return nil
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024862</UniqueId>
+				</Properties>
+			</Item>
+			<Item class="Folder" referent="RBX78478EE50CE642ECBCEB0C5ADB0A3AE6">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Logging</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024863</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX2F5DF08AD8E3472898DA7CA914CA24E0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Error</string>
+						<string name="ScriptGuid">{DA48A4E3-C648-4A79-98DA-97ECA1667AE0}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Error.
+    
+    Creates a new error object from an error string.
+    
+    Taken from: https://github.com/Elttob/Fusion/blob/main/src/Logging/parseError.lua
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+return function(err: string): Types.Error
+	return {
+		type = "Error",
+		raw = err,
+		message = err:gsub("^.+:%d+:%s*", ""),
+		trace = debug.traceback("", 2),
+	}
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024864</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXA93D75F9E53448F0803C874D238E5752">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">LogError</string>
+						<string name="ScriptGuid">{F96ECEE5-D29C-42D6-A055-F167DCDD4DF5}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    LogError.
+    
+    Prints an error message to the console.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/logErrorNonFatal.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Messages = require(Package.Logging.Messages)
+
+return function(messageID: string, errObj: Types.Error | nil, fatal: boolean?, ...)
+	local formatString: string = if Messages[messageID] then Messages[messageID] else messageID
+	local str
+	if not errObj then
+		str = string.format("[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")", ...)
+	else
+		formatString = formatString:gsub("ERROR_MESSAGE", errObj.message)
+		str = string.format(
+			"[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")\n---- Stack trace ----\n" .. errObj.trace,
+			...
+		)
+	end
+
+	if not fatal then
+		task.spawn(function(...)
+			error(str:gsub("\n", "\n    "), 0)
+		end, ...)
+	else
+		error(str:gsub("\n", "\n    "), 0)
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">33c5c41d0c8dc8e901c78cc60005e7ce</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX43951282AD2540A284ADB902DBABDF42">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Messages</string>
+						<string name="ScriptGuid">{1829F5DF-C24E-419F-BE02-ACCA4A97BEEB}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Messages.
+    
+    A list of template messages.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/messages.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+return {
+	cannotAssignProperty = "The class type '%s' has no assignable property '%s'.",
+	cannotConnectChange = "The %s class doesn't have a property called '%s'.",
+	cannotConnectEvent = "The %s class doesn't have an event called '%s'.",
+	cannotCreateClass = "Can't create a new instance of class '%s'.",
+	computedCallbackError = "Computed callback error: ERROR_MESSAGE",
+	invalidSpringDamping = "The damping ratio for a spring must be >= 0. (damping was %.2f)",
+	invalidSpringSpeed = "The speed of a spring must be >= 0. (speed was %.2f)",
+	mistypedSpringDamping = "The damping ratio for a spring must be a number. (got a %s)",
+	mistypedSpringSpeed = "The speed of a spring must be a number. (got a %s)",
+	pairsDestructorError = "ComputedPairs destructor error: ERROR_MESSAGE",
+	pairsProcessorError = "ComputedPairs callback error: ERROR_MESSAGE",
+	springTypeMismatch = "The type '%s' doesn't match the spring's type '%s'.",
+	strictReadError = "'%s' is not a valid member of '%s'.",
+	unknownMessage = "Unknown error: ERROR_MESSAGE",
+	unrecognisedChildType = "'%s' type children aren't accepted as children in `New`.",
+	unrecognisedPropertyKey = "'%s' keys aren't accepted in the property table of `New`",
+}
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">33c5c41d0c8dc8e901c78cc60005e810</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX49AB7D2A95794F19BEB9EA7021A77ECA">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">State</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a203</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXDE8312FF4A9C48AB996C4A7D923772C9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Value</string>
+						<string name="ScriptGuid">{9FC09C73-E595-41F0-8CDA-CAFCD9A7E09A}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Value
+    
+    A way to store reactive state.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local UseState = require(Package.Dependencies.UseState)
+local UpdateAll = require(Package.Dependencies.UpdateAll)
+local Shared = require(Package.Dependencies.Shared)
+local Scheduler = require(Package.Instances.Scheduler)
+
+local Value = {}
+Value.__index = Value
+
+-- Returns the current value.
+-- Adds the state to CurrentDependencySet, if asDependency isnt false.
+function Value:get(asDependency: boolean?)
+	if asDependency ~= false and Shared.CurrentDependencySet then
+		UseState(self :: Types.Dependency)
+	end
+	return self._value
+end
+
+-- Updates current value.
+-- If force is set to true, it will update it even if the value is the same.
+function Value:set(newValue: any, force: boolean?)
+	if not force and self._value == newValue then
+        return
+	end
+    self._value = newValue
+    UpdateAll(self :: Types.Dependency)
+end
+
+return function<T>(initialValue: T): Types.Value<T>
+	local value = setmetatable({
+		type = "State",
+		kind = "State",
+		_value = initialValue,
+		dependentSet = setmetatable({}, { __mode = "k" }),
+	}, Value) :: Types.Value<T>
+
+	return value
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a20b</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX679A62647C1B479CA03235AF64E53D7B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Computed</string>
+						<string name="ScriptGuid">{9333556C-59B1-4E59-8466-45644850D01C}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Computed.
+    
+    A way to change state.
+
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Capture = require(Package.Dependencies.Capture)
+local UseState = require(Package.Dependencies.UseState)
+local LogError = require(Package.Logging.LogError)
+local Scheduler = require(Package.Instances.Scheduler)
+
+local Computed = {}
+Computed.__index = Computed
+
+-- Returns the current value.
+-- Also adds the computed to CurrentDependencySet if asDependency isnt false.
+function Computed:get(asDependency: boolean?): any
+	if asDependency ~= false then
+		UseState(self :: Types.Dependency)
+	end
+	return self._value
+end
+
+-- Recalculates the value.
+-- Returns wether the value changed.
+function Computed:update(): boolean
+	-- Dont update if we dont want to.
+	if self.recapture == false and self.dependencySet then
+		local value = self._callback()
+		local changed = self._value ~= value
+		self._value = value
+		return changed
+	elseif not self.dependencySet then
+		self.dependencySet = {}
+	end
+
+	-- remove this from all dependencies (so we dong get looping dependencies)
+	for dependency, _ in pairs(self.dependencySet) do
+		dependency.dependentSet[self] = nil
+	end
+
+	-- Store the old value, so if it errors we can revert.
+	self._oldDependencySet, self.dependencySet = self.dependencySet, self._oldDependencySet
+	table.clear(self.dependencySet)
+
+	local ok, value = Capture(self.dependencySet, self._callback)
+
+	if ok then
+		local changed = value ~= self._value
+		self._value = value
+
+		-- Readd dependencies
+		for dependency, _ in pairs(self.dependencySet) do
+			dependency.dependentSet[self] = true
+		end
+		return changed
+	else
+		LogError("computedCallbackError", value, false)
+
+		-- Revert and then readd dependencies
+		self._oldDependencySet, self.dependencySet = self.dependencySet, self._oldDependencySet
+		for dependency, _ in pairs(self.dependencySet) do
+			dependency.dependentSet[self] = true
+		end
+		return false
+	end
+end
+
+return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
+	local computed = setmetatable({
+		type = "State",
+		kind = "Computed",
+		recapture = recapture,
+		_value = nil,
+
+		-- This will be set in update.
+		dependencySet = nil,
+
+		dependentSet = setmetatable({}, { __mode = "k" }),
+		_callback = callback,
+		_oldDependencySet = {},
+	}, Computed) :: Types.Computed<T>
+    
+    -- Intialize the value.
+	computed:update()
+
+	return computed
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000b3b92</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX0A2970503A634B9793E0D0CAAEE6CCC3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Observer</string>
+						<string name="ScriptGuid">{701D109E-9B8A-4425-BE08-CDD70E72753A}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Observer.
+    
+    Binds callbacks for a state.
+
+    HawDevelopment
+    12/16/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+type Set<T> = { [T]: any }
+
+local strongRefs: Set<Types.Observer> = {}
+
+local Observer = {}
+Observer.__index = Observer
+
+-- Calls all the currently stored courotines.
+function Observer:update(_): boolean
+	for callback, _ in pairs(self.callbacks) do
+        task.defer(callback)
+	end
+
+	return false
+end
+
+-- Adds a function to the list of listeners.
+-- Returns a function that when called will remove the listener.
+function Observer:onChange(callback: () -> nil): () -> nil
+	self.callbacks[callback] = true
+
+	strongRefs[self :: Types.Observer] = true
+
+	local disconnected = false
+	return function()
+		if disconnected then
+			return
+		end
+		disconnected = true
+		self.callbacks[callback] = false
+		if not next(self.callbacks) then
+			strongRefs[self :: Types.Observer] = nil
+		end
+	end
+end
+
+return function(state: Types.State<any>): Types.Observer
+	if state.observer then
+		return state.observer
+	end
+
+	local self = setmetatable({
+		type = "State",
+		kind = "Observer",
+		callbacks = {},
+		listners = 0,
+		dependencySet = { [state] = true },
+		dependentSet = {},
+	}, Observer) :: Types.Observer
+
+	state.observer = self
+	state.dependentSet[self :: Types.Dependent] = true
+	return self
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">7d616b3ddee25e7201ccab34000247ff</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX944B9A74B05C46A198BB1020A79967B5">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Instances</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300002483d</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXAF3051E20F8041039D9F091E080F29A9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">New</string>
+						<string name="ScriptGuid">{21CBB835-460F-46A5-9C77-5E641D5C1003}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    New.
+    
+    Creates a new instance and binds any state.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local LogError = require(Package.Logging.LogError)
+local Children = require(Package.Instances.Children)
+local Observer = require(Package.State.Observer)
+local Scheduler = require(Package.Instances.Scheduler)
+local DefaultProps = require(Package.Instances.DefaultProps)
+
+type Set<T> = { [T]: any }
+
+local OverrideParents = setmetatable({}, { __mode = "k" }) :: Set<Instance>
+
+local function SetProperty(inst, key, value)
+	inst[key] = value
+end
+local function GetProperty(inst, key)
+	return inst[key]
+end
+
+local function New(className: string, propertyTable: Types.PropertyTable)
+	-- TODO: Add cleanup tasks
+
+	local toConnect: Set<RBXScriptSignal> = {}
+
+	-- Create the instance
+	local ok, inst = pcall(Instance.new, className)
+	if not ok then
+		LogError("cannotCreateClass", nil, true, className)
+	end
+    local defualtProps = DefaultProps[className]
+    if defualtProps then
+        for key, value in pairs(defualtProps) do
+            inst[key] = value
+        end
+    end
+
+	-- Apply props
+	for key, value: any | Types.Value<any> in pairs(propertyTable) do
+		if key == Children or key == "Parent" then
+			-- We do children and parenting separately
+			continue
+		elseif type(key) == "string" then
+
+			if typeof(value) == "table" and value.type == "State" then
+                if not pcall(SetProperty, inst, key, value:get(false)) then
+                    LogError("cannotAssignProperty", nil, true, className, key)
+                end
+				-- Clean this up?
+				Observer(value):onChange(function()
+					Scheduler.enqueueProperty(inst, key, value:get(false))
+				end)
+            else
+                if not pcall(SetProperty, inst, key, value) then
+                    LogError("cannotAssignProperty", nil, true, className, key)
+                end
+			end
+		elseif typeof(key) == "table" and key.type == "Symbol" then
+			-- Symbol
+			if key.name == "OnEvent" then
+				local ok, event = pcall(GetProperty, inst, key.key)
+				if not ok or typeof(event) ~= "RBXScriptSignal" then
+					LogError("cannotConnectEvent", nil, true, className, key.key)
+				end
+				toConnect[event] = value
+			elseif key.name == "OnChange" then
+				local ok, event = pcall(inst.GetPropertyChangedSignal, inst, key.key)
+				if not ok then
+					LogError("cannotConnectChange", nil, true, className, key.key)
+				end
+
+				toConnect[event] = function()
+					value(inst[key.key])
+				end
+			else
+				LogError("unrecognisedPropertyKey", nil, true, typeof(key))
+			end
+		else
+			LogError("unrecognisedPropertyKey", nil, true, typeof(key))
+		end
+	end
+
+	-- Do children
+	local children = propertyTable[Children]
+	if children ~= nil then
+		local currentChildren, prevChildren = {}, {}
+		local function updateChildren()
+			currentChildren, prevChildren = prevChildren, currentChildren
+
+			local function recursiveAddChild(child)
+				local childType = typeof(child)
+
+				if childType == "Instance" then
+					currentChildren[child] = true
+					if prevChildren[child] == nil and OverrideParents[child] == nil then
+						child.Parent = inst
+					else
+						prevChildren[child] = nil
+					end
+				elseif childType == "table" then
+					if child.type == "State" then
+						recursiveAddChild(child:get(false))
+						local disconnect
+						disconnect = Observer(child):onChange(function()
+							task.defer(updateChildren)
+							disconnect()
+						end)
+					else
+						for _, subChild in pairs(child) do
+							recursiveAddChild(subChild)
+						end
+					end
+				elseif childType ~= "nil" then
+					LogError("unrecognisedChildType", nil, false, childType)
+				end
+			end
+
+			recursiveAddChild(children)
+
+			for child in pairs(prevChildren) do
+				if OverrideParents[child] == nil then
+					child.Parent = nil
+				end
+			end
+		end
+
+		updateChildren()
+	end
+
+	-- Do parenting
+	local parent = propertyTable.Parent
+	if parent ~= nil then
+		OverrideParents[inst] = parent
+		if typeof(parent) == "table" and parent.type == "State" then
+			-- State
+			local ok = pcall(SetProperty, inst, "Parent", parent:get(false))
+			if not ok then
+				LogError("cannotAssignProperty", nil, true, className, "Parent")
+			end
+			Observer(parent):onChange(function()
+				Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
+			end)
+		else
+			local ok = pcall(SetProperty, inst, "Parent", parent)
+			if not ok then
+				LogError("cannotAssignProperty", nil, true, className, "Parent")
+			end
+		end
+	end
+
+	-- Connect events
+	for event, func in pairs(toConnect) do
+		event:Connect(func)
+	end
+
+	return inst
+end
+
+return function(className: string)
+	return function(propertyTable: Types.PropertyTable): Instance
+		return New(className, propertyTable)
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300002483e</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX1013AFC350AF49AE91CA2329B089C34B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Children</string>
+						<string name="ScriptGuid">{724461B6-F9A7-4366-BB3D-22F05AD74084}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Children.
+    
+    A symbol that indicates the children of an instance.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+return {
+	type = "Symbol",
+	name = "Children",
+} :: Types.Children
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">4e4228dbd60401a401c7e83000024868</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX25525AE053F34168B22E4E91B00F9C90">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">OnChange</string>
+						<string name="ScriptGuid">{B6895827-531B-4139-B10F-FE926D30BF42}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    OnChange
+    
+    Creates a new event symbol.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+local Chache: { [string]: Types.OnChange } = {}
+return function(propertyName: string): Types.OnChange
+	if Chache[propertyName] then
+		return Chache[propertyName]
+	end
+	local onchange = {
+		type = "Symbol",
+		name = "OnChange",
+		key = propertyName,
+	} :: Types.OnChange
+	Chache[propertyName] = onchange
+	return onchange
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300004133c</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX6C002B5C37394732A1765DB87C2601D2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">OnEvent</string>
+						<string name="ScriptGuid">{E96D588D-1E60-4024-A534-E3776947B2E3}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    OnEvent
+    
+    Creates a new event symbol.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+local Chache: { [string]: Types.OnEvent } = {}
+return function(propertyName: string): Types.OnEvent
+	if Chache[propertyName] then
+		return Chache[propertyName]
+	end
+	local onevent = {
+		type = "Symbol",
+		name = "OnEvent",
+		key = propertyName,
+	} :: Types.OnEvent
+	Chache[propertyName] = onevent
+	return onevent
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">4e4228dbd60401a401c7e830000413e7</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXF460764DD5F14CBEB09D2236007F71A0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Scheduler</string>
+						<string name="ScriptGuid">{5344C6C9-342E-490D-9294-D3402A7F238D}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Run tasks
+    HawDevelopment
+    12/16/2021
+--]]
+
+local RunService = game:GetService("RunService")
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local None = require(Package.Utility.None)
+
+local Scheduler = {}
+
+local shouldUpdate = false
+local propertyChanges: { [Instance]: { [string]: any } } = {}
+local toUpdate: { [Types.Dependent | () -> nil]: string } = {}
+
+function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
+	shouldUpdate = true
+	if value == nil then
+		value = None
+	end
+
+	local tab = propertyChanges[inst]
+	if not tab then
+		propertyChanges[inst] = {
+			[property] = value,
+		}
+	else
+		tab[property] = value
+	end
+end
+
+function Scheduler.enqueueCall(object: any | () -> nil, key: string | boolean?)
+	shouldUpdate = true
+	toUpdate[object] = key
+end
+
+function Scheduler.runTasks()
+	if not shouldUpdate then
+		return
+	end
+    
+    for object, key in pairs(toUpdate) do
+		if type(object) == "function" then
+			object()
+		else
+			object[key](object)
+		end
+	end
+    
+	for inst, properties in pairs(propertyChanges) do
+		for property, value in pairs(properties) do
+			inst[property] = if value == None then nil else value
+		end
+	end
+
+	shouldUpdate = false
+	table.clear(propertyChanges)
+	table.clear(toUpdate)
+end
+
+RunService:BindToRenderStep("__FissionUIScheduler", Enum.RenderPriority.Last.Value, Scheduler.runTasks)
+
+return Scheduler
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a2b2</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX9BDAAFF44F8E4F229C057B30DD3B324F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">DefaultProps</string>
+						<string name="ScriptGuid">{AC0D5753-ABA7-422E-8365-7CDE04269C24}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    DefaultProps
+    HawDevelopment
+    12/17/2021
+--]]
+
+
+return {
+	ScreenGui = {
+		ResetOnSpawn = false,
+		ZIndexBehavior = "Sibling"
+	},
+
+	BillboardGui = {
+		ResetOnSpawn = false,
+		ZIndexBehavior = "Sibling"
+	},
+
+	SurfaceGui = {
+		ResetOnSpawn = false,
+		ZIndexBehavior = "Sibling",
+
+		SizingMode = "PixelsPerStud",
+		PixelsPerStud = 50
+	},
+
+	Frame = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0
+	},
+
+	ScrollingFrame = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0,
+
+		ScrollBarImageColor3 = Color3.new(0, 0, 0)
+	},
+
+	TextLabel = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0,
+
+		Font = "SourceSans",
+		Text = "",
+		TextColor3 = Color3.new(0, 0, 0),
+		TextSize = 14
+	},
+
+	TextButton = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0,
+
+		AutoButtonColor = false,
+
+		Font = "SourceSans",
+		Text = "",
+		TextColor3 = Color3.new(0, 0, 0),
+		TextSize = 14
+	},
+
+	TextBox = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0,
+
+		ClearTextOnFocus = false,
+
+		Font = "SourceSans",
+		Text = "",
+		TextColor3 = Color3.new(0, 0, 0),
+		TextSize = 14
+	},
+
+	ImageLabel = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0
+	},
+
+	ImageButton = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0,
+
+		AutoButtonColor = false
+	},
+
+	ViewportFrame = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0
+	},
+
+	VideoFrame = {
+		BackgroundColor3 = Color3.new(1, 1, 1),
+		BorderColor3 = Color3.new(0, 0, 0),
+		BorderSizePixel = 0
+	}
+}]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">6ce560d971e67a1a01ce2ecf00556e3f</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX4ED65C2817AD4FA69FEE70F1E60BEE19">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Utility</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a477</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX034154BFE5F342C3A84E9D6501CE1FB2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">None</string>
+						<string name="ScriptGuid">{3586CB7B-BEC9-419E-BF74-4E2C4E050387}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Defined Nothing or nil
+    HawDevelopment
+    12/16/2021
+--]]
+
+--[[
+	A symbol for representing nil values in contexts where nil is not usable.
+]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+return {
+	type = "Symbol",
+	name = "None",
+} :: Types.None
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a481</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+	<Item class="LuaWebService" referent="RBXE0E0243ACA2148718B1391E9F6AE4714">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a511</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ProcessInstancePhysicsService" referent="RBXAE862A14D9C3453E8F423E8DF97C0A04">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">ProcessInstancePhysicsService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a514</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="LanguageService" referent="RBX09EE9FFC9E9B40B8871261363ABDB895">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">LanguageService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a51c</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="Lighting" referent="RBXA3BA0E2871AD481E89584D9153548A27">
+		<Properties>
+			<Color3 name="Ambient">
+				<R>0.5</R>
+				<G>0.5</G>
+				<B>0.5</B>
+			</Color3>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<float name="Brightness">1</float>
+			<Color3 name="ColorShift_Bottom">
+				<R>0</R>
+				<G>0</G>
+				<B>0</B>
+			</Color3>
+			<Color3 name="ColorShift_Top">
+				<R>0</R>
+				<G>0</G>
+				<B>0</B>
+			</Color3>
+			<float name="EnvironmentDiffuseScale">0</float>
+			<float name="EnvironmentSpecularScale">0</float>
+			<float name="ExposureCompensation">0</float>
+			<Color3 name="FogColor">
+				<R>0.75</R>
+				<G>0.75</G>
+				<B>0.75</B>
+			</Color3>
+			<float name="FogEnd">100000</float>
+			<float name="FogStart">0</float>
+			<float name="GeographicLatitude">41.7332993</float>
+			<bool name="GlobalShadows">false</bool>
+			<string name="Name">Lighting</string>
+			<Color3 name="OutdoorAmbient">
+				<R>0.5</R>
+				<G>0.5</G>
+				<B>0.5</B>
+			</Color3>
+			<bool name="Outlines">true</bool>
+			<float name="ShadowSoftness">0.5</float>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<token name="Technology">2</token>
+			<string name="TimeOfDay">14:00:00</string>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a552</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="LodDataService" referent="RBX98CBF63ED9814BC2BEE1EC671CC09941">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Instance</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10001a554</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="HttpService" referent="RBXBB78E08F4B214C9D93BF06FF20579607">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="HttpEnabled">false</bool>
+			<string name="Name">HttpService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002365d</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="TestService" referent="RBXB3239DA55F31428CA283C1B2B2D0F51B">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="AutoRuns">true</bool>
+			<string name="Description"></string>
+			<bool name="ExecuteWithStudioRun">false</bool>
+			<bool name="Is30FpsThrottleEnabled">true</bool>
+			<bool name="IsPhysicsEnvironmentalThrottled">true</bool>
+			<bool name="IsSleepAllowed">true</bool>
+			<string name="Name">TestService</string>
+			<int name="NumberOfPlayers">0</int>
+			<double name="SimulateSecondsLag">0</double>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<double name="Timeout">10</double>
+			<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002472e</UniqueId>
+		</Properties>
+	</Item>
+	<Item class="ProximityPromptService" referent="RBXF071F2C67109402CB917CAA23813F58E">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<bool name="Enabled">true</bool>
+			<int name="MaxPromptsVisible">16</int>
+			<string name="Name">ProximityPromptService</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<UniqueId name="UniqueId">52af2c502b6f79fe01cd053200023ca0</UniqueId>
+		</Properties>
+	</Item>
+	<SharedStrings>
+		<SharedString md5="yuZpQdnvvUBOTYh1jqZ2cA=="></SharedString>
+	</SharedStrings>
+</roblox>
