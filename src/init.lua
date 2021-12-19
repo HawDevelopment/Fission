@@ -13,4 +13,6 @@ return {
 	Value = require(script.State.Value),
 	Computed = require(script.State.Computed),
 	Observer = require(script.State.Observer),
+    
+    Spring = require(script.Animation.Spring),
 }

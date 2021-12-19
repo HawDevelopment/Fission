@@ -46,9 +46,9 @@ function Observer:onChange(callback: () -> nil): () -> nil
 	end
 end
 
-return function(state: Types.State<any>): Types.Observer
+return function(state: Types.StateObject<any>): Types.Observer
 	if state.observer then
-		return state.observer
+		return state.observer :: Types.Observer
 	end
 
 	local self = setmetatable({

@@ -12,15 +12,42 @@ type Symbol = {
 	type: string,
 	name: string,
 }
-
+export type Object = {
+    type: string,
+    kind: string,
+}
 export type Dependent = {
 	update: (Dependent) -> boolean,
 	dependencySet: Set<Dependency>,
 }
-
 export type Dependency = {
 	dependentSet: Set<Dependent>,
 }
+export type StateObject<T> = Object & Dependency & {
+    _value: T,
+    get: (StateObject<T>, asDependency: boolean?) -> T,
+    observer: Observer?
+}
+export type CanBeState<T> = StateObject<T> | T
+
+export type Animatable = number |
+    CFrame |
+    Color3 |
+    ColorSequenceKeypoint |
+    DateTime |
+    NumberRange |
+    NumberSequenceKeypoint |
+    PhysicalProperties |
+    Ray |
+    Rect |
+    Region3 |
+    Region3int16 |
+    UDim |
+    UDim2 |
+    Vector2 |
+    Vector2int16 |
+    Vector3 |
+    Vector3int16
 
 export type Error = {
 	type: string,
@@ -29,47 +56,22 @@ export type Error = {
 	trace: string,
 }
 
-export type Value<T> = {
-	type: string,
-	kind: string,
-	_value: T,
-	dependentSet: Set<Dependent>,
-
+export type Value<T> = StateObject<T> & {
 	set: (Value<T>, newValue: any, force: boolean?) -> nil,
-	get: (Value<T>, asDependency: boolean?) -> T,
-    recalculate: (Value<T>) -> nil,
-
-	observer: Observer?,
 }
 
-export type Computed<T> = {
-	type: string,
-	kind: string,
-	recapture: boolean?,
-	_value: T,
-	dependentSet: Set<Dependent>,
-	dependencySet: Set<Dependency>,
+export type Computed<T> = StateObject<T> & Dependent & {
+    recapture: boolean?,
 	_oldDependencySet: Set<Dependency>,
-	_callbacks: () -> T,
-
-	get: (Computed<T>, asDependency: boolean?) -> T,
-	update: (Computed<T>) -> boolean,
-
-	observer: Observer?,
+	_callback: () -> T,
 }
 
-export type Observer = {
-	type: string,
-	kind: string,
+export type Observer = Object & Dependent & {
 	callbacks: { [() -> nil]: boolean },
-	dependentSet: Set<Dependent>,
-	dependencySet: Set<Dependency>,
-
 	onChange: (Observer, callback: () -> nil) -> () -> nil,
-	update: (Observer, Dependent) -> boolean,
 }
 
-export type State<T> = Value<T> | Computed<T>
+export type Spring<T> = StateObject<T> & Dependent
 
 export type Children = Symbol
 
