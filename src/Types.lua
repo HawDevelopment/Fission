@@ -62,6 +62,7 @@ export type Value<T> = StateObject<T> & {
 
 export type Computed<T> = StateObject<T> & Dependent & {
     recapture: boolean?,
+    capture: (Computed<T>) -> boolean,
 	_oldDependencySet: Set<Dependency>,
 	_callback: () -> T,
 }

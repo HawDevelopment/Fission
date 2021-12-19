@@ -26,20 +26,9 @@ function Computed:get(asDependency: boolean?): any
 	return self._value
 end
 
--- Recalculates the value.
--- Returns wether the value changed.
-function Computed:update(): boolean
-	-- Dont update if we dont want to.
-	if self.recapture == false and self.dependencySet then
-		local value = self._callback()
-		local changed = self._value ~= value
-		self._value = value
-		return changed
-	elseif not self.dependencySet then
-		self.dependencySet = {}
-	end
-
-	-- remove this from all dependencies (so we dong get looping dependencies)
+-- Captures all used state inside the function.
+function Computed:capture()
+    -- remove this from all dependencies (so we dong get looping dependencies)
 	for dependency, _ in pairs(self.dependencySet) do
 		dependency.dependentSet[self] = nil
 	end
@@ -71,23 +60,34 @@ function Computed:update(): boolean
 	end
 end
 
+-- Recalculates the value.
+-- Returns wether the value changed.
+function Computed:update(): boolean
+	-- Dont update if we dont want to.
+	if self.recapture == false then
+		local value = self._callback()
+		local changed = self._value ~= value
+		self._value = value
+		return changed
+    else
+        return self:capture()
+	end
+end
+
 return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
 	local computed = setmetatable({
 		type = "State",
 		kind = "Computed",
 		recapture = recapture,
 		_value = nil,
-
-		-- This will be set in update.
-		dependencySet = nil,
-
+		dependencySet = { },
 		dependentSet = setmetatable({}, { __mode = "k" }),
 		_callback = callback,
 		_oldDependencySet = {},
-	}, Computed) :: Types.Computed<T>
+	}, Computed) :: any
     
     -- Intialize the value.
-	computed:update()
+	computed:capture()
 
 	return computed
 end
