@@ -11,7 +11,7 @@ local Package = script.Parent.Parent
 local Types = require(Package.Types)
 local Shared = require(Package.Dependencies.Shared)
 
-return function(dependency: Types.Dependency)
+return function(dependency: Types.StateObject<any>)
 	local set = Shared.CurrentDependencySet
 	if set ~= nil then
 		set[dependency] = true

@@ -17,20 +17,11 @@ local strongRefs: Set<Types.Observer> = {}
 local Observer = {}
 Observer.__index = Observer
 
--- Calls all the currently stored courotines.
-function Observer:update(_): boolean
-	for callback, _ in pairs(self.callbacks) do
-        task.defer(callback)
-	end
-
-	return false
-end
-
 -- Adds a function to the list of listeners.
 -- Returns a function that when called will remove the listener.
 function Observer:onChange(callback: () -> nil): () -> nil
-	self.callbacks[callback] = true
-
+    self.listeners += 1
+    local disconnect = self.state._signal:connect(callback)
 	strongRefs[self :: Types.Observer] = true
 
 	local disconnected = false
@@ -38,11 +29,11 @@ function Observer:onChange(callback: () -> nil): () -> nil
 		if disconnected then
 			return
 		end
-		disconnected = true
-		self.callbacks[callback] = false
-		if not next(self.callbacks) then
-			strongRefs[self :: Types.Observer] = nil
-		end
+		disconnect()
+        self.listeners -= 1
+        if self.listeners == 0 then
+            strongRefs[self :: Types.Observer] = nil
+        end
 	end
 end
 
@@ -54,13 +45,10 @@ return function(state: Types.StateObject<any>): Types.Observer
 	local self = setmetatable({
 		type = "State",
 		kind = "Observer",
-		callbacks = {},
-		listners = 0,
-		dependencySet = { [state] = true },
-		dependentSet = {},
+		listeners = 0,
+        state = state,
 	}, Observer) :: Types.Observer
 
 	state.observer = self
-	state.dependentSet[self :: Types.Dependent] = true
 	return self
 end

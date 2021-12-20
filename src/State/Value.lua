@@ -10,9 +10,8 @@
 local Package = script.Parent.Parent
 local Types = require(Package.Types)
 local UseState = require(Package.Dependencies.UseState)
-local UpdateAll = require(Package.Dependencies.UpdateAll)
 local Shared = require(Package.Dependencies.Shared)
-local Scheduler = require(Package.Instances.Scheduler)
+local Signal = require(Package.Dependencies.Signal)
 
 local Value = {}
 Value.__index = Value
@@ -21,7 +20,7 @@ Value.__index = Value
 -- Adds the state to CurrentDependencySet, if asDependency isnt false.
 function Value:get(asDependency: boolean?)
 	if asDependency ~= false and Shared.CurrentDependencySet then
-		UseState(self :: Types.Dependency)
+		UseState(self :: any)
 	end
 	return self._value
 end
@@ -33,7 +32,7 @@ function Value:set(newValue: any, force: boolean?)
         return
 	end
     self._value = newValue
-    UpdateAll(self :: Types.Dependency)
+    self._signal:fire(newValue)
 end
 
 return function<T>(initialValue: T): Types.Value<T>
@@ -41,8 +40,8 @@ return function<T>(initialValue: T): Types.Value<T>
 		type = "State",
 		kind = "State",
 		_value = initialValue,
-		dependentSet = setmetatable({}, { __mode = "k" }),
-	}, Value) :: Types.Value<T>
+        _signal = Signal(true),
+	}, Value) :: any
 
 	return value
 end

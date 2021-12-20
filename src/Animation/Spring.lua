@@ -10,6 +10,7 @@ local UnpackType = require(Package.Animation.UnpackType)
 local SpringScheduler = require(Package.Animation.SpringScheduler)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
+local Signal = require(Package.Dependencies.Signal)
 
 local Spring = {}
 Spring.__index = Spring
@@ -80,15 +81,13 @@ return function <T>(goalState: Types.Value<any>, speed: Types.CanBeState<number>
     speed = if speed == nil then 10 else speed
     damping = if damping == nil then 1 else damping
     
-    local dependencySet = { [goalState] = true }
     local speedIsState = type(speed) == "table" and speed.type == "State"
     local dampingIsState = type(damping) == "table" and damping.type == "State"
     
     local self = setmetatable({
         type = "State",
         kind = "Spring",
-        dependencySet = dependencySet,
-        dependentSet = setmetatable({}, { __mode = "k" }),
+        _signal = Signal(),
         
         _speed = speed,
         _speedIsState = speedIsState,
@@ -106,7 +105,10 @@ return function <T>(goalState: Types.Value<any>, speed: Types.CanBeState<number>
         _currentGoal = nil,
     }, Spring) :: any
     
-    goalState.dependentSet[self :: Types.Dependent] = true
+    goalState._signal:connect(function()
+        self:update()
+    end)
+    
     self:update()
     
     return self

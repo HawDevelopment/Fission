@@ -16,17 +16,17 @@ export type Object = {
     type: string,
     kind: string,
 }
-export type Dependent = {
-	update: (Dependent) -> boolean,
-	dependencySet: Set<Dependency>,
+export type Signal = {
+    _connection: Set<(...any) -> nil>,
+    
+    fire: (...any) -> nil,
+    connect: ((...any) -> nil) -> () -> nil,
 }
-export type Dependency = {
-	dependentSet: Set<Dependent>,
-}
-export type StateObject<T> = Object & Dependency & {
+export type StateObject<T> = Object & {
     _value: T,
+    _signal: Signal,
     get: (StateObject<T>, asDependency: boolean?) -> T,
-    observer: Observer?
+    observer: Observer
 }
 export type CanBeState<T> = StateObject<T> | T
 
@@ -60,19 +60,21 @@ export type Value<T> = StateObject<T> & {
 	set: (Value<T>, newValue: any, force: boolean?) -> nil,
 }
 
-export type Computed<T> = StateObject<T> & Dependent & {
+export type Computed<T> = StateObject<T> & {
     recapture: boolean?,
     capture: (Computed<T>) -> boolean,
-	_oldDependencySet: Set<Dependency>,
 	_callback: () -> T,
+    _connections: { [StateObject<any>]: (...any) -> nil },
+    _dependencySet: Set<StateObject<any>>,
+    _oldDependencySet: Set<StateObject<any>>,
 }
 
-export type Observer = Object & Dependent & {
+export type Observer = Object & {
 	callbacks: { [() -> nil]: boolean },
 	onChange: (Observer, callback: () -> nil) -> () -> nil,
 }
 
-export type Spring<T> = StateObject<T> & Dependent
+export type Spring<T> = StateObject<T>
 
 export type Children = Symbol
 

@@ -13,7 +13,7 @@ local Types = require(Package.Types)
 type Set<T> = { [T]: any }
 
 type Shared = {
-	CurrentDependencySet: Set<Types.Dependency>?,
+	CurrentDependencySet: Set<Types.StateObject<any>>,
 }
 
 local Shared = {}

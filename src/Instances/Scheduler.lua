@@ -13,7 +13,6 @@ local Scheduler = {}
 
 local shouldUpdate = false
 local propertyChanges: { [Instance]: { [string]: any } } = {}
-local toUpdate: { [Types.Dependent | () -> nil]: string } = {}
 
 function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
 	shouldUpdate = true
@@ -31,22 +30,9 @@ function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
 	end
 end
 
-function Scheduler.enqueueCall(object: any | () -> nil, key: string | boolean?)
-	shouldUpdate = true
-	toUpdate[object] = key
-end
-
 function Scheduler.runTasks()
 	if not shouldUpdate then
 		return
-	end
-    
-    for object, key in pairs(toUpdate) do
-		if type(object) == "function" then
-			object()
-		else
-			object[key](object)
-		end
 	end
     
 	for inst, properties in pairs(propertyChanges) do
@@ -57,7 +43,6 @@ function Scheduler.runTasks()
 
 	shouldUpdate = false
 	table.clear(propertyChanges)
-	table.clear(toUpdate)
 end
 
 RunService:BindToRenderStep("__FissionUIScheduler", Enum.RenderPriority.Last.Value, Scheduler.runTasks)

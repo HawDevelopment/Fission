@@ -15,9 +15,9 @@ local Error = require(Package.Logging.Error)
 
 type Set<T> = { [T]: any }
 
-return function(saveto: Set<Types.Dependency>, func: (...any) -> any, ...)
+return function(saveto: Set<Types.StateObject<any>>, func: (...any) -> any, ...)
 	local prevDependencySet = Shared.CurrentDependencySet
-	Shared.CurrentDependencySet = saveto
+	Shared.CurrentDependencySet = saveto :: any
 
 	local ok, ret = xpcall(func, Error, ...)
 

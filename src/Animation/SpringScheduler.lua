@@ -12,7 +12,6 @@ local RunService = game:GetService("RunService")
 local Package = script.Parent.Parent
 local Types = require(Package.Types)
 local PackType = require(Package.Animation.PackType)
-local UpdateAll = require(Package.Dependencies.UpdateAll)
 local LogError = require(Package.Logging.LogError)
 local SpringCoefficients = require(Package.Animation.SpringCoefficients)
 
@@ -98,7 +97,7 @@ local function Update(dt: number)
                 
                 if moving then
                     spring._value = PackType(pos, spring._currentType)
-                    UpdateAll(spring)
+                    spring._signal:fire(spring._value)
                 else
                     SpringScheduler.remove(spring)
                 end
