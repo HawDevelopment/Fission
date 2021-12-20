@@ -77,6 +77,7 @@ export type Observer = Object & {
 export type Spring<T> = StateObject<T>
 
 export type Children = Symbol
+export type DoScheduling = Symbol
 
 export type OnChange = Symbol & {
 	key: string,

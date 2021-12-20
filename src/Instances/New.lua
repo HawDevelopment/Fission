@@ -11,6 +11,7 @@ local Package = script.Parent.Parent
 local Types = require(Package.Types)
 local LogError = require(Package.Logging.LogError)
 local Children = require(Package.Instances.Children)
+local DoScheduling = require(Package.Instances.DoScheduling)
 local Observer = require(Package.State.Observer)
 local Scheduler = require(Package.Instances.Scheduler)
 local DefaultProps = require(Package.Instances.DefaultProps)
@@ -30,6 +31,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	-- TODO: Add cleanup tasks
 
 	local toConnect: Set<RBXScriptSignal> = {}
+    local doScheduling = if propertyTable[DoScheduling] == false then false else true
 
 	-- Create the instance
 	local ok, inst = pcall(Instance.new, className)
@@ -55,9 +57,15 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                     LogError("cannotAssignProperty", nil, true, className, key)
                 end
 				-- Clean this up?
-				Observer(value):onChange(function()
-					Scheduler.enqueueProperty(inst, key, value:get(false))
-				end)
+                if doScheduling then
+                    Observer(value):onChange(function()
+                        Scheduler.enqueueProperty(inst, key, value:get(false))
+                    end)
+                else
+                    Observer(value):onChange(function()
+                        inst[key] = value:get(false)
+                    end)
+                end
             else
                 if not pcall(SetProperty, inst, key, value) then
                     LogError("cannotAssignProperty", nil, true, className, key)
@@ -80,6 +88,8 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 				toConnect[event] = function()
 					value(inst[key.key])
 				end
+            elseif key.name == "DoScheduling" then
+                -- Do nothing
 			else
 				LogError("unrecognisedPropertyKey", nil, true, typeof(key))
 			end
@@ -141,16 +151,21 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 		OverrideParents[inst] = parent
 		if typeof(parent) == "table" and parent.type == "State" then
 			-- State
-			local ok = pcall(SetProperty, inst, "Parent", parent:get(false))
-			if not ok then
+			if not pcall(SetProperty, inst, "Parent", parent:get(false)) then
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
 			end
-			Observer(parent):onChange(function()
-				Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
-			end)
+            
+            if doScheduling then
+                Observer(parent):onChange(function()
+                    Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
+                end)
+            else
+                Observer(parent):onChange(function()
+                    inst.Parent = parent:get(false)
+                end)
+            end
 		else
-			local ok = pcall(SetProperty, inst, "Parent", parent)
-			if not ok then
+			if not pcall(SetProperty, inst, "Parent", parent) then
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
 			end
 		end

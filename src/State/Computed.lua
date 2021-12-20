@@ -37,43 +37,27 @@ function Computed:capture()
 	-- Store the old value, so if it errors we can revert.
 	self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
 	table.clear(self._dependencySet)
-
+    
 	local ok, value = Capture(self._dependencySet, self._callback)
-
-	if ok then
-		self._value = value
-
-		-- Reconnect all connections.
-		for dependency, _ in pairs(self._dependencySet) do
-			self._connections[dependency] = dependency._signal:connect(function()
-                self:update()
-            end)
-		end
-        self._signal:fire(value)
-	else
-		LogError("computedCallbackError", value, false)
-
-		-- Revert dependencies.
-		self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
-		-- Reconnect all connections.
-		for dependency, _ in pairs(self._dependencySet) do
-			self._connections[dependency] = dependency._signal:connect(function()
-                self:update()
-            end)
-		end
-	end
-end
-
--- Recalculates the value.
--- Returns wether the value changed.
-function Computed:update()
-	-- Dont update if we dont want to.
-	if self.recapture == false then
-		self._value = self._callback()
-        self._signal:fire(self._value)
+    
+    if not ok then
+        LogError("computedCallbackError", value, false)
+        self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
     else
-        self:capture()
-	end
+        self._value = value
+    end
+    
+    for dependency, _ in pairs(self._dependencySet) do
+        self._connections[dependency] = dependency._signal:connect(function()
+            if self.recapture == false then
+                self._value = self._callback()
+                self._signal:fire(self._value)
+            else
+                self:capture()
+            end
+        end)
+    end
+    
 end
 
 return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>

@@ -6,7 +6,6 @@
 
 local RunService = game:GetService("RunService")
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
 local None = require(Package.Utility.None)
 
 local Scheduler = {}
@@ -22,9 +21,9 @@ function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
 
 	local tab = propertyChanges[inst]
 	if not tab then
-		propertyChanges[inst] = {
-			[property] = value,
-		}
+        propertyChanges[inst] = {
+            [property] = value,
+        }
 	else
 		tab[property] = value
 	end
@@ -42,7 +41,7 @@ function Scheduler.runTasks()
 	end
 
 	shouldUpdate = false
-	table.clear(propertyChanges)
+    table.clear(propertyChanges)
 end
 
 RunService:BindToRenderStep("__FissionUIScheduler", Enum.RenderPriority.Last.Value, Scheduler.runTasks)
