@@ -62,9 +62,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                         Scheduler.enqueueProperty(inst, key, value:get(false))
                     end)
                 else
-                    Observer(value):onChange(function()
-                        inst[key] = value:get(false)
-                    end)
+                    value._signal:connectProperty(inst, key)
                 end
             else
                 if not pcall(SetProperty, inst, key, value) then

@@ -19,8 +19,9 @@ export type Object = {
 export type Signal = {
     _connection: Set<(...any) -> nil>,
     
-    fire: (...any) -> nil,
-    connect: ((...any) -> nil) -> () -> nil,
+    fire: (Signal, ...any) -> nil,
+    connectCallback: (Signal, (...any) -> nil) -> () -> nil,
+    connectProperty: (Signal, Instance, string) -> () -> nil,
 }
 export type StateObject<T> = Object & {
     _value: T,

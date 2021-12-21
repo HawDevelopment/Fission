@@ -105,7 +105,7 @@ return function <T>(goalState: Types.Value<any>, speed: Types.CanBeState<number>
         _currentGoal = nil,
     }, Spring) :: any
     
-    goalState._signal:connect(function()
+    goalState._signal:connectCallback(function()
         self:update()
     end)
     

@@ -21,7 +21,7 @@ Observer.__index = Observer
 -- Returns a function that when called will remove the listener.
 function Observer:onChange(callback: () -> nil): () -> nil
     self.listeners += 1
-    local disconnect = self.state._signal:connect(callback)
+    local disconnect = self.state._signal:connectCallback(callback)
 	strongRefs[self :: Types.Observer] = true
 
 	local disconnected = false

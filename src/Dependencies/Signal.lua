@@ -10,28 +10,65 @@ local Types = require(Package.Types)
 local Signal = {}
 Signal.__index = Signal
 
-function Signal:connect(callback: (...any) -> nil)
-    self._connections[callback] = true
+local WEAK_TABLE = { __mode = "k" }
+
+function Signal:connectCallback(callback: (...any) -> nil)
+    self._connectionsCount += 1
+    self._connections[self._connectionsCount] = callback
+    local index = self._connectionsCount
     local connected = true
     return function ()
         if not connected then
             return
         end
         
-        self._connections[callback] = nil
+        self._connections[index] = nil
+        self._connections[index] = self._connections[self._connectionsCount]
+        self._connectionsCount -= 1
         connected = false
     end
 end
 
+function Signal:connectProperty(inst, key)
+    local tab, index, disconnected = self._properties[inst], nil, false
+    if not tab then
+        self._properties[inst], index = { key }, 1
+    else
+        table.insert(tab, key)
+        index = #tab
+    end
+    return function ()
+        if disconnected then
+            return
+        end
+        disconnected = true
+        tab[index] = nil
+        local length = #tab
+        if length == 0 then
+            self._properties[inst] = nil
+        else
+            tab[index] = tab[length]
+            tab[length] = nil
+        end
+    end
+end
+
 function Signal:fire(...)
-    for callback, _ in pairs(self._connections) do
+    for _, callback in ipairs(self._connections) do
         callback(...)
+    end
+    for inst, properties in pairs(self._properties) do
+        for _, key in ipairs(properties) do
+            inst[key] = ...
+        end
     end
 end
 
 return function (weak: boolean?): Types.Signal
     local self = setmetatable({
-        _connections = if weak then setmetatable({}, {__mode = "k"}) else {},
+        _properties = { },
+        _connections = if weak then setmetatable({}, WEAK_TABLE) else {},
+        _connectionsCount = 0,
     }, Signal) :: any
     
     return self
