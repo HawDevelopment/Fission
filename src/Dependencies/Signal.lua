@@ -30,36 +30,30 @@ function Signal:connectCallback(callback: (...any) -> nil)
 end
 
 function Signal:connectProperty(inst, key)
-    local tab, index, disconnected = self._properties[inst], nil, false
-    if not tab then
-        self._properties[inst], index = { key }, 1
-    else
-        table.insert(tab, key)
-        index = #tab
-    end
+    self._propertiesCount += 1
+    self._properties[self._propertiesCount] = { inst, key }
+    local index = self._propertiesCount
+    local connected = true
     return function ()
-        if disconnected then
+        if not connected then
             return
         end
-        disconnected = true
-        tab[index] = nil
-        local length = #tab
-        if length == 0 then
-            self._properties[inst] = nil
-        else
-            tab[index] = tab[length]
-            tab[length] = nil
-        end
+        self._properties[index] = nil
+        self._properties[index] = self._properties[self._propertiesCount]
+        self._propertiesCount -= 1
+        connected = false
     end
 end
 
 function Signal:fire(...)
-    for _, callback in ipairs(self._connections) do
-        callback(...)
+    if self._connectionsCount >= 0 then
+        for _, callback in ipairs(self._connections) do
+            callback(...)
+        end
     end
-    for inst, properties in pairs(self._properties) do
-        for _, key in ipairs(properties) do
-            inst[key] = ...
+    if self._propertiesCount >= 0 then
+        for _, property in ipairs(self._properties) do
+            property[1][property[2]] = ...
         end
     end
 end
@@ -67,6 +61,7 @@ end
 return function (weak: boolean?): Types.Signal
     local self = setmetatable({
         _properties = { },
+        _propertiesCount = 0,
         _connections = if weak then setmetatable({}, WEAK_TABLE) else {},
         _connectionsCount = 0,
     }, Signal) :: any

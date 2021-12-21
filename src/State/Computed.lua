@@ -48,14 +48,19 @@ function Computed:capture()
     end
     
     for dependency, _ in pairs(self._dependencySet) do
-        self._connections[dependency] = dependency._signal:connectCallback(function()
-            if self.recapture == false then
+        if self.recapture == false then
+            self._connections[dependency] = dependency._signal:connectCallback(function()
+                debug.profilebegin("Connection.recapture=false")
                 self._value = self._callback()
                 self._signal:fire(self._value)
-            else
+                debug.profileend()
+            end)
+        else
+            self._connections[dependency] = dependency._signal:connectCallback(function()
+                debug.profilebegin("Connection.recapture=true")
                 self:capture()
-            end
-        end)
+            end)
+        end
     end
     
 end
