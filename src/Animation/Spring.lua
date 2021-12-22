@@ -18,7 +18,7 @@ Spring.__index = Spring
 -- Returns the current value.
 function Spring:get(asDependency: boolean?): any
     if asDependency ~= false and Shared.CurrentDependencySet then
-        UseState(self :: Types.Dependency)
+        UseState(self :: any)
     end
     return self._value
 end

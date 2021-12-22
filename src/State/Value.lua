@@ -40,7 +40,7 @@ return function<T>(initialValue: T): Types.Value<T>
 		type = "State",
 		kind = "State",
 		_value = initialValue,
-        _signal = Signal(true),
+        _signal = Signal(),
 	}, Value) :: any
 
 	return value

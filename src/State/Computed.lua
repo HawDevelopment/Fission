@@ -68,7 +68,7 @@ return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
 		kind = "Computed",
 		recapture = recapture,
 		_value = nil,
-		_signal = Signal(false),
+		_signal = Signal(),
         
         _connections = {},
 		_dependencySet = {},

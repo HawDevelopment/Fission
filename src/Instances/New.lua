@@ -58,8 +58,8 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 end
 				-- Clean this up?
                 if doScheduling then
-                    Observer(value):onChange(function()
-                        Scheduler.enqueueProperty(inst, key, value:get(false))
+                    value._signal:connectCallback(function(newValue)
+                        Scheduler.enqueueProperty(inst, key, newValue)
                     end)
                 else
                     value._signal:connectProperty(inst, key)
