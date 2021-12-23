@@ -1,26 +1,28 @@
-local Fission = require(game.ReplicatedStorage.Fission)
+-- local Fission = require(game.ReplicatedStorage.Fission)
 
-local New = Fission.New
-local Children = Fission.Children
-local Value = Fission.Value
-local Computed = Fission.Computed
-local OnEvent = Fission.OnEvent
-local Spring =  Fission.Spring
+-- local New = Fission.New
+-- local Children = Fission.Children
+-- local Value = Fission.Value
+-- local Computed = Fission.Computed
+-- local OnEvent = Fission.OnEvent
+-- local Tween = Fission.Tween
 
-local clicked = Value(0)
-local color = Value(Color3.new(0, 0, 0))
+-- local clicked = Value(0)
 
-New("ScreenGui")({
-	Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"),
-	[Children] = New("TextButton")({
-		Size = UDim2.fromOffset(100, 100),
-		Text = Computed(function()
-			return "Clicked " .. clicked:get() .. " times"
-		end, false),
-        BackgroundColor3 = Spring(color),
-		[OnEvent("Activated")] = function()
-			clicked:set(clicked:get() + 1)
-            color:set(Color3.new(math.random(), math.random(), math.random()))
-		end,
-	}),
-})
+-- New("ScreenGui")({
+--     Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"), 
+--     [Children] = New("TextButton")({
+--         Size = UDim2.fromOffset(100, 100),
+--         BackgroundColor3 = Tween(Computed(function()
+--             return clicked:get() % 2 == 0 and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(0, 255, 0)
+--         end)),
+--         Text = Computed(function()
+--             return "Clicked " .. clicked:get() .. " times"
+--         end),
+--         [OnEvent("Activated")] = function()
+--             clicked:set(clicked:get() + 1)
+--         end,
+--     })
+-- })
+
+

@@ -8,6 +8,7 @@
 -- local Value = Fission.Value
 -- local Children = Fission.Children
 -- local Computed = Fission.Computed
+-- local DoScheduling = Fission.DoScheduling
 
 -- local function StressTester()
 -- 	local TimeState = Value(time())
@@ -22,6 +23,7 @@
 -- 		for Y = 0, GRID_SIZE - 1 do
 -- 			Length += 1
 -- 			Nodes[Length] = New("Frame")({
+--                 [DoScheduling] = false,
 -- 				BackgroundColor3 = Computed(function()
 -- 					return Color3.new(0.5 + 0.5 * math.sin(TimeState:get() + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
 -- 				end, false),

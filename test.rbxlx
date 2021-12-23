@@ -74,27 +74,27 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>-64.2828903</X>
-					<Y>24.9173908</Y>
-					<Z>70.1990128</Z>
-					<R00>0.904820919</R00>
-					<R01>0.259038121</R01>
-					<R02>-0.337932408</R02>
-					<R10>-1.49011612e-08</R10>
-					<R11>0.793655515</R11>
-					<R12>0.608367383</R12>
-					<R20>0.425792277</R20>
-					<R21>-0.550463557</R21>
-					<R22>0.718116164</R22>
+					<X>-12.8755856</X>
+					<Y>-2.7055192</Y>
+					<Z>44.1655083</Z>
+					<R00>0.846995831</R00>
+					<R01>0.120161623</R01>
+					<R02>-0.517841041</R02>
+					<R10>-7.4505806e-09</R10>
+					<R11>0.97411859</R11>
+					<R12>0.2260378</R12>
+					<R20>0.531599641</R20>
+					<R21>-0.191453069</R21>
+					<R22>0.825074315</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>-53.4637718</X>
-					<Y>5.44012594</Y>
-					<Z>47.2080727</Z>
+					<X>-11.8399048</X>
+					<Y>-3.1575942</Y>
+					<Z>42.5153618</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -2726,16 +2726,19 @@ end
 -- local Value = Fission.Value
 -- local Computed = Fission.Computed
 -- local OnEvent = Fission.OnEvent
+-- local Observer = Fission.Observer
+-- local DoScheduling  = Fission.DoScheduling
 
 -- local clicked = Value(0)
 
--- New("ScreenGui")({
+-- local inst = New("ScreenGui")({
 -- 	Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"),
 -- 	[Children] = New("TextButton")({
+--         [DoScheduling] = false,
 -- 		Size = UDim2.fromOffset(100, 100),
 -- 		Text = Computed(function()
--- 			return "Clicked " .. clicked:get() .. " times"
--- 		end, false),
+--             return "Clicked " .. clicked:get() .. " times"
+--         end, false),
 -- 		[OnEvent("Activated")] = function()
 -- 			clicked:set(clicked:get() + 1)
 -- 		end,
@@ -2764,6 +2767,7 @@ local New = Fission.New
 local Value = Fission.Value
 local Children = Fission.Children
 local Computed = Fission.Computed
+local DoScheduling = Fission.DoScheduling
 
 local function StressTester()
 	local TimeState = Value(time())
@@ -2778,6 +2782,7 @@ local function StressTester()
 		for Y = 0, GRID_SIZE - 1 do
 			Length += 1
 			Nodes[Length] = New("Frame")({
+                [DoScheduling] = false,
 				BackgroundColor3 = Computed(function()
 					return Color3.new(0.5 + 0.5 * math.sin(TimeState:get() + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
 				end, false),
@@ -3123,127 +3128,6 @@ return {
 							<int64 name="SourceAssetId">-1</int64>
 							<BinaryString name="Tags"></BinaryString>
 							<UniqueId name="UniqueId">7e8a7212a5ad24ea01c7c7140005d762</UniqueId>
-						</Properties>
-					</Item>
-					<Item class="ModuleScript" referent="RBX2051722E565B410690BE49ADDBE8B70F">
-						<Properties>
-							<BinaryString name="AttributesSerialize"></BinaryString>
-							<Content name="LinkedSource"><null></null></Content>
-							<string name="Name">UpdateAll.bench</string>
-							<string name="ScriptGuid">{D361BA82-7C5D-42BA-B793-7FFDEECBE048}</string>
-							<ProtectedString name="Source"><![CDATA[--[[
-    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/benchmark/Dependencies/updateAll.bench.lua
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = game:GetService("ReplicatedStorage").Fission
-local UpdateAll = require(Package.Dependencies.UpdateAll)
-
-local function update()
-	return true
-end
-
-local function makeDependency(dependency, dependent)
-	dependent.dependencySet[dependency] = true
-	dependency.dependentSet[dependent] = true
-end
-
-return {
-
-	{
-		name = "Update empty tree",
-		calls = 50000,
-
-		preRun = function()
-			local root = { dependentSet = {} }
-			return root
-		end,
-
-		run = function(state)
-			UpdateAll(state)
-		end,
-	},
-
-	{
-		name = "Update shallow tree",
-		calls = 50000,
-
-		preRun = function()
-			local root = { dependentSet = {} }
-			local A = { dependentSet = {}, dependencySet = {}, update = update }
-			local B = { dependentSet = {}, dependencySet = {}, update = update }
-			local C = { dependentSet = {}, dependencySet = {}, update = update }
-			local D = { dependentSet = {}, dependencySet = {}, update = update }
-
-			makeDependency(root, A)
-			makeDependency(root, B)
-			makeDependency(root, C)
-			makeDependency(root, D)
-
-			return root
-		end,
-
-		run = function(state)
-			UpdateAll(state)
-		end,
-	},
-
-	{
-		name = "Update deep tree",
-		calls = 50000,
-
-		preRun = function()
-			local root = { dependentSet = {} }
-			local A = { dependentSet = {}, dependencySet = {}, update = update }
-			local B = { dependentSet = {}, dependencySet = {}, update = update }
-			local C = { dependentSet = {}, dependencySet = {}, update = update }
-			local D = { dependentSet = {}, dependencySet = {}, update = update }
-
-			makeDependency(root, A)
-			makeDependency(A, B)
-			makeDependency(B, C)
-			makeDependency(C, D)
-
-			return root
-		end,
-
-		run = function(state)
-			UpdateAll(state)
-		end,
-	},
-
-	{
-		name = "Update tree with complex dependencies",
-		calls = 50000,
-
-		preRun = function()
-			local root = { dependentSet = {} }
-			local A = { dependentSet = {}, dependencySet = {}, update = update }
-			local B = { dependentSet = {}, dependencySet = {}, update = update }
-			local C = { dependentSet = {}, dependencySet = {}, update = update }
-			local D = { dependentSet = {}, dependencySet = {}, update = update }
-
-			makeDependency(root, A)
-			makeDependency(A, B)
-			makeDependency(B, C)
-			makeDependency(C, D)
-			makeDependency(A, C)
-			makeDependency(A, D)
-			makeDependency(B, D)
-
-			return root
-		end,
-
-		run = function(state)
-			UpdateAll(state)
-		end,
-	},
-}
-]]></ProtectedString>
-							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
-							<UniqueId name="UniqueId">7e8a7212a5ad24ea01c7c7140005d763</UniqueId>
 						</Properties>
 					</Item>
 				</Item>
@@ -4223,12 +4107,12 @@ end
 				</Item>
 			</Item>
 		</Item>
-		<Item class="ModuleScript" referent="RBX59729819E4A0495AA083B90ADAC3B959">
+		<Item class="ModuleScript" referent="RBXDC26555487D643B39186FCA8D5BDDDCA">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<Content name="LinkedSource"><null></null></Content>
 				<string name="Name">Fission</string>
-				<string name="ScriptGuid">{A6B17A5A-F8AD-447C-B64C-55FED2EA70C2}</string>
+				<string name="ScriptGuid">{AC16E27E-B752-46E6-A63D-951318F0EDE1}</string>
 				<ProtectedString name="Source"><![CDATA[--[[
     Imports
     HawDevelopment
@@ -4240,66 +4124,638 @@ return {
 	OnChange = require(script.Instances.OnChange),
 	OnEvent = require(script.Instances.OnEvent),
 	Children = require(script.Instances.Children),
+    DoScheduling = require(script.Instances.DoScheduling),
 
 	Value = require(script.State.Value),
 	Computed = require(script.State.Computed),
 	Observer = require(script.State.Observer),
+    
+    Spring = require(script.Animation.Spring),
 }
 ]]></ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
-				<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002485e</UniqueId>
+				<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024789</UniqueId>
 			</Properties>
-			<Item class="Folder" referent="RBX02373F97030745E09B3DA86862D09B08">
+			<Item class="Folder" referent="RBX4F8C832212C44A61959280C37928C0C3">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Animation</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478a</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXC61D5F6BE2744CCB8AC79FF8887B80A1">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">PackType</string>
+						<string name="ScriptGuid">{8807A8A2-A51F-477C-AC9F-C5A1E7C5364A}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    PackType.
+    
+    Takes an array of numbers and converts it back into a value.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/packType.lua
+    HawDevelopment
+    12/18/2021
+--]]
+
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Oklab = require(Package.Colour.Oklab)
+
+return function (value: {number}, typestr: string): Types.Animatable | nil
+	if typestr == "number" then
+		return value[1]
+	elseif typestr == "CFrame" then
+		return
+			CFrame.new(value[1], value[2], value[3]) *
+			CFrame.fromAxisAngle(
+				Vector3.new(value[4], value[5], value[6]).Unit,
+				value[7]
+			)
+	elseif typestr == "Color3" then
+		return Oklab.from(
+			Vector3.new(value[1], value[2], value[3]),
+			false
+		)
+	elseif typestr == "ColorSequenceKeypoint" then
+		return ColorSequenceKeypoint.new(
+			value[4],
+			Oklab.from(
+				Vector3.new(value[1], value[2], value[3]),
+				false
+			)
+		)
+	elseif typestr == "DateTime" then
+		return DateTime.fromUnixTimestampMillis(value[1])
+	elseif typestr == "NumberRange" then
+		return NumberRange.new(value[1], value[2])
+	elseif typestr == "NumberSequenceKeypoint" then
+		return NumberSequenceKeypoint.new(value[2], value[1], value[3])
+	elseif typestr == "PhysicalProperties" then
+		return PhysicalProperties.new(value[1], value[2], value[3], value[4], value[5])
+	elseif typestr == "Ray" then
+		return Ray.new(
+			Vector3.new(value[1], value[2], value[3]),
+			Vector3.new(value[4], value[5], value[6])
+		)
+	elseif typestr == "Rect" then
+		return Rect.new(value[1], value[2], value[3], value[4])
+	elseif typestr == "Region3" then
+		-- FUTURE: support rotated Region3s if/when they become constructable
+		local position = Vector3.new(value[1], value[2], value[3])
+		local halfSize = Vector3.new(value[4] / 2, value[5] / 2, value[6] / 2)
+		return Region3.new(position - halfSize, position + halfSize)
+	elseif typestr == "Region3int16" then
+		return Region3int16.new(
+			Vector3int16.new(value[1], value[2], value[3]),
+			Vector3int16.new(value[4], value[5], value[6])
+		)
+	elseif typestr == "UDim" then
+		return UDim.new(value[1], value[2])
+	elseif typestr == "UDim2" then
+		return UDim2.new(value[1], value[2], value[3], value[4])
+	elseif typestr == "Vector2" then
+		return Vector2.new(value[1], value[2])
+	elseif typestr == "Vector2int16" then
+		return Vector2int16.new(value[1], value[2])
+	elseif typestr == "Vector3" then
+		return Vector3.new(value[1], value[2], value[3])
+	elseif typestr == "Vector3int16" then
+		return Vector3int16.new(value[1], value[2], value[3])
+	else
+		return nil
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478b</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX937C2880B10D497CBA87EBD724048680">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Spring</string>
+						<string name="ScriptGuid">{E2935D40-E101-416B-98F5-C6823772FD8F}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Spring.
+    HawDevelopment
+    12/18/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local UnpackType = require(Package.Animation.UnpackType)
+local SpringScheduler = require(Package.Animation.SpringScheduler)
+local UseState = require(Package.Dependencies.UseState)
+local Shared = require(Package.Dependencies.Shared)
+local Signal = require(Package.Dependencies.Signal)
+
+local Spring = {}
+Spring.__index = Spring
+
+-- Returns the current value.
+function Spring:get(asDependency: boolean?): any
+    if asDependency ~= false and Shared.CurrentDependencySet then
+        UseState(self :: any)
+    end
+    return self._value
+end
+
+-- Updates the spring.
+-- This is called when:
+--  - The goal state is changed.
+--  - The spring is started.
+--  - Speed / damping changes.
+function Spring:update(): boolean
+    local goal = self._goalState:get(false)
+    
+    if goal == self._goal then
+        -- The speed / damping has changed, but the goal hasn't.
+        -- So we need to reset the springscheduler.
+        SpringScheduler.remove(self)
+        SpringScheduler.add(self)
+        return false
+    else
+        -- The goal has changed.
+        
+        local oldtype = self._currentType
+        local newtype = typeof(goal)
+        local unpackedGoal = UnpackType(goal, newtype)
+        local numsprings = #unpackedGoal
+        
+        self._goal = goal
+        self._currentType = newtype
+        self._currentGoal = unpackedGoal
+        
+        if newtype ~= oldtype then
+            -- The type has changed.
+            table.clear(self._currentPosition)
+            table.clear(self._currentVelocity)
+            local positions = self._currentPosition
+            local velocities = self._currentVelocity
+            
+            for i = 1, numsprings do
+                positions[i] = unpackedGoal[i]
+                velocities[i] = 0
+            end
+            
+            self._currentPosition = positions
+            self._currentVelocity = velocities
+            self._value = goal
+            SpringScheduler.remove(self)
+            return true
+        elseif numsprings == 0 then
+            -- It cant be animated.
+            self._value = goal
+            SpringScheduler.remove(self)
+            return true
+        else
+            SpringScheduler.add(self)
+        end
+    end
+end
+
+return function <T>(goalState: Types.Value<any>, speed: Types.CanBeState<number>?, damping: Types.CanBeState<number>): Types.Spring<T>
+    speed = if speed == nil then 10 else speed
+    damping = if damping == nil then 1 else damping
+    
+    local speedIsState = type(speed) == "table" and speed.type == "State"
+    local dampingIsState = type(damping) == "table" and damping.type == "State"
+    
+    local self = setmetatable({
+        type = "State",
+        kind = "Spring",
+        _signal = Signal(),
+        
+        _speed = speed,
+        _speedIsState = speedIsState,
+        _lastSpeed = nil,
+        _damping = damping,
+        _dampingIsState = dampingIsState,
+        _lastDamping = nil,
+        
+        _goalState = goalState,
+        _goal = nil,
+        _currentType = nil,
+        _value = nil,
+        _currentPosition = { },
+        _currentVelocity = { },
+        _currentGoal = nil,
+    }, Spring) :: any
+    
+    goalState._signal:connectCallback(function()
+        self:update()
+    end)
+    
+    self:update()
+    
+    return self
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478c</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX7E57C7F2FB094C009CFC5BBD573878B6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">SpringCoefficients</string>
+						<string name="ScriptGuid">{29CEB12A-0E5C-47E9-9AC1-CD6311A00FAB}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    SpringCoefficients. (Math goes brr)
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/springCoefficients.lua
+    HawDevelopment
+    12/18/2021
+--]]
+
+
+return function (timeStep: number, damping: number, speed: number): (number, number, number, number)
+	-- if time step or speed is 0, then the spring won't move, so an identity
+	-- matrix can be returned early
+	if timeStep == 0 or speed == 0 then
+		return
+			1, 0,
+			0, 1
+	end
+
+	if damping > 1 then
+		-- overdamped spring
+
+		-- solutions to the characteristic equation
+		-- z = -ζω ± Sqrt[ζ^2 - 1] ω
+
+		local zRoot = math.sqrt(damping^2 - 1)
+
+		local z1 = (-zRoot - damping)*speed
+		local z2 = (zRoot - damping)*speed
+
+		-- x[t] -> x0(e^(t z2) z1 - e^(t z1) z2)/(z1 - z2)
+		--		 + v0(e^(t z1) - e^(t z2))/(z1 - z2)
+
+		local zDivide = 1/(z1 - z2)
+
+		local z1Exp = math.exp(timeStep * z1)
+		local z2Exp = math.exp(timeStep * z2)
+
+		local posPosCoef = (z2Exp * z1 - z1Exp * z2) * zDivide
+		local posVelCoef = (z1Exp - z2Exp) * zDivide
+
+		-- v[t] -> x0(z1 z2(-e^(t z1) + e^(t z2)))/(z1 - z2)
+		--		 + v0(z1 e^(t z1) - z2 e^(t z2))/(z1 - z2)
+
+		local velPosCoef = z1*z2 * (-z1Exp + z2Exp) * zDivide
+		local velVelCoef = (z1*z1Exp - z2*z2Exp) * zDivide
+
+		return
+			posPosCoef, posVelCoef,
+			velPosCoef, velVelCoef
+
+	elseif damping == 1 then
+		-- critically damped spring
+
+		-- x[t] -> x0(e^-tω)(1+tω) + v0(e^-tω)t
+
+		local timeStepSpeed = timeStep * speed
+		local negSpeedExp = math.exp(-timeStepSpeed)
+
+		local posPosCoef = negSpeedExp * (1 + timeStepSpeed)
+		local posVelCoef = negSpeedExp * timeStep
+
+		-- v[t] -> x0(t ω^2)(-e^-tω) + v0(1 - tω)(e^-tω)
+
+		local velPosCoef = -negSpeedExp * (timeStep * speed*speed)
+		local velVelCoef = negSpeedExp * (1 - timeStepSpeed)
+
+		return
+			posPosCoef, posVelCoef,
+			velPosCoef, velVelCoef
+
+	else
+		-- underdamped spring
+
+		-- factored out of the solutions to the characteristic equation, to make
+		-- the math cleaner
+
+		local alpha = math.sqrt(1 - damping^2) * speed
+
+		-- x[t] -> x0(e^-tζω)(α Cos[tα] + ζω Sin[tα])/α
+		--       + v0(e^-tζω)(Sin[tα])/α
+
+		local negDampSpeedExp = math.exp(-timeStep * damping * speed)
+
+		local sinAlpha = math.sin(timeStep*alpha)
+		local alphaCosAlpha = alpha * math.cos(timeStep*alpha)
+		local dampSpeedSinAlpha = damping*speed*sinAlpha
+
+		local invAlpha = 1 / alpha
+
+		local posPosCoef = negDampSpeedExp * (alphaCosAlpha + dampSpeedSinAlpha) * invAlpha
+		local posVelCoef = negDampSpeedExp * sinAlpha * invAlpha
+
+		-- v[t] -> x0(-e^-tζω)(α^2 + ζ^2 ω^2)(Sin[tα])/α
+		--       + v0(e^-tζω)(α Cos[tα] - ζω Sin[tα])/α
+
+		local velPosCoef = -negDampSpeedExp * (alpha*alpha + damping*damping * speed*speed) * sinAlpha * invAlpha
+		local velVelCoef = negDampSpeedExp * (alphaCosAlpha - dampSpeedSinAlpha) * invAlpha
+
+		return
+			posPosCoef, posVelCoef,
+			velPosCoef, velVelCoef
+	end
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478d</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX837F57D7643A48678BDF514ACA53C514">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">SpringScheduler</string>
+						<string name="ScriptGuid">{90DBD548-DAAD-480C-8186-DDB9B9B9DDE4}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    SpringScheduler.
+    
+    Batches spring updates.
+    
+    HawDevelopment
+    12/18/2021
+--]]
+
+local RunService = game:GetService("RunService")
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local PackType = require(Package.Animation.PackType)
+local LogError = require(Package.Logging.LogError)
+local SpringCoefficients = require(Package.Animation.SpringCoefficients)
+
+-- Change this to something lower for more precision
+local EPSILON = 0.001
+
+type Set<T> = { [T]: any }
+
+local SpringScheduler = {}
+
+local Buckets: { [number]: { [number]: Set<any> } } = {}
+
+function SpringScheduler.add(spring: any)
+    local damping = if spring._dampingIsState then spring._damping:get(false) else spring._damping
+    local speed = if spring._speedIsState then spring._speed:get(false) else spring._speed
+    
+    if typeof(damping) ~= "number" then
+        LogError("mistypedSpringDamping", nil, true, typeof(damping))
+    elseif damping < 0 then
+        LogError("invalidSpringDamping", nil, true, damping)
+    elseif typeof(speed) ~= "number" then
+        LogError("mistypedSpringSpeed", nil, true, typeof(speed))
+    elseif speed < 0 then
+        LogError("invalidSpringSpeed", nil, true, speed)
+    end
+    
+    spring._lastSpeed = speed
+    spring._lastDamping = damping
+    
+    local bucket = Buckets[damping]
+    if not bucket then
+        bucket = {}
+        Buckets[damping] = bucket
+    end
+    local speedBucket = bucket[speed]
+    if not speedBucket then
+        speedBucket = {}
+        bucket[speed] = speedBucket
+    end
+    speedBucket[spring] = true
+end
+
+function SpringScheduler.remove(spring: any)
+    local damping = spring._lastDamping
+    local speed = spring._lastSpeed
+    if not Buckets[damping] or not Buckets[damping][speed] then
+        return
+    end
+    Buckets[damping][speed][spring] = nil
+end
+
+local function Update(dt: number)
+    for damping, bucket in ipairs(Buckets) do
+        for speed, speedBucket in ipairs(bucket) do
+            local posPosCoef, posVelCoef, velPosCoef, velVelCoef = SpringCoefficients(dt, damping, speed)
+            
+            for spring, _ in pairs(speedBucket) do
+                local goals = spring._currentGoal
+                local pos = spring._currentPosition
+                local vel = spring._currentVelocity
+                
+                local moving = false
+                
+                for index, goal in ipairs(goals) do
+                    local oldPosition = pos[index]
+					local oldVelocity = vel[index]
+
+					local oldDisplacement = oldPosition - goal
+
+					local newDisplacement = oldDisplacement * posPosCoef + oldVelocity * posVelCoef
+					local newVelocity = oldDisplacement * velPosCoef + oldVelocity * velVelCoef
+
+					if
+						math.abs(newDisplacement) > EPSILON or
+						math.abs(newVelocity) > EPSILON
+					then
+						moving = true
+					end
+
+					pos[index] = newDisplacement + goal
+					vel[index] = newVelocity
+                end
+                
+                if moving then
+                    spring._value = PackType(pos, spring._currentType)
+                    spring._signal:fire(spring._value)
+                else
+                    SpringScheduler.remove(spring)
+                end
+            end
+        end
+    end
+end
+
+RunService:BindToRenderStep("__FissionSpringScheduler", Enum.RenderPriority.First.Value, Update)
+
+return SpringScheduler]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478e</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXD303B3A6335140AC96C86BA16A8A95B3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">UnpackType</string>
+						<string name="ScriptGuid">{8DE32C11-3D11-43F6-BEA2-A98357F42802}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    UnpackType.
+    
+    Returns the value as an array of numbers. If the values cant be animated, then an empty array is returned.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/unpackType.lua
+    HawDevelopment
+    12/18/2021
+--]]
+
+local Package = script.Parent.Parent
+local Oklab = require(Package.Colour.Oklab)
+
+return function (value: any, typestr: string): { number }
+    if typestr == "number" then
+		local value = value :: number
+		return {value}
+	elseif typestr == "CFrame" then
+		local axis, angle = value:ToAxisAngle()
+		return {value.X, value.Y, value.Z, axis.X, axis.Y, axis.Z, angle}
+	elseif typestr == "Color3" then
+		local lab = Oklab.to(value)
+		return {lab.X, lab.Y, lab.Z}
+	elseif typestr == "ColorSequenceKeypoint" then
+		local lab = Oklab.to(value.Value)
+		return {lab.X, lab.Y, lab.Z, value.Time}
+	elseif typestr == "DateTime" then
+		return {value.UnixTimestampMillis}
+	elseif typestr == "NumberRange" then
+		return {value.Min, value.Max}
+	elseif typestr == "NumberSequenceKeypoint" then
+		return {value.Value, value.Time, value.Envelope}
+	elseif typestr == "PhysicalProperties" then
+		return {value.Density, value.Friction, value.Elasticity, value.FrictionWeight, value.ElasticityWeight}
+	elseif typestr == "Ray" then
+		return {value.Origin.X, value.Origin.Y, value.Origin.Z, value.Direction.X, value.Direction.Y, value.Direction.Z}
+	elseif typestr == "Rect" then
+		return {value.Min.X, value.Min.Y, value.Max.X, value.Max.Y}
+	elseif typestr == "Region3" then
+		return {
+			value.CFrame.X, value.CFrame.Y, value.CFrame.Z,
+			value.Size.X, value.Size.Y, value.Size.Z
+		}
+	elseif typestr == "Region3int16" then
+		return {value.Min.X, value.Min.Y, value.Min.Z, value.Max.X, value.Max.Y, value.Max.Z}
+	elseif typestr == "UDim" then
+		return {value.Scale, value.Offset}
+	elseif typestr == "UDim2" then
+		return {value.X.Scale, value.X.Offset, value.Y.Scale, value.Y.Offset}
+	elseif typestr == "Vector2" then
+		return {value.X, value.Y}
+	elseif typestr == "Vector2int16" then
+		return {value.X, value.Y}
+	elseif typestr == "Vector3" then
+		return {value.X, value.Y, value.Z}
+	elseif typestr == "Vector3int16" then
+		return {value.X, value.Y, value.Z}
+	else
+		return {}
+	end
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478f</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEC3F3112DE24474395331136D4BE6E51">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Colour</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024790</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX42DFA81A95D742CFB1E97DF318A760DC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Oklab</string>
+						<string name="ScriptGuid">{4A8AC29A-DA44-432F-A5BC-3F7A800C9641}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Oklab.
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Colour/Oklab.lua
+    HawDevelopment
+    12/18/2021
+--]]
+
+local Oklab = {}
+
+-- Converts a Color3 in RGB space to a Vector3 in Oklab space.
+function Oklab.to(rgb: Color3): Vector3
+	local l = rgb.R * 0.4122214708 + rgb.G * 0.5363325363 + rgb.B * 0.0514459929
+	local m = rgb.R * 0.2119034982 + rgb.G * 0.6806995451 + rgb.B * 0.1073969566
+	local s = rgb.R * 0.0883024619 + rgb.G * 0.2817188376 + rgb.B * 0.6299787005
+
+	local lRoot = l ^ (1/3)
+	local mRoot = m ^ (1/3)
+	local sRoot = s ^ (1/3)
+
+	return Vector3.new(
+		lRoot * 0.2104542553 + mRoot * 0.7936177850 - sRoot * 0.0040720468,
+		lRoot * 1.9779984951 - mRoot * 2.4285922050 + sRoot * 0.4505937099,
+		lRoot * 0.0259040371 + mRoot * 0.7827717662 - sRoot * 0.8086757660
+	)
+end
+
+-- Converts a Vector3 in CIELAB space to a Color3 in RGB space.
+-- The Color3 will be clamped by default unless specified otherwise.
+function Oklab.from(lab: Vector3, unclamped: boolean?): Color3
+	local lRoot = lab.X + lab.Y * 0.3963377774 + lab.Z * 0.2158037573
+	local mRoot = lab.X - lab.Y * 0.1055613458 - lab.Z * 0.0638541728
+	local sRoot = lab.X - lab.Y * 0.0894841775 - lab.Z * 1.2914855480
+
+	local l = lRoot ^ 3
+	local m = mRoot ^ 3
+	local s = sRoot ^ 3
+
+	local red = l * 4.0767416621 - m * 3.3077115913 + s * 0.2309699292
+	local green = l * -1.2684380046 + m * 2.6097574011 - s * 0.3413193965
+	local blue = l * -0.0041960863 - m * 0.7034186147 + s * 1.7076147010
+
+	if not unclamped then
+		red = math.clamp(red, 0, 1)
+		green = math.clamp(green, 0, 1)
+		blue = math.clamp(blue, 0, 1)
+	end
+
+	return Color3.new(red, green, blue)
+end
+
+return Oklab]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024791</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX6B6D59A360DE4575BBC97601AE28F3A5">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">Dependencies</string>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10002485f</UniqueId>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024792</UniqueId>
 				</Properties>
-				<Item class="ModuleScript" referent="RBXBD2ADF5FF8C74EA2BA2888CCAFFD1859">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Shared</string>
-						<string name="ScriptGuid">{79F42DFF-C459-4992-BED6-DEB008E6316D}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Shared
-    
-    All state is captured and stored here.
-    
-    HawDevelopment
-    12/11/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-type Set<T> = { [T]: any }
-
-type Shared = {
-	CurrentDependencySet: Set<Types.Dependency>?,
-}
-
-local Shared = {}
-
--- The set where state should be updated to.
-Shared.CurrentDependencySet = nil
-
-return Shared :: Shared
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024860</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXD954C3D377824BC9BB5F2B47D4C1846D">
+				<Item class="ModuleScript" referent="RBX14397F7CD4254674BDC69DE179014CA9">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Capture</string>
-						<string name="ScriptGuid">{36C9829A-D16C-4656-896F-EE558615E587}</string>
+						<string name="ScriptGuid">{B9E42232-AA68-47E0-991A-E338138082A4}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
     Capture.
     
@@ -4317,9 +4773,9 @@ local Error = require(Package.Logging.Error)
 
 type Set<T> = { [T]: any }
 
-return function(saveto: Set<Types.Dependency>, func: (...any) -> any, ...)
+return function(saveto: Set<Types.StateObject<any>>, func: (...any) -> any, ...)
 	local prevDependencySet = Shared.CurrentDependencySet
-	Shared.CurrentDependencySet = saveto
+	Shared.CurrentDependencySet = saveto :: any
 
 	local ok, ret = xpcall(func, Error, ...)
 
@@ -4329,15 +4785,137 @@ end
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024861</UniqueId>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024793</UniqueId>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX7539736B8C434B97BDCFE4137522C31C">
+				<Item class="ModuleScript" referent="RBXB2467CA185AD4B42A990EFED8499BFA2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Shared</string>
+						<string name="ScriptGuid">{D506B8BB-63FB-4DF1-A930-B8AE5AEC1FC5}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Shared
+    
+    All state is captured and stored here.
+    
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+type Set<T> = { [T]: any }
+
+type Shared = {
+	CurrentDependencySet: Set<Types.StateObject<any>>,
+}
+
+local Shared = {}
+
+-- The set where state should be updated to.
+Shared.CurrentDependencySet = nil
+
+return Shared :: Shared
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024794</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX0714981223E3489DB9A7DE186C237EC8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Signal</string>
+						<string name="ScriptGuid">{C9ABA701-4005-4662-B733-6FAF8A12763C}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Signal.
+    HawDevelopment
+    12/19/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+local Signal = {}
+Signal.__index = Signal
+
+local WEAK_TABLE = { __mode = "k" }
+
+function Signal:connectCallback(callback: (...any) -> nil)
+    self._connectionsCount += 1
+    self._connections[self._connectionsCount] = callback
+    local index = self._connectionsCount
+    local connected = true
+    return function ()
+        if not connected then
+            return
+        end
+        
+        self._connections[index] = nil
+        self._connections[index] = self._connections[self._connectionsCount]
+        self._connectionsCount -= 1
+        connected = false
+    end
+end
+
+function Signal:connectProperty(inst, key)
+    local tab, index = self._properties[inst], 1
+    if not tab then
+        tab = { key }
+        self._properties[inst] = tab
+    else
+        table.insert(tab, key)
+        index = #tab
+    end
+    local connected = true
+    return function ()
+        if not connected then
+            return
+        end
+        tab[index] = nil
+        if #tab == 0 then
+            self._properties[inst] = nil
+        end
+        connected = false
+    end
+end
+
+function Signal:fire(...)
+    if self._connectionsCount >= 0 then
+        for _, callback in ipairs(self._connections) do
+            callback(...)
+        end
+    end
+    for inst, properties in pairs(self._properties) do
+        for _, key in ipairs(properties) do
+            inst[key] = ...
+        end
+    end
+end
+
+return function (): Types.Signal
+    local self = setmetatable({
+        _properties = { },
+        _connections = {},
+        _connectionsCount = 0,
+    }, Signal) :: any
+    
+    return self
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024795</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX14DE245DA1484D1CA50B6EE76D93F338">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">UseState</string>
-						<string name="ScriptGuid">{8913939A-BC7A-48ED-BA5C-D6C7F668F757}</string>
+						<string name="ScriptGuid">{67322D28-39CE-4D3C-B539-67D0F8D1A37A}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
     UseState
     
@@ -4351,7 +4929,7 @@ local Package = script.Parent.Parent
 local Types = require(Package.Types)
 local Shared = require(Package.Dependencies.Shared)
 
-return function(dependency: Types.Dependency)
+return function(dependency: Types.StateObject<any>)
 	local set = Shared.CurrentDependencySet
 	if set ~= nil then
 		set[dependency] = true
@@ -4360,763 +4938,24 @@ end
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10005db1a</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXD14317477A5F49DC8F0A2B9D9E8E97DD">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">UpdateAll</string>
-						<string name="ScriptGuid">{9760A2AA-22BE-4B8E-9F70-0A3E225C4A26}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    UpdateAll.
-    
-    Updates all state dependencies.
-    Will bot update the child elements, if there werent any changes.
-    
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-type Set<T> = { [T]: any }
-
-return function(state: Types.Dependency)
-	local processed = {}
-	local processNow, processNext = {}, {}
-	local processNowSize, processNextSize = 0, 0
-
-	for dependent, _ in pairs(state.dependentSet) do
-		processNowSize += 1
-		processNow[processNowSize] = dependent
-	end
-
-	repeat
-		local done = true
-		for _, member in pairs(processNow) do
-			if processed[member] then
-				continue
-			end
-			processed[member] = true
-			local changed = member:update()
-
-			if changed and member.dependentSet then
-				for dependent, _ in pairs(member.dependentSet) do
-					if not processed[dependent] then
-						for dependency, _ in pairs(dependent.dependencySet) do
-							if not processed[dependency] then
-								processNextSize += 1
-								processNext[processNextSize] = dependency
-							end
-						end
-						processNextSize += 1
-						processNext[processNextSize] = dependent
-						done = false
-					end
-				end
-			end
-		end
-		if not done then
-			processNow, processNext = processNext, processNow
-			table.clear(processNext)
-			processNowSize, processNextSize = processNextSize, 0
-		end
-	until done
-
-	-- Clear any refrences
-    table.clear(processNow)
-    table.clear(processNext)
-	table.clear(processed)
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000d0772</UniqueId>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024796</UniqueId>
 					</Properties>
 				</Item>
 			</Item>
-			<Item class="ModuleScript" referent="RBX42EA90836E264DDDBB65DAACCEAECA28">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<Content name="LinkedSource"><null></null></Content>
-					<string name="Name">Types</string>
-					<string name="ScriptGuid">{C66DCD2C-29E1-4DA2-9AA3-84118BCFAF1B}</string>
-					<ProtectedString name="Source"><![CDATA[--[[
-    Types.
-    
-    A module where alle types are defined.
-    
-    HawDevelopment
-    12/11/2021
---]]
-
-type Set<T> = { [T]: any }
-type Symbol = {
-	type: string,
-	name: string,
-}
-
-export type Dependent = {
-	update: (Dependent) -> boolean,
-	dependencySet: Set<Dependency>,
-}
-
-export type Dependency = {
-	dependentSet: Set<Dependent>,
-}
-
-export type Error = {
-	type: string,
-	raw: string,
-	message: string,
-	trace: string,
-}
-
-export type Value<T> = {
-	type: string,
-	kind: string,
-	_value: T,
-	dependentSet: Set<Dependent>,
-
-	set: (Value<T>, newValue: any, force: boolean?) -> nil,
-	get: (Value<T>, asDependency: boolean?) -> T,
-    recalculate: (Value<T>) -> nil,
-
-	observer: Observer?,
-}
-
-export type Computed<T> = {
-	type: string,
-	kind: string,
-	recapture: boolean?,
-	_value: T,
-	dependentSet: Set<Dependent>,
-	dependencySet: Set<Dependency>,
-	_oldDependencySet: Set<Dependency>,
-	_callbacks: () -> T,
-
-	get: (Computed<T>, asDependency: boolean?) -> T,
-	update: (Computed<T>) -> boolean,
-
-	observer: Observer?,
-}
-
-export type Observer = {
-	type: string,
-	kind: string,
-	callbacks: { [() -> nil]: boolean },
-	dependentSet: Set<Dependent>,
-	dependencySet: Set<Dependency>,
-
-	onChange: (Observer, callback: () -> nil) -> () -> nil,
-	update: (Observer, Dependent) -> boolean,
-}
-
-export type State<T> = Value<T> | Computed<T>
-
-export type Children = Symbol
-
-export type OnChange = Symbol & {
-	key: string,
-}
-
-export type OnEvent = Symbol & {
-	key: string,
-}
-export type None = Symbol
-
-export type PropertyTable = {
-	[string | OnEvent | OnChange | Children]: any,
-}
-
-return nil
-]]></ProtectedString>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024862</UniqueId>
-				</Properties>
-			</Item>
-			<Item class="Folder" referent="RBX78478EE50CE642ECBCEB0C5ADB0A3AE6">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">Logging</string>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024863</UniqueId>
-				</Properties>
-				<Item class="ModuleScript" referent="RBX2F5DF08AD8E3472898DA7CA914CA24E0">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Error</string>
-						<string name="ScriptGuid">{DA48A4E3-C648-4A79-98DA-97ECA1667AE0}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Error.
-    
-    Creates a new error object from an error string.
-    
-    Taken from: https://github.com/Elttob/Fusion/blob/main/src/Logging/parseError.lua
-    HawDevelopment
-    12/11/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-return function(err: string): Types.Error
-	return {
-		type = "Error",
-		raw = err,
-		message = err:gsub("^.+:%d+:%s*", ""),
-		trace = debug.traceback("", 2),
-	}
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d100024864</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXA93D75F9E53448F0803C874D238E5752">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">LogError</string>
-						<string name="ScriptGuid">{F96ECEE5-D29C-42D6-A055-F167DCDD4DF5}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    LogError.
-    
-    Prints an error message to the console.
-    
-    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/logErrorNonFatal.lua
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-local Messages = require(Package.Logging.Messages)
-
-return function(messageID: string, errObj: Types.Error | nil, fatal: boolean?, ...)
-	local formatString: string = if Messages[messageID] then Messages[messageID] else messageID
-	local str
-	if not errObj then
-		str = string.format("[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")", ...)
-	else
-		formatString = formatString:gsub("ERROR_MESSAGE", errObj.message)
-		str = string.format(
-			"[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")\n---- Stack trace ----\n" .. errObj.trace,
-			...
-		)
-	end
-
-	if not fatal then
-		task.spawn(function(...)
-			error(str:gsub("\n", "\n    "), 0)
-		end, ...)
-	else
-		error(str:gsub("\n", "\n    "), 0)
-	end
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">33c5c41d0c8dc8e901c78cc60005e7ce</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX43951282AD2540A284ADB902DBABDF42">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Messages</string>
-						<string name="ScriptGuid">{1829F5DF-C24E-419F-BE02-ACCA4A97BEEB}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Messages.
-    
-    A list of template messages.
-    
-    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/messages.lua
-    HawDevelopment
-    12/12/2021
---]]
-
-return {
-	cannotAssignProperty = "The class type '%s' has no assignable property '%s'.",
-	cannotConnectChange = "The %s class doesn't have a property called '%s'.",
-	cannotConnectEvent = "The %s class doesn't have an event called '%s'.",
-	cannotCreateClass = "Can't create a new instance of class '%s'.",
-	computedCallbackError = "Computed callback error: ERROR_MESSAGE",
-	invalidSpringDamping = "The damping ratio for a spring must be >= 0. (damping was %.2f)",
-	invalidSpringSpeed = "The speed of a spring must be >= 0. (speed was %.2f)",
-	mistypedSpringDamping = "The damping ratio for a spring must be a number. (got a %s)",
-	mistypedSpringSpeed = "The speed of a spring must be a number. (got a %s)",
-	pairsDestructorError = "ComputedPairs destructor error: ERROR_MESSAGE",
-	pairsProcessorError = "ComputedPairs callback error: ERROR_MESSAGE",
-	springTypeMismatch = "The type '%s' doesn't match the spring's type '%s'.",
-	strictReadError = "'%s' is not a valid member of '%s'.",
-	unknownMessage = "Unknown error: ERROR_MESSAGE",
-	unrecognisedChildType = "'%s' type children aren't accepted as children in `New`.",
-	unrecognisedPropertyKey = "'%s' keys aren't accepted in the property table of `New`",
-}
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">33c5c41d0c8dc8e901c78cc60005e810</UniqueId>
-					</Properties>
-				</Item>
-			</Item>
-			<Item class="Folder" referent="RBX49AB7D2A95794F19BEB9EA7021A77ECA">
-				<Properties>
-					<BinaryString name="AttributesSerialize"></BinaryString>
-					<string name="Name">State</string>
-					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a203</UniqueId>
-				</Properties>
-				<Item class="ModuleScript" referent="RBXDE8312FF4A9C48AB996C4A7D923772C9">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Value</string>
-						<string name="ScriptGuid">{9FC09C73-E595-41F0-8CDA-CAFCD9A7E09A}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Value
-    
-    A way to store reactive state.
-    
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-local UseState = require(Package.Dependencies.UseState)
-local UpdateAll = require(Package.Dependencies.UpdateAll)
-local Shared = require(Package.Dependencies.Shared)
-local Scheduler = require(Package.Instances.Scheduler)
-
-local Value = {}
-Value.__index = Value
-
--- Returns the current value.
--- Adds the state to CurrentDependencySet, if asDependency isnt false.
-function Value:get(asDependency: boolean?)
-	if asDependency ~= false and Shared.CurrentDependencySet then
-		UseState(self :: Types.Dependency)
-	end
-	return self._value
-end
-
--- Updates current value.
--- If force is set to true, it will update it even if the value is the same.
-function Value:set(newValue: any, force: boolean?)
-	if not force and self._value == newValue then
-        return
-	end
-    self._value = newValue
-    UpdateAll(self :: Types.Dependency)
-end
-
-return function<T>(initialValue: T): Types.Value<T>
-	local value = setmetatable({
-		type = "State",
-		kind = "State",
-		_value = initialValue,
-		dependentSet = setmetatable({}, { __mode = "k" }),
-	}, Value) :: Types.Value<T>
-
-	return value
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d10007a20b</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX679A62647C1B479CA03235AF64E53D7B">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Computed</string>
-						<string name="ScriptGuid">{9333556C-59B1-4E59-8466-45644850D01C}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Computed.
-    
-    A way to change state.
-
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-local Capture = require(Package.Dependencies.Capture)
-local UseState = require(Package.Dependencies.UseState)
-local LogError = require(Package.Logging.LogError)
-local Scheduler = require(Package.Instances.Scheduler)
-
-local Computed = {}
-Computed.__index = Computed
-
--- Returns the current value.
--- Also adds the computed to CurrentDependencySet if asDependency isnt false.
-function Computed:get(asDependency: boolean?): any
-	if asDependency ~= false then
-		UseState(self :: Types.Dependency)
-	end
-	return self._value
-end
-
--- Recalculates the value.
--- Returns wether the value changed.
-function Computed:update(): boolean
-	-- Dont update if we dont want to.
-	if self.recapture == false and self.dependencySet then
-		local value = self._callback()
-		local changed = self._value ~= value
-		self._value = value
-		return changed
-	elseif not self.dependencySet then
-		self.dependencySet = {}
-	end
-
-	-- remove this from all dependencies (so we dong get looping dependencies)
-	for dependency, _ in pairs(self.dependencySet) do
-		dependency.dependentSet[self] = nil
-	end
-
-	-- Store the old value, so if it errors we can revert.
-	self._oldDependencySet, self.dependencySet = self.dependencySet, self._oldDependencySet
-	table.clear(self.dependencySet)
-
-	local ok, value = Capture(self.dependencySet, self._callback)
-
-	if ok then
-		local changed = value ~= self._value
-		self._value = value
-
-		-- Readd dependencies
-		for dependency, _ in pairs(self.dependencySet) do
-			dependency.dependentSet[self] = true
-		end
-		return changed
-	else
-		LogError("computedCallbackError", value, false)
-
-		-- Revert and then readd dependencies
-		self._oldDependencySet, self.dependencySet = self.dependencySet, self._oldDependencySet
-		for dependency, _ in pairs(self.dependencySet) do
-			dependency.dependentSet[self] = true
-		end
-		return false
-	end
-end
-
-return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
-	local computed = setmetatable({
-		type = "State",
-		kind = "Computed",
-		recapture = recapture,
-		_value = nil,
-
-		-- This will be set in update.
-		dependencySet = nil,
-
-		dependentSet = setmetatable({}, { __mode = "k" }),
-		_callback = callback,
-		_oldDependencySet = {},
-	}, Computed) :: Types.Computed<T>
-    
-    -- Intialize the value.
-	computed:update()
-
-	return computed
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">5ebb5b86694c60ce01c758d1000b3b92</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX0A2970503A634B9793E0D0CAAEE6CCC3">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Observer</string>
-						<string name="ScriptGuid">{701D109E-9B8A-4425-BE08-CDD70E72753A}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Observer.
-    
-    Binds callbacks for a state.
-
-    HawDevelopment
-    12/16/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-type Set<T> = { [T]: any }
-
-local strongRefs: Set<Types.Observer> = {}
-
-local Observer = {}
-Observer.__index = Observer
-
--- Calls all the currently stored courotines.
-function Observer:update(_): boolean
-	for callback, _ in pairs(self.callbacks) do
-        task.defer(callback)
-	end
-
-	return false
-end
-
--- Adds a function to the list of listeners.
--- Returns a function that when called will remove the listener.
-function Observer:onChange(callback: () -> nil): () -> nil
-	self.callbacks[callback] = true
-
-	strongRefs[self :: Types.Observer] = true
-
-	local disconnected = false
-	return function()
-		if disconnected then
-			return
-		end
-		disconnected = true
-		self.callbacks[callback] = false
-		if not next(self.callbacks) then
-			strongRefs[self :: Types.Observer] = nil
-		end
-	end
-end
-
-return function(state: Types.State<any>): Types.Observer
-	if state.observer then
-		return state.observer
-	end
-
-	local self = setmetatable({
-		type = "State",
-		kind = "Observer",
-		callbacks = {},
-		listners = 0,
-		dependencySet = { [state] = true },
-		dependentSet = {},
-	}, Observer) :: Types.Observer
-
-	state.observer = self
-	state.dependentSet[self :: Types.Dependent] = true
-	return self
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">7d616b3ddee25e7201ccab34000247ff</UniqueId>
-					</Properties>
-				</Item>
-			</Item>
-			<Item class="Folder" referent="RBX944B9A74B05C46A198BB1020A79967B5">
+			<Item class="Folder" referent="RBX9D5D2D96E676421F8A43594934F168D2">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">Instances</string>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300002483d</UniqueId>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024797</UniqueId>
 				</Properties>
-				<Item class="ModuleScript" referent="RBXAF3051E20F8041039D9F091E080F29A9">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">New</string>
-						<string name="ScriptGuid">{21CBB835-460F-46A5-9C77-5E641D5C1003}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    New.
-    
-    Creates a new instance and binds any state.
-    
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-local LogError = require(Package.Logging.LogError)
-local Children = require(Package.Instances.Children)
-local Observer = require(Package.State.Observer)
-local Scheduler = require(Package.Instances.Scheduler)
-local DefaultProps = require(Package.Instances.DefaultProps)
-
-type Set<T> = { [T]: any }
-
-local OverrideParents = setmetatable({}, { __mode = "k" }) :: Set<Instance>
-
-local function SetProperty(inst, key, value)
-	inst[key] = value
-end
-local function GetProperty(inst, key)
-	return inst[key]
-end
-
-local function New(className: string, propertyTable: Types.PropertyTable)
-	-- TODO: Add cleanup tasks
-
-	local toConnect: Set<RBXScriptSignal> = {}
-
-	-- Create the instance
-	local ok, inst = pcall(Instance.new, className)
-	if not ok then
-		LogError("cannotCreateClass", nil, true, className)
-	end
-    local defualtProps = DefaultProps[className]
-    if defualtProps then
-        for key, value in pairs(defualtProps) do
-            inst[key] = value
-        end
-    end
-
-	-- Apply props
-	for key, value: any | Types.Value<any> in pairs(propertyTable) do
-		if key == Children or key == "Parent" then
-			-- We do children and parenting separately
-			continue
-		elseif type(key) == "string" then
-
-			if typeof(value) == "table" and value.type == "State" then
-                if not pcall(SetProperty, inst, key, value:get(false)) then
-                    LogError("cannotAssignProperty", nil, true, className, key)
-                end
-				-- Clean this up?
-				Observer(value):onChange(function()
-					Scheduler.enqueueProperty(inst, key, value:get(false))
-				end)
-            else
-                if not pcall(SetProperty, inst, key, value) then
-                    LogError("cannotAssignProperty", nil, true, className, key)
-                end
-			end
-		elseif typeof(key) == "table" and key.type == "Symbol" then
-			-- Symbol
-			if key.name == "OnEvent" then
-				local ok, event = pcall(GetProperty, inst, key.key)
-				if not ok or typeof(event) ~= "RBXScriptSignal" then
-					LogError("cannotConnectEvent", nil, true, className, key.key)
-				end
-				toConnect[event] = value
-			elseif key.name == "OnChange" then
-				local ok, event = pcall(inst.GetPropertyChangedSignal, inst, key.key)
-				if not ok then
-					LogError("cannotConnectChange", nil, true, className, key.key)
-				end
-
-				toConnect[event] = function()
-					value(inst[key.key])
-				end
-			else
-				LogError("unrecognisedPropertyKey", nil, true, typeof(key))
-			end
-		else
-			LogError("unrecognisedPropertyKey", nil, true, typeof(key))
-		end
-	end
-
-	-- Do children
-	local children = propertyTable[Children]
-	if children ~= nil then
-		local currentChildren, prevChildren = {}, {}
-		local function updateChildren()
-			currentChildren, prevChildren = prevChildren, currentChildren
-
-			local function recursiveAddChild(child)
-				local childType = typeof(child)
-
-				if childType == "Instance" then
-					currentChildren[child] = true
-					if prevChildren[child] == nil and OverrideParents[child] == nil then
-						child.Parent = inst
-					else
-						prevChildren[child] = nil
-					end
-				elseif childType == "table" then
-					if child.type == "State" then
-						recursiveAddChild(child:get(false))
-						local disconnect
-						disconnect = Observer(child):onChange(function()
-							task.defer(updateChildren)
-							disconnect()
-						end)
-					else
-						for _, subChild in pairs(child) do
-							recursiveAddChild(subChild)
-						end
-					end
-				elseif childType ~= "nil" then
-					LogError("unrecognisedChildType", nil, false, childType)
-				end
-			end
-
-			recursiveAddChild(children)
-
-			for child in pairs(prevChildren) do
-				if OverrideParents[child] == nil then
-					child.Parent = nil
-				end
-			end
-		end
-
-		updateChildren()
-	end
-
-	-- Do parenting
-	local parent = propertyTable.Parent
-	if parent ~= nil then
-		OverrideParents[inst] = parent
-		if typeof(parent) == "table" and parent.type == "State" then
-			-- State
-			local ok = pcall(SetProperty, inst, "Parent", parent:get(false))
-			if not ok then
-				LogError("cannotAssignProperty", nil, true, className, "Parent")
-			end
-			Observer(parent):onChange(function()
-				Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
-			end)
-		else
-			local ok = pcall(SetProperty, inst, "Parent", parent)
-			if not ok then
-				LogError("cannotAssignProperty", nil, true, className, "Parent")
-			end
-		end
-	end
-
-	-- Connect events
-	for event, func in pairs(toConnect) do
-		event:Connect(func)
-	end
-
-	return inst
-end
-
-return function(className: string)
-	return function(propertyTable: Types.PropertyTable): Instance
-		return New(className, propertyTable)
-	end
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300002483e</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX1013AFC350AF49AE91CA2329B089C34B">
+				<Item class="ModuleScript" referent="RBX38C58C9DD4A64508A6CE7354620C6C2F">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">Children</string>
-						<string name="ScriptGuid">{724461B6-F9A7-4366-BB3D-22F05AD74084}</string>
+						<string name="ScriptGuid">{CE93F1DB-8CFC-4E85-BA9C-9406D41A9F23}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
     Children.
     
@@ -5136,166 +4975,15 @@ return {
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">4e4228dbd60401a401c7e83000024868</UniqueId>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024798</UniqueId>
 					</Properties>
 				</Item>
-				<Item class="ModuleScript" referent="RBX25525AE053F34168B22E4E91B00F9C90">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">OnChange</string>
-						<string name="ScriptGuid">{B6895827-531B-4139-B10F-FE926D30BF42}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    OnChange
-    
-    Creates a new event symbol.
-    
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-local Chache: { [string]: Types.OnChange } = {}
-return function(propertyName: string): Types.OnChange
-	if Chache[propertyName] then
-		return Chache[propertyName]
-	end
-	local onchange = {
-		type = "Symbol",
-		name = "OnChange",
-		key = propertyName,
-	} :: Types.OnChange
-	Chache[propertyName] = onchange
-	return onchange
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">4e4228dbd60401a401c7e8300004133c</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX6C002B5C37394732A1765DB87C2601D2">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">OnEvent</string>
-						<string name="ScriptGuid">{E96D588D-1E60-4024-A534-E3776947B2E3}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    OnEvent
-    
-    Creates a new event symbol.
-    
-    HawDevelopment
-    12/12/2021
---]]
-
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-
-local Chache: { [string]: Types.OnEvent } = {}
-return function(propertyName: string): Types.OnEvent
-	if Chache[propertyName] then
-		return Chache[propertyName]
-	end
-	local onevent = {
-		type = "Symbol",
-		name = "OnEvent",
-		key = propertyName,
-	} :: Types.OnEvent
-	Chache[propertyName] = onevent
-	return onevent
-end
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">4e4228dbd60401a401c7e830000413e7</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBXF460764DD5F14CBEB09D2236007F71A0">
-					<Properties>
-						<BinaryString name="AttributesSerialize"></BinaryString>
-						<Content name="LinkedSource"><null></null></Content>
-						<string name="Name">Scheduler</string>
-						<string name="ScriptGuid">{5344C6C9-342E-490D-9294-D3402A7F238D}</string>
-						<ProtectedString name="Source"><![CDATA[--[[
-    Run tasks
-    HawDevelopment
-    12/16/2021
---]]
-
-local RunService = game:GetService("RunService")
-local Package = script.Parent.Parent
-local Types = require(Package.Types)
-local None = require(Package.Utility.None)
-
-local Scheduler = {}
-
-local shouldUpdate = false
-local propertyChanges: { [Instance]: { [string]: any } } = {}
-local toUpdate: { [Types.Dependent | () -> nil]: string } = {}
-
-function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
-	shouldUpdate = true
-	if value == nil then
-		value = None
-	end
-
-	local tab = propertyChanges[inst]
-	if not tab then
-		propertyChanges[inst] = {
-			[property] = value,
-		}
-	else
-		tab[property] = value
-	end
-end
-
-function Scheduler.enqueueCall(object: any | () -> nil, key: string | boolean?)
-	shouldUpdate = true
-	toUpdate[object] = key
-end
-
-function Scheduler.runTasks()
-	if not shouldUpdate then
-		return
-	end
-    
-    for object, key in pairs(toUpdate) do
-		if type(object) == "function" then
-			object()
-		else
-			object[key](object)
-		end
-	end
-    
-	for inst, properties in pairs(propertyChanges) do
-		for property, value in pairs(properties) do
-			inst[property] = if value == None then nil else value
-		end
-	end
-
-	shouldUpdate = false
-	table.clear(propertyChanges)
-	table.clear(toUpdate)
-end
-
-RunService:BindToRenderStep("__FissionUIScheduler", Enum.RenderPriority.Last.Value, Scheduler.runTasks)
-
-return Scheduler
-]]></ProtectedString>
-						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a2b2</UniqueId>
-					</Properties>
-				</Item>
-				<Item class="ModuleScript" referent="RBX9BDAAFF44F8E4F229C057B30DD3B324F">
+				<Item class="ModuleScript" referent="RBX3A8FE33C72FE456098AF885D125E79C9">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">DefaultProps</string>
-						<string name="ScriptGuid">{AC0D5753-ABA7-422E-8365-7CDE04269C24}</string>
+						<string name="ScriptGuid">{886C7A31-F03C-41E9-AE0D-86DFCBA107E0}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
     DefaultProps
     HawDevelopment
@@ -5401,24 +5089,850 @@ return {
 }]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">6ce560d971e67a1a01ce2ecf00556e3f</UniqueId>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024799</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX4A59717B29C74A20982653E3B8E83DB1">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">DoScheduling</string>
+						<string name="ScriptGuid">{636B9A0F-CD19-48A0-9062-CA258DDB0D93}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    DoScheduling.
+    
+    A symbol that indicates if new should use the scheduler or just set the value.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+return {
+	type = "Symbol",
+	name = "DoScheduling",
+} :: Types.DoScheduling
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479a</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX59B3725F835D4F378BB3D927D2342014">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">New</string>
+						<string name="ScriptGuid">{EC90669E-8CF8-4418-BB76-F8088F91F3AC}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    New.
+    
+    Creates a new instance and binds any state.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local LogError = require(Package.Logging.LogError)
+local Children = require(Package.Instances.Children)
+local DoScheduling = require(Package.Instances.DoScheduling)
+local Observer = require(Package.State.Observer)
+local Scheduler = require(Package.Instances.Scheduler)
+local DefaultProps = require(Package.Instances.DefaultProps)
+
+type Set<T> = { [T]: any }
+
+local OverrideParents = setmetatable({}, { __mode = "k" }) :: Set<Instance>
+
+local function SetProperty(inst, key, value)
+	inst[key] = value
+end
+local function GetProperty(inst, key)
+	return inst[key]
+end
+
+local function New(className: string, propertyTable: Types.PropertyTable)
+	-- TODO: Add cleanup tasks
+
+	local toConnect: Set<RBXScriptSignal> = {}
+    local doScheduling = if propertyTable[DoScheduling] == false then false else true
+
+	-- Create the instance
+	local ok, inst = pcall(Instance.new, className)
+	if not ok then
+		LogError("cannotCreateClass", nil, true, className)
+	end
+    local defualtProps = DefaultProps[className]
+    if defualtProps then
+        for key, value in pairs(defualtProps) do
+            inst[key] = value
+        end
+    end
+
+	-- Apply props
+	for key, value: any | Types.Value<any> in pairs(propertyTable) do
+		if key == Children or key == "Parent" then
+			-- We do children and parenting separately
+			continue
+		elseif type(key) == "string" then
+
+			if typeof(value) == "table" and value.type == "State" then
+                if not pcall(SetProperty, inst, key, value:get(false)) then
+                    LogError("cannotAssignProperty", nil, true, className, key)
+                end
+				-- Clean this up?
+                if doScheduling then
+                    value._signal:connectCallback(function(newValue)
+                        Scheduler.enqueueProperty(inst, key, newValue)
+                    end)
+                else
+                    value._signal:connectProperty(inst, key)
+                end
+            else
+                if not pcall(SetProperty, inst, key, value) then
+                    LogError("cannotAssignProperty", nil, true, className, key)
+                end
+			end
+		elseif typeof(key) == "table" and key.type == "Symbol" then
+			-- Symbol
+			if key.name == "OnEvent" then
+				local ok, event = pcall(GetProperty, inst, key.key)
+				if not ok or typeof(event) ~= "RBXScriptSignal" then
+					LogError("cannotConnectEvent", nil, true, className, key.key)
+				end
+				toConnect[event] = value
+			elseif key.name == "OnChange" then
+				local ok, event = pcall(inst.GetPropertyChangedSignal, inst, key.key)
+				if not ok then
+					LogError("cannotConnectChange", nil, true, className, key.key)
+				end
+
+				toConnect[event] = function()
+					value(inst[key.key])
+				end
+            elseif key.name == "DoScheduling" then
+                -- Do nothing
+			else
+				LogError("unrecognisedPropertyKey", nil, true, typeof(key))
+			end
+		else
+			LogError("unrecognisedPropertyKey", nil, true, typeof(key))
+		end
+	end
+
+	-- Do children
+	local children = propertyTable[Children]
+	if children ~= nil then
+		local currentChildren, prevChildren = {}, {}
+		local function updateChildren()
+			currentChildren, prevChildren = prevChildren, currentChildren
+
+			local function recursiveAddChild(child)
+				local childType = typeof(child)
+
+				if childType == "Instance" then
+					currentChildren[child] = true
+					if prevChildren[child] == nil and OverrideParents[child] == nil then
+						child.Parent = inst
+					else
+						prevChildren[child] = nil
+					end
+				elseif childType == "table" then
+					if child.type == "State" then
+						recursiveAddChild(child:get(false))
+						local disconnect
+						disconnect = Observer(child):onChange(function()
+							task.defer(updateChildren)
+							disconnect()
+						end)
+					else
+						for _, subChild in pairs(child) do
+							recursiveAddChild(subChild)
+						end
+					end
+				elseif childType ~= "nil" then
+					LogError("unrecognisedChildType", nil, false, childType)
+				end
+			end
+
+			recursiveAddChild(children)
+
+			for child in pairs(prevChildren) do
+				if OverrideParents[child] == nil then
+					child.Parent = nil
+				end
+			end
+		end
+
+		updateChildren()
+	end
+
+	-- Do parenting
+	local parent = propertyTable.Parent
+	if parent ~= nil then
+		OverrideParents[inst] = parent
+		if typeof(parent) == "table" and parent.type == "State" then
+			-- State
+			if not pcall(SetProperty, inst, "Parent", parent:get(false)) then
+				LogError("cannotAssignProperty", nil, true, className, "Parent")
+			end
+            
+            if doScheduling then
+                Observer(parent):onChange(function()
+                    Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
+                end)
+            else
+                Observer(parent):onChange(function()
+                    inst.Parent = parent:get(false)
+                end)
+            end
+		else
+			if not pcall(SetProperty, inst, "Parent", parent) then
+				LogError("cannotAssignProperty", nil, true, className, "Parent")
+			end
+		end
+	end
+
+	-- Connect events
+	for event, func in pairs(toConnect) do
+		event:Connect(func)
+	end
+
+	return inst
+end
+
+return function(className: string)
+	return function(propertyTable: Types.PropertyTable): Instance
+		return New(className, propertyTable)
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479b</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXF9CF195A21964DABBD8DC7C16EF18CEB">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">OnChange</string>
+						<string name="ScriptGuid">{B6847097-3692-4E8D-820D-ECD9CE5B5C7E}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    OnChange
+    
+    Creates a new event symbol.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+local Chache: { [string]: Types.OnChange } = {}
+return function(propertyName: string): Types.OnChange
+	if Chache[propertyName] then
+		return Chache[propertyName]
+	end
+	local onchange = {
+		type = "Symbol",
+		name = "OnChange",
+		key = propertyName,
+	} :: Types.OnChange
+	Chache[propertyName] = onchange
+	return onchange
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479c</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX4043159B071D43FCAC5F359C8C87F053">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">OnEvent</string>
+						<string name="ScriptGuid">{0B599FF7-E996-43BD-AA6E-FF7DAC034EED}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    OnEvent
+    
+    Creates a new event symbol.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+local Chache: { [string]: Types.OnEvent } = {}
+return function(propertyName: string): Types.OnEvent
+	if Chache[propertyName] then
+		return Chache[propertyName]
+	end
+	local onevent = {
+		type = "Symbol",
+		name = "OnEvent",
+		key = propertyName,
+	} :: Types.OnEvent
+	Chache[propertyName] = onevent
+	return onevent
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479d</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXBD272F81E6144EBE948CE103B9BBEB9E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Scheduler</string>
+						<string name="ScriptGuid">{4107ABBD-5F97-4D8D-AA0D-BE24D39E02EC}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Run tasks
+    HawDevelopment
+    12/16/2021
+--]]
+
+local RunService = game:GetService("RunService")
+local Package = script.Parent.Parent
+local None = require(Package.Utility.None)
+
+local Scheduler = {}
+
+local shouldUpdate = false
+local propertyChanges: { [Instance]: { [string]: any } } = {}
+
+function Scheduler.enqueueProperty(inst: Instance, property: string, value: any)
+	shouldUpdate = true
+	if value == nil then
+		value = None
+	end
+
+	local tab = propertyChanges[inst]
+	if not tab then
+        propertyChanges[inst] = {
+            [property] = value,
+        }
+	else
+		tab[property] = value
+	end
+end
+
+function Scheduler.runTasks()
+	if not shouldUpdate then
+		return
+	end
+    
+	for inst, properties in pairs(propertyChanges) do
+		for property, value in pairs(properties) do
+			inst[property] = if value == None then nil else value
+		end
+	end
+
+	shouldUpdate = false
+    table.clear(propertyChanges)
+end
+
+RunService:BindToRenderStep("__FissionUIScheduler", Enum.RenderPriority.Last.Value, Scheduler.runTasks)
+
+return Scheduler
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479e</UniqueId>
 					</Properties>
 				</Item>
 			</Item>
-			<Item class="Folder" referent="RBX4ED65C2817AD4FA69FEE70F1E60BEE19">
+			<Item class="Folder" referent="RBX8E3CE77CACB14AF99814007ABECA55A9">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">Logging</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002479f</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBX454D5D12788C48E1884968FC49646436">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Error</string>
+						<string name="ScriptGuid">{9320D99B-800E-473E-AC06-77AF3B0E85BB}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Error.
+    
+    Creates a new error object from an error string.
+    
+    Taken from: https://github.com/Elttob/Fusion/blob/main/src/Logging/parseError.lua
+    HawDevelopment
+    12/11/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+return function(err: string): Types.Error
+	return {
+		type = "Error",
+		raw = err,
+		message = err:gsub("^.+:%d+:%s*", ""),
+		trace = debug.traceback("", 2),
+	}
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a0</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX3129C00D4FF240DF9FF8D7A9B514519A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">LogError</string>
+						<string name="ScriptGuid">{9132CE6C-E47C-4EDB-8ABC-123E4DB8F0BF}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    LogError.
+    
+    Prints an error message to the console.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/logErrorNonFatal.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Messages = require(Package.Logging.Messages)
+
+return function(messageID: string, errObj: Types.Error | nil, fatal: boolean?, ...)
+	local formatString: string = if Messages[messageID] then Messages[messageID] else messageID
+	local str
+	if not errObj then
+		str = string.format("[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")", ...)
+	else
+		formatString = formatString:gsub("ERROR_MESSAGE", errObj.message)
+		str = string.format(
+			"[Fission] " .. formatString .. "\n(ID: " .. messageID .. ")\n---- Stack trace ----\n" .. errObj.trace,
+			...
+		)
+	end
+
+	if not fatal then
+		task.spawn(function(...)
+			error(str:gsub("\n", "\n    "), 0)
+		end, ...)
+	else
+		error(str:gsub("\n", "\n    "), 0)
+	end
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a1</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX55EB8AA6823A4341ABE4F924341609E6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Messages</string>
+						<string name="ScriptGuid">{3AC778CC-5388-4710-AF55-2CFAEB3C4EBB}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Messages.
+    
+    A list of template messages.
+    
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Logging/messages.lua
+    HawDevelopment
+    12/12/2021
+--]]
+
+return {
+	cannotAssignProperty = "The class type '%s' has no assignable property '%s'.",
+	cannotConnectChange = "The %s class doesn't have a property called '%s'.",
+	cannotConnectEvent = "The %s class doesn't have an event called '%s'.",
+	cannotCreateClass = "Can't create a new instance of class '%s'.",
+	computedCallbackError = "Computed callback error: ERROR_MESSAGE",
+	invalidSpringDamping = "The damping ratio for a spring must be >= 0. (damping was %.2f)",
+	invalidSpringSpeed = "The speed of a spring must be >= 0. (speed was %.2f)",
+	mistypedSpringDamping = "The damping ratio for a spring must be a number. (got a %s)",
+	mistypedSpringSpeed = "The speed of a spring must be a number. (got a %s)",
+	pairsDestructorError = "ComputedPairs destructor error: ERROR_MESSAGE",
+	pairsProcessorError = "ComputedPairs callback error: ERROR_MESSAGE",
+	springTypeMismatch = "The type '%s' doesn't match the spring's type '%s'.",
+	strictReadError = "'%s' is not a valid member of '%s'.",
+	unknownMessage = "Unknown error: ERROR_MESSAGE",
+	unrecognisedChildType = "'%s' type children aren't accepted as children in `New`.",
+	unrecognisedPropertyKey = "'%s' keys aren't accepted in the property table of `New`",
+}
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a2</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD9E0B409F66E488890CCC38C698805CA">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">State</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a3</UniqueId>
+				</Properties>
+				<Item class="ModuleScript" referent="RBXA9A150CE676D44729FF50717B1E706E5">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Computed</string>
+						<string name="ScriptGuid">{7809B8F8-9178-48C2-8275-92F408B28D90}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Computed.
+    
+    A way to change state.
+
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Capture = require(Package.Dependencies.Capture)
+local UseState = require(Package.Dependencies.UseState)
+local LogError = require(Package.Logging.LogError)
+local Signal = require(Package.Dependencies.Signal)
+
+local Computed = {}
+Computed.__index = Computed
+
+-- Returns the current value.
+-- Also adds the computed to CurrentDependencySet if asDependency isnt false.
+function Computed:get(asDependency: boolean?): any
+	if asDependency ~= false then
+		UseState(self :: any)
+	end
+	return self._value
+end
+
+-- Captures all used state inside the function.
+function Computed:capture()
+    -- Disconnect all connections and remove them.
+	for index, func in pairs(self._connections) do
+        func()
+        self._connections[index] = nil
+	end
+
+	-- Store the old value, so if it errors we can revert.
+	self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
+	table.clear(self._dependencySet)
+    
+	local ok, value = Capture(self._dependencySet, self._callback)
+    
+    if not ok then
+        LogError("computedCallbackError", value, false)
+        self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
+    else
+        self._value = value
+    end
+    
+    for dependency, _ in pairs(self._dependencySet) do
+        if self.recapture == false then
+            self._connections[dependency] = dependency._signal:connectCallback(function()
+                self._value = self._callback()
+                self._signal:fire(self._value)
+            end)
+        else
+            self._connections[dependency] = dependency._signal:connectCallback(function()
+                self:capture()
+            end)
+        end
+    end
+    
+end
+
+return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
+	local computed = setmetatable({
+		type = "State",
+		kind = "Computed",
+		recapture = recapture,
+		_value = nil,
+		_signal = Signal(),
+        
+        _connections = {},
+		_dependencySet = {},
+        _oldDependencySet = {},
+        
+        _callback = callback,
+	}, Computed) :: any
+    
+    -- Intialize the value.
+	computed:capture()
+
+	return computed
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a4</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX25F924A6B5F44E27B140A6D0245778E0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Observer</string>
+						<string name="ScriptGuid">{DF0BAE19-656B-4FBE-BEC2-692B68696372}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Observer.
+    
+    Binds callbacks for a state.
+
+    HawDevelopment
+    12/16/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+
+type Set<T> = { [T]: any }
+
+local strongRefs: Set<Types.Observer> = {}
+
+local Observer = {}
+Observer.__index = Observer
+
+-- Adds a function to the list of listeners.
+-- Returns a function that when called will remove the listener.
+function Observer:onChange(callback: () -> nil): () -> nil
+    self.listeners += 1
+    local disconnect = self.state._signal:connectCallback(callback)
+	strongRefs[self :: Types.Observer] = true
+
+	local disconnected = false
+	return function()
+		if disconnected then
+			return
+		end
+		disconnect()
+        self.listeners -= 1
+        if self.listeners == 0 then
+            strongRefs[self :: Types.Observer] = nil
+        end
+	end
+end
+
+return function(state: Types.StateObject<any>): Types.Observer
+	if state.observer then
+		return state.observer :: Types.Observer
+	end
+
+	local self = setmetatable({
+		type = "State",
+		kind = "Observer",
+		listeners = 0,
+        state = state,
+	}, Observer) :: Types.Observer
+
+	state.observer = self
+	return self
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a5</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXB0E01BBC82AD4387ABD6C51A64282CDD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Value</string>
+						<string name="ScriptGuid">{CD157705-D8C1-440E-8320-22F1666E08C4}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Value
+    
+    A way to store reactive state.
+    
+    HawDevelopment
+    12/12/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local UseState = require(Package.Dependencies.UseState)
+local Shared = require(Package.Dependencies.Shared)
+local Signal = require(Package.Dependencies.Signal)
+
+local Value = {}
+Value.__index = Value
+
+-- Returns the current value.
+-- Adds the state to CurrentDependencySet, if asDependency isnt false.
+function Value:get(asDependency: boolean?)
+	if asDependency ~= false and Shared.CurrentDependencySet then
+		UseState(self :: any)
+	end
+	return self._value
+end
+
+-- Updates current value.
+-- If force is set to true, it will update it even if the value is the same.
+function Value:set(newValue: any, force: boolean?)
+	if not force and self._value == newValue then
+        return
+	end
+    self._value = newValue
+    self._signal:fire(newValue)
+end
+
+return function<T>(initialValue: T): Types.Value<T>
+	local value = setmetatable({
+		type = "State",
+		kind = "State",
+		_value = initialValue,
+        _signal = Signal(),
+	}, Value) :: any
+
+	return value
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a6</UniqueId>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="ModuleScript" referent="RBX71AD139A056144209F4E6C5C6F3327CC">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">Types</string>
+					<string name="ScriptGuid">{433A900E-72C2-4410-8165-C3587ED3BF35}</string>
+					<ProtectedString name="Source"><![CDATA[--[[
+    Types.
+    
+    A module where alle types are defined.
+    
+    HawDevelopment
+    12/11/2021
+--]]
+
+type Set<T> = { [T]: any }
+type Symbol = {
+	type: string,
+	name: string,
+}
+export type Object = {
+    type: string,
+    kind: string,
+}
+export type Signal = {
+    _connection: Set<(...any) -> nil>,
+    
+    fire: (Signal, ...any) -> nil,
+    connectCallback: (Signal, (...any) -> nil) -> () -> nil,
+    connectProperty: (Signal, Instance, string) -> () -> nil,
+}
+export type StateObject<T> = Object & {
+    _value: T,
+    _signal: Signal,
+    get: (StateObject<T>, asDependency: boolean?) -> T,
+    observer: Observer
+}
+export type CanBeState<T> = StateObject<T> | T
+
+export type Animatable = number |
+    CFrame |
+    Color3 |
+    ColorSequenceKeypoint |
+    DateTime |
+    NumberRange |
+    NumberSequenceKeypoint |
+    PhysicalProperties |
+    Ray |
+    Rect |
+    Region3 |
+    Region3int16 |
+    UDim |
+    UDim2 |
+    Vector2 |
+    Vector2int16 |
+    Vector3 |
+    Vector3int16
+
+export type Error = {
+	type: string,
+	raw: string,
+	message: string,
+	trace: string,
+}
+
+export type Value<T> = StateObject<T> & {
+	set: (Value<T>, newValue: any, force: boolean?) -> nil,
+}
+
+export type Computed<T> = StateObject<T> & {
+    recapture: boolean?,
+    capture: (Computed<T>) -> boolean,
+	_callback: () -> T,
+    _connections: { [StateObject<any>]: (...any) -> nil },
+    _dependencySet: Set<StateObject<any>>,
+    _oldDependencySet: Set<StateObject<any>>,
+}
+
+export type Observer = Object & {
+	callbacks: { [() -> nil]: boolean },
+	onChange: (Observer, callback: () -> nil) -> () -> nil,
+}
+
+export type Spring<T> = StateObject<T>
+
+export type Children = Symbol
+export type DoScheduling = Symbol
+
+export type OnChange = Symbol & {
+	key: string,
+}
+
+export type OnEvent = Symbol & {
+	key: string,
+}
+export type None = Symbol
+
+export type PropertyTable = {
+	[string | OnEvent | OnChange | Children]: any,
+}
+
+return nil
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a7</UniqueId>
+				</Properties>
+			</Item>
+			<Item class="Folder" referent="RBX36F1E03D5F374B24B72DB755420B6202">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<string name="Name">Utility</string>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
-					<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a477</UniqueId>
+					<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a8</UniqueId>
 				</Properties>
-				<Item class="ModuleScript" referent="RBX034154BFE5F342C3A84E9D6501CE1FB2">
+				<Item class="ModuleScript" referent="RBX208F9B25A1814154A10ECE3E3EFC2638">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<Content name="LinkedSource"><null></null></Content>
 						<string name="Name">None</string>
-						<string name="ScriptGuid">{3586CB7B-BEC9-419E-BF74-4E2C4E050387}</string>
+						<string name="ScriptGuid">{CF006EE0-9B5D-4C6D-90AF-D1B3761C8BB1}</string>
 						<ProtectedString name="Source"><![CDATA[--[[
     Defined Nothing or nil
     HawDevelopment
@@ -5439,7 +5953,7 @@ return {
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
-						<UniqueId name="UniqueId">3ecc61534fa155f601ccc7ac0016a481</UniqueId>
+						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a9</UniqueId>
 					</Properties>
 				</Item>
 			</Item>
