@@ -10,21 +10,23 @@ local Types = require(Package.Types)
 local Signal = {}
 Signal.__index = Signal
 
-local WEAK_TABLE = { __mode = "k" }
-
 function Signal:connectCallback(callback: (...any) -> nil)
     if self._isfiring then
+        self._shouldConnect = true
         table.insert(self._toConnect, callback)
     else
-        self._connections[callback] = true
+        table.insert(self._connections, callback)
     end
     local connected = true
     return function ()
         if not connected then
             return
         end
-        self._connections[callback] = nil
         connected = false
+        local index = table.find(self._connections, callback)
+        if index then
+            self._connections[index] = nil
+        end
     end
 end
 
@@ -52,12 +54,15 @@ end
 
 function Signal:fire(...)
     self._isfiring = true
-    for callback, _ in pairs(self._connections) do
+    for _, callback in ipairs(self._connections) do
         callback(...)
     end
-    for index, callback in ipairs(self._toConnect) do
-        self._connections[callback] = true
-        self._toConnect[index] = nil
+    if self._shouldConnect then
+        self._shouldConnect = false
+        for index, callback in ipairs(self._toConnect) do
+            table.insert(self._connections, callback)
+            self._toConnect[index] = nil
+        end
     end
     for inst, properties in pairs(self._properties) do
         for _, key in ipairs(properties) do
@@ -67,10 +72,13 @@ function Signal:fire(...)
     self._isfiring = false
 end
 
+local WEAK_KEYS_TABLE = { __mode = "k" }
+
 return function (): Types.Signal
     local self = setmetatable({
         _isfiring = false,
-        _properties = {},
+        _shouldConnect = false,
+        _properties = setmetatable({}, WEAK_KEYS_TABLE),
         _connections = {},
         _toConnect = {},
     }, Signal) :: any
