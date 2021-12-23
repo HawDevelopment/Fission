@@ -29,6 +29,7 @@ function Observer:onChange(callback: () -> nil): () -> nil
 		if disconnected then
 			return
 		end
+        disconnected = true
 		disconnect()
         self.listeners -= 1
         if self.listeners == 0 then

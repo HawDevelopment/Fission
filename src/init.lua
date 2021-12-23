@@ -16,4 +16,5 @@ return {
 	Observer = require(script.State.Observer),
     
     Spring = require(script.Animation.Spring),
+    Tween = require(script.Animation.Tween),
 }

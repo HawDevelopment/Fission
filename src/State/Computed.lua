@@ -29,10 +29,10 @@ end
 -- Captures all used state inside the function.
 function Computed:capture()
     -- Disconnect all connections and remove them.
-	for index, func in pairs(self._connections) do
+	for _, func in pairs(self._connections) do
         func()
-        self._connections[index] = nil
 	end
+    table.clear(self._connections)
 
 	-- Store the old value, so if it errors we can revert.
 	self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
@@ -49,17 +49,20 @@ function Computed:capture()
     
     for dependency, _ in pairs(self._dependencySet) do
         if self.recapture == false then
-            self._connections[dependency] = dependency._signal:connectCallback(function()
+            table.insert(self._connections, dependency._signal:connectCallback(function()
                 self._value = self._callback()
                 self._signal:fire(self._value)
-            end)
+            end))
         else
-            self._connections[dependency] = dependency._signal:connectCallback(function()
+            table.insert(self._connections, dependency._signal:connectCallback(function()
                 self:capture()
-            end)
+            end))
         end
     end
     
+    if ok then
+        self._signal:fire(self._value)
+    end
 end
 
 return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>

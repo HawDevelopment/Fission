@@ -12,9 +12,11 @@ local Types = require(Package.Types)
 local LogError = require(Package.Logging.LogError)
 local Children = require(Package.Instances.Children)
 local DoScheduling = require(Package.Instances.DoScheduling)
-local Observer = require(Package.State.Observer)
 local Scheduler = require(Package.Instances.Scheduler)
 local DefaultProps = require(Package.Instances.DefaultProps)
+local CleanupOnDestroy = require(Package.Utility.CleanupOnDestroy)
+local Cleanup = require(Package.Utility.Cleanup)
+local Observer = require(Package.State.Observer)
 
 type Set<T> = { [T]: any }
 
@@ -26,23 +28,31 @@ end
 local function GetProperty(inst, key)
 	return inst[key]
 end
+local function callback() end
 
 local function New(className: string, propertyTable: Types.PropertyTable)
 	-- TODO: Add cleanup tasks
 
 	local toConnect: Set<RBXScriptSignal> = {}
     local doScheduling = if propertyTable[DoScheduling] == false then false else true
-
-	-- Create the instance
-	local ok, inst = pcall(Instance.new, className)
-	if not ok then
-		LogError("cannotCreateClass", nil, true, className)
-	end
-    local defualtProps = DefaultProps[className]
-    if defualtProps then
-        for key, value in pairs(defualtProps) do
-            inst[key] = value
+    local cleanupTasks: { Cleanup.Task } = { }
+    local dependencies: Set<any> = {}
+    local inst, conn
+    
+    do
+        -- Create the instance
+        local ok, ret = pcall(Instance.new, className)
+        if not ok then
+            LogError("cannotCreateClass", nil, true, className)
         end
+        inst = ret
+        local defualtProps = DefaultProps[className]
+        if defualtProps then
+            for key, value in pairs(defualtProps) do
+                ret[key] = value
+            end
+        end
+        conn = inst.Changed:Connect(callback)
     end
 
 	-- Apply props
@@ -58,11 +68,11 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 end
 				-- Clean this up?
                 if doScheduling then
-                    value._signal:connectCallback(function(newValue)
-                        Scheduler.enqueueProperty(inst, key, newValue)
-                    end)
+                    table.insert(cleanupTasks, Observer(value):onChange(function()
+                        Scheduler.enqueueProperty(inst, key, value:get(false))
+                    end))
                 else
-                    value._signal:connectProperty(inst, key)
+                    table.insert(cleanupTasks, value._signal:connectProperty(inst, key))
                 end
             else
                 if not pcall(SetProperty, inst, key, value) then
@@ -117,7 +127,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 					if child.type == "State" then
 						recursiveAddChild(child:get(false))
 						local disconnect
-						disconnect = Observer(child):onChange(function()
+						disconnect = child._signal:connectCallback(function()
 							task.defer(updateChildren)
 							disconnect()
 						end)
@@ -153,15 +163,14 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
 			end
             
-            if doScheduling then
-                Observer(parent):onChange(function()
-                    Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
-                end)
-            else
-                Observer(parent):onChange(function()
-                    inst.Parent = parent:get(false)
-                end)
-            end
+            table.insert(cleanupTasks, 
+                if doScheduling then
+                    parent._signal:connectCallback(function(newValue)
+                        Scheduler.enqueueProperty(inst, "Parent", newValue)
+                    end)
+                else
+                    parent._signal:connectProperty(inst, "Parent")
+            )
 		else
 			if not pcall(SetProperty, inst, "Parent", parent) then
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
@@ -173,7 +182,15 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	for event, func in pairs(toConnect) do
 		event:Connect(func)
 	end
-
+    
+    -- Add cleanup tasks
+    if #cleanupTasks ~= 0 then
+        CleanupOnDestroy(inst, cleanupTasks)
+    end
+    
+    -- Disconnect event
+    conn:Disconnect()
+    
 	return inst
 end
 
