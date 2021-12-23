@@ -3,6 +3,8 @@
 An optimized fork of [Fusion](https://github.com/Elttob/Fusion).
 Huge props to Elttob, Fusion is truely awesome. One of the best projects I've ever seen.
 
+Fission should only be used if you want really good performance. Consider Fusion if you dont plan on maximising fps.
+
 Changes from Fusion:
 
 -   Computed now has a second optional argument `recapture`. If `recapture` is a boolean parameter and will only change the behavior of the computed if set `false`. If `recapture` is passed as false, it will not try to find used state objects when an update happens. This is good when you dont plan on adding and removing states in the computed.
