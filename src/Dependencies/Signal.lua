@@ -73,13 +73,14 @@ function Signal:fire(...)
 end
 
 local WEAK_KEYS_TABLE = { __mode = "k" }
+local WEAK_VALUES_TABLE = { __mode = "v" }
 
 return function (): Types.Signal
     local self = setmetatable({
         _isfiring = false,
         _shouldConnect = false,
         _properties = setmetatable({}, WEAK_KEYS_TABLE),
-        _connections = {},
+        _connections = setmetatable({}, WEAK_VALUES_TABLE),
         _toConnect = {},
     }, Signal) :: any
     

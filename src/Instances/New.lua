@@ -110,6 +110,16 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	local children = propertyTable[Children]
 	if children ~= nil then
 		local currentChildren, prevChildren = {}, {}
+        local connections = {}
+        
+        -- Cleanup connections
+        table.insert(cleanupTasks, function()
+            for _, value in pairs(connections) do
+                value()
+            end
+            table.clear(connections)
+        end)
+        
 		local function updateChildren()
 			currentChildren, prevChildren = prevChildren, currentChildren
 
@@ -126,11 +136,12 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 				elseif childType == "table" then
 					if child.type == "State" then
 						recursiveAddChild(child:get(false))
-						local disconnect
-						disconnect = child._signal:connectCallback(function()
-							task.defer(updateChildren)
-							disconnect()
-						end)
+                        
+                        if not connections[child] then
+                            connections[child] = child._signal:connectCallback(function()
+                                task.defer(updateChildren)
+                            end)
+                        end
 					else
 						for _, subChild in pairs(child) do
 							recursiveAddChild(subChild)

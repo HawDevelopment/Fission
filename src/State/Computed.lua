@@ -86,6 +86,6 @@ return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
     
     -- Intialize the value.
 	computed:capture()
-
+    
 	return computed
 end
