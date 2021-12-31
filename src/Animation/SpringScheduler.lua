@@ -10,7 +10,7 @@
 local RunService = game:GetService("RunService")
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local PackType = require(Package.Animation.PackType)
 local LogError = require(Package.Logging.LogError)
 local SpringCoefficients = require(Package.Animation.SpringCoefficients)
@@ -22,9 +22,9 @@ type Set<T> = { [T]: any }
 
 local SpringScheduler = {}
 
-local Buckets: { [number]: { [number]: Set<any> } } = {}
+local Buckets: { [number]: { [number]: Set<Types.Spring<any>> } } = {}
 
-function SpringScheduler.add(spring: any)
+function SpringScheduler.add(spring: Types.Spring<any>)
     local damping = if spring._dampingIsState then spring._damping:get(false) else spring._damping
     local speed = if spring._speedIsState then spring._speed:get(false) else spring._speed
     
@@ -54,13 +54,13 @@ function SpringScheduler.add(spring: any)
     speedBucket[spring] = true
 end
 
-function SpringScheduler.remove(spring: any)
+function SpringScheduler.remove(spring: Types.Spring<any>)
     local damping = spring._lastDamping
     local speed = spring._lastSpeed
     if not Buckets[damping] or not Buckets[damping][speed] then
         return
     end
-    Buckets[damping][speed][spring] = nil
+    Buckets[damping][speed][spring :: any] = nil
 end
 
 local function Update(dt: number)
@@ -99,7 +99,7 @@ local function Update(dt: number)
                     spring._value = PackType(pos, spring._currentType)
                     spring._signal:fire(spring._value)
                 else
-                    SpringScheduler.remove(spring)
+                    SpringScheduler.remove(spring :: any)
                 end
             end
         end

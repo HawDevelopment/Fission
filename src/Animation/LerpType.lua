@@ -6,7 +6,6 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
 local Oklab = require(Package.Colour.Oklab)
 
 return function (from: any, to: any, ratio: number): any

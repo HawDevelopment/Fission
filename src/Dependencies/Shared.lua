@@ -8,17 +8,17 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 type Set<T> = { [T]: any }
 
 type Shared = {
-	CurrentDependencySet: Set<Types.StateObject<any>>,
+	CurrentDependencySet: Set<Types.StateObject<any>>?,
 }
 
-local Shared = {}
+local Shared: Shared = {} :: any
 
 -- The set where state should be updated to.
 Shared.CurrentDependencySet = nil
 
-return Shared :: Shared
+return Shared

@@ -9,7 +9,7 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 return function(err: string): Types.Error
 	return {

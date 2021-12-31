@@ -8,7 +8,7 @@
 local RunService = game:GetService("RunService")
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local GetTweenRatio = require(Package.Animation.GetTweenRatio)
 local LerpType = require(Package.Animation.LerpType)
 
@@ -20,17 +20,17 @@ local tweens: Set<Types.Tween<any>> = {}
 
 -- Adds a tween to the scheduler.
 function TweenScheduler.add(tween: Types.Tween<any>)
-    tweens[tween] = true
+    tweens[tween :: any] = true
 end
 
 -- Removes a tween from the scheduler.
 function TweenScheduler.remove(tween: Types.Tween<any>)
-    tweens[tween] = nil
+    tweens[tween :: any] = nil
 end
 
 local function Update()
     local now = os.clock()
-	for tween: any in pairs(tweens) do
+	for tween in pairs(tweens) do
 		local currentTime = now - tween._currentTweenStartTime
 
 		if currentTime > tween._currentTweenDuration then
@@ -40,7 +40,7 @@ local function Update()
 				tween._value = tween._nextValue
 			end
 			tween._signal:fire(tween._value)
-			TweenScheduler.remove(tween)
+			TweenScheduler.remove(tween :: any)
 		else
 			local ratio = GetTweenRatio(tween._currentTweenInfo, currentTime)
 			local currentValue = LerpType(tween._prevValue, tween._nextValue, ratio)

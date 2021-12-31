@@ -4,6 +4,7 @@
     12/17/2021
 --]]
 
+type DefaultProps = { [string]: { [string]: any } }
 
 return {
 	ScreenGui = {
@@ -100,4 +101,4 @@ return {
 		BorderColor3 = Color3.new(0, 0, 0),
 		BorderSizePixel = 0
 	}
-}
+} :: DefaultProps

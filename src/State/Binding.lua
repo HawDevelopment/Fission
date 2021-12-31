@@ -8,16 +8,18 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
 
 type BindingClass = {
-    get: (asDependency: boolean?) -> any,
+    __index: any,
+    get: (Types.Binding, asDependency: boolean?) -> any,
+    update: (Types.Binding, newValue: any) -> boolean,
 }
 
-local Binding = {}
+local Binding: BindingClass = {} :: any
 Binding.__index = Binding
 
 function Binding:get(asDependency: boolean?)
@@ -37,16 +39,16 @@ function Binding:update(newValue: any)
     return false
 end
 
-return function <T>(value: Types.Value<any>, callback: (any) -> any): Types.Binding<T>
+return function <T>(value: Types.Value<any>, callback: (any) -> any): Types.Binding
     local binding = setmetatable({
         type = "State",
         kind = "Binding",
         _callback = callback,
         _value = nil,
         _signal = Signal()
-    }, Binding)
+    }, Binding) :: Types.Binding
     
-    binding:update(value:get(false))
+    binding:update((value :: any):get(false))
     value._signal:connectCallback(function(newValue: any)
         binding:update(newValue)
     end)

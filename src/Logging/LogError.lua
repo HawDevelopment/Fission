@@ -9,7 +9,7 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Messages = require(Package.Logging.Messages)
 
 return function(messageID: string, errObj: Types.Error | nil, fatal: boolean?, ...)

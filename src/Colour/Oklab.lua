@@ -5,6 +5,12 @@
     12/18/2021
 --]]
 
+
+type OklabClass = {
+    to: (rgb: Color3) -> Vector3,
+    from: (lab: Vector3, unclamped: boolean?) -> Color3,
+}
+
 local Oklab = {}
 
 -- Converts a Color3 in RGB space to a Vector3 in Oklab space.

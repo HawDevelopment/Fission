@@ -8,7 +8,8 @@
 --]]
 
 type Set<T> = { [T]: any }
-type Symbol = {
+
+export type Symbol = {
 	type: string,
 	name: string,
 }
@@ -17,17 +18,12 @@ export type Object = {
     kind: string,
 }
 export type Signal = {
-    _connection: Set<(...any) -> nil>,
-    
     fire: (Signal, ...any) -> nil,
     connectCallback: (Signal, (...any) -> nil) -> () -> nil,
     connectProperty: (Signal, Instance, string) -> () -> nil,
 }
 export type StateObject<T> = Object & {
-    _value: T,
-    _signal: Signal,
     get: (StateObject<T>, asDependency: boolean?) -> T,
-    observer: Observer
 }
 export type CanBeState<T> = StateObject<T> | T
 
@@ -66,21 +62,14 @@ export type Binding<T> = StateObject<T> & {
     update: (Binding<T>, newValue: any) -> nil,
 }
 
-export type Computed<T> = StateObject<T> & {
-    recapture: boolean?,
-    capture: (Computed<T>) -> boolean,
-	_callback: () -> T,
-    _connections: { [StateObject<any>]: (...any) -> nil },
-    _dependencySet: Set<StateObject<any>>,
-    _oldDependencySet: Set<StateObject<any>>,
-}
+export type Computed<T> = StateObject<T>
 
 export type Observer = Object & {
-	callbacks: { [() -> nil]: boolean },
-	onChange: (Observer, callback: () -> nil) -> () -> nil,
+	onChange: (Observer, callback: () -> ()) -> () -> (),
 }
 
 export type Spring<T> = StateObject<T>
+export type Tween<T> = StateObject<T>
 
 export type Children = Symbol
 export type DoScheduling = Symbol

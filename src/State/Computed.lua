@@ -8,14 +8,20 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Capture = require(Package.Dependencies.Capture)
 local UseState = require(Package.Dependencies.UseState)
 local LogError = require(Package.Logging.LogError)
 local Signal = require(Package.Dependencies.Signal)
 local Shared = require(Package.Dependencies.Shared)
 
-local Computed = {}
+type ComputedClass = {
+    __index: any,
+    get: (Types.Computed<any>, asDependency: boolean?) -> any,
+    capture: (Types.Computed<any>) -> (),
+}
+
+local Computed: ComputedClass = {} :: any
 Computed.__index = Computed
 
 -- Returns the current value.

@@ -5,12 +5,18 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Signal = require(Package.Dependencies.Signal)
 local UseState = require(Package.Dependencies.UseState)
 local TweenScheduler = require(Package.Animation.TweenScheduler)
 
-local Tween = {}
+type TweenClass = {
+    __index: any,
+    get: (Types.Tween<any>, asDependency: boolean?) -> any,
+    update: (Types.Tween<any>) -> boolean,
+}
+
+local Tween: TweenClass = {} :: any
 Tween.__index = Tween
 
 -- Gets the current value
@@ -24,7 +30,7 @@ end
 -- Initates a new tween.
 function Tween:update(): boolean
 	self._prevValue = self._value
-	self._nextValue = self._goalState:get(false)
+	self._nextValue = (self._goalState :: any):get(false)
 
 	self._currentTweenStartTime = os.clock()
 	self._currentTweenInfo = self._tweenInfo

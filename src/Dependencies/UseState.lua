@@ -8,12 +8,14 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Shared = require(Package.Dependencies.Shared)
+
+type Set<T> = { [T]: any }
 
 return function(dependency: Types.StateObject<any>)
 	local set = Shared.CurrentDependencySet
 	if set ~= nil then
-		set[dependency] = true
+		(set :: any)[dependency] = true
 	end
 end

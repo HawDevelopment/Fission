@@ -8,7 +8,7 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
@@ -17,8 +17,8 @@ local Binding = require(Package.State.Binding)
 type ValueClass = {
     __index: any,
     get: (Types.Value<any>, asDependency: boolean) -> any,
-    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding<any>,
-    set: (any) -> (),
+    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding,
+    set: (newValue: any, force: boolean?) -> (),
 }
 
 local Value: ValueClass = {} :: any

@@ -8,7 +8,7 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local LogError = require(Package.Logging.LogError)
 local Children = require(Package.Instances.Children)
 local DoScheduling = require(Package.Instances.DoScheduling)
@@ -19,8 +19,9 @@ local Cleanup = require(Package.Utility.Cleanup)
 local Observer = require(Package.State.Observer)
 
 type Set<T> = { [T]: any }
+type Child = Types.CanBeState<Instance> | { Child } | nil
 
-local OverrideParents = setmetatable({}, { __mode = "k" }) :: Set<Instance>
+local OverrideParents: Set<Instance> = setmetatable({}, { __mode = "k" }) :: any
 
 local function SetProperty(inst, key, value)
 	inst[key] = value
@@ -31,13 +32,11 @@ end
 local function callback() end
 
 local function New(className: string, propertyTable: Types.PropertyTable)
-	-- TODO: Add cleanup tasks
-
 	local toConnect: Set<RBXScriptSignal> = {}
     local doScheduling = if propertyTable[DoScheduling] == false then false else true
     local cleanupTasks: { Cleanup.Task } = { }
-    local dependencies: Set<any> = {}
-    local inst, conn
+    local inst: Instance
+    local conn: RBXScriptConnection
     
     do
         -- Create the instance
@@ -56,17 +55,15 @@ local function New(className: string, propertyTable: Types.PropertyTable)
     end
 
 	-- Apply props
-	for key, value: any | Types.Value<any> in pairs(propertyTable) do
+	for key, value in pairs(propertyTable) do
 		if key == Children or key == "Parent" then
 			-- We do children and parenting separately
 			continue
 		elseif type(key) == "string" then
-
 			if typeof(value) == "table" and value.type == "State" then
                 if not pcall(SetProperty, inst, key, value:get(false)) then
                     LogError("cannotAssignProperty", nil, true, className, key)
                 end
-				-- Clean this up?
                 if doScheduling then
                     table.insert(cleanupTasks, Observer(value):onChange(function()
                         Scheduler.enqueueProperty(inst, key, value:get(false))
@@ -74,6 +71,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 else
                     table.insert(cleanupTasks, value._signal:connectProperty(inst, key))
                 end
+                continue
             else
                 if not pcall(SetProperty, inst, key, value) then
                     LogError("cannotAssignProperty", nil, true, className, key)
@@ -107,10 +105,11 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	end
 
 	-- Do children
-	local children = propertyTable[Children]
+	local children = propertyTable[Children] :: Child
 	if children ~= nil then
-		local currentChildren, prevChildren = {}, {}
-        local connections = {}
+		local currentChildren: Set<Instance> = {}
+        local prevChildren: Set<Instance> = {}
+        local connections: Set<Types.StateObject<any>> = {}
         
         -- Cleanup connections
         table.insert(cleanupTasks, function()
@@ -123,7 +122,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 		local function updateChildren()
 			currentChildren, prevChildren = prevChildren, currentChildren
 
-			local function recursiveAddChild(child)
+			local function recursiveAddChild(child: Types.CanBeState<Instance> | table | nil)
 				local childType = typeof(child)
 
 				if childType == "Instance" then
@@ -135,6 +134,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 					end
 				elseif childType == "table" then
 					if child.type == "State" then
+                        local child: any = child
 						recursiveAddChild(child:get(false))
                         
                         if not connections[child] then
@@ -156,7 +156,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 
 			for child in pairs(prevChildren) do
 				if OverrideParents[child] == nil then
-					child.Parent = nil
+					child.Parent = nil :: Instance
 				end
 			end
 		end

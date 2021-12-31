@@ -5,14 +5,20 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UnpackType = require(Package.Animation.UnpackType)
 local SpringScheduler = require(Package.Animation.SpringScheduler)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
 
-local Spring = {}
+type SpringClass = {
+    __index: any,
+    get: (Types.Spring<any>, asDependency: boolean?) -> any,
+    update: (Types.Spring<any>) -> boolean,
+}
+
+local Spring: SpringClass = {} :: any
 Spring.__index = Spring
 
 -- Returns the current value.
@@ -29,13 +35,13 @@ end
 --  - The spring is started.
 --  - Speed / damping changes.
 function Spring:update(): boolean
-    local goal = self._goalState:get(false)
+    local goal = (self._goalState :: any):get(false)
     
     if goal == self._goal then
         -- The speed / damping has changed, but the goal hasn't.
         -- So we need to reset the springscheduler.
-        SpringScheduler.remove(self)
-        SpringScheduler.add(self)
+        SpringScheduler.remove(self :: any)
+        SpringScheduler.add(self :: any)
         return false
     else
         -- The goal has changed.
@@ -51,6 +57,7 @@ function Spring:update(): boolean
         
         if newtype ~= oldtype then
             -- The type has changed.
+            
             table.clear(self._currentPosition)
             table.clear(self._currentVelocity)
             local positions = self._currentPosition
@@ -64,15 +71,15 @@ function Spring:update(): boolean
             self._currentPosition = positions
             self._currentVelocity = velocities
             self._value = goal
-            SpringScheduler.remove(self)
+            SpringScheduler.remove(self :: any)
             return true
         elseif numsprings == 0 then
             -- It cant be animated.
             self._value = goal
-            SpringScheduler.remove(self)
+            SpringScheduler.remove(self :: any)
             return true
         else
-            SpringScheduler.add(self)
+            SpringScheduler.add(self :: any)
         end
     end
 end

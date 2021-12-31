@@ -10,7 +10,7 @@
 
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Oklab = require(Package.Colour.Oklab)
 
 return function (value: {number}, typestr: string): Types.Animatable | nil

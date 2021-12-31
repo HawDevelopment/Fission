@@ -8,20 +8,25 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 type Set<T> = { [T]: any }
 
 local strongRefs: Set<Types.Observer> = {}
 
-local Observer = {}
+type ObserverClass = {
+    __index: any,
+    onChange: (Types.Observer, callback: () -> ()) -> (),
+}
+
+local Observer: ObserverClass = {} :: any
 Observer.__index = Observer
 
 -- Adds a function to the list of listeners.
 -- Returns a function that when called will remove the listener.
-function Observer:onChange(callback: () -> nil): () -> nil
+function Observer:onChange(callback: () -> ()): () -> nil
     self.listeners += 1
-    local disconnect = self.state._signal:connectCallback(callback)
+    local disconnect = self.state._signal:connectCallback(callback :: (...any) -> nil)
 	strongRefs[self :: Types.Observer] = true
 
 	local disconnected = false

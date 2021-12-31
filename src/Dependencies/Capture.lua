@@ -9,7 +9,7 @@
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Shared = require(Package.Dependencies.Shared)
 local Error = require(Package.Logging.Error)
 
