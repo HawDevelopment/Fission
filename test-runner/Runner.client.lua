@@ -9,8 +9,8 @@ local StarterPlayerScripts = game:GetService("StarterPlayer"):WaitForChild("Star
 
 local TestEZ = require(StarterPlayerScripts.TestEZ)
 
-local RUN_TESTS = true
-local RUN_BENCHMARKS = true
+local RUN_TESTS = false
+local RUN_BENCHMARKS = false
 
 -- run unit tests
 if RUN_TESTS then

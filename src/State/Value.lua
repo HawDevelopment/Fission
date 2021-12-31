@@ -12,8 +12,16 @@ local Types = require(Package.Types)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
+local Binding = require(Package.State.Binding)
 
-local Value = {}
+type ValueClass = {
+    __index: any,
+    get: (Types.Value<any>, asDependency: boolean) -> any,
+    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding<any>,
+    set: (any) -> (),
+}
+
+local Value: ValueClass = {} :: any
 Value.__index = Value
 
 -- Returns the current value.
@@ -23,6 +31,11 @@ function Value:get(asDependency: boolean?)
 		UseState(self :: any)
 	end
 	return self._value
+end
+
+-- Binds a function to the value.
+function Value:bind(callback: (any) -> any)
+    return Binding(self, callback)
 end
 
 -- Updates current value.

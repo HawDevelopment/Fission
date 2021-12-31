@@ -2726,24 +2726,27 @@ end
 -- local Value = Fission.Value
 -- local Computed = Fission.Computed
 -- local OnEvent = Fission.OnEvent
--- local Observer = Fission.Observer
--- local DoScheduling  = Fission.DoScheduling
+-- local Tween = Fission.Tween
 
 -- local clicked = Value(0)
 
--- local inst = New("ScreenGui")({
--- 	Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"),
--- 	[Children] = New("TextButton")({
---         [DoScheduling] = false,
--- 		Size = UDim2.fromOffset(100, 100),
--- 		Text = Computed(function()
+-- New("ScreenGui")({
+--     Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"), 
+--     [Children] = New("TextButton")({
+--         Size = UDim2.fromOffset(100, 100),
+--         BackgroundColor3 = Tween(Computed(function()
+--             return clicked:get() % 2 == 0 and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(0, 255, 0)
+--         end)),
+--         Text = Computed(function()
 --             return "Clicked " .. clicked:get() .. " times"
---         end, false),
--- 		[OnEvent("Activated")] = function()
--- 			clicked:set(clicked:get() + 1)
--- 		end,
--- 	}),
+--         end),
+--         [OnEvent("Activated")] = function()
+--             clicked:set(clicked:get() + 1)
+--         end,
+--     })
 -- })
+
+
 ]]></ProtectedString>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
@@ -2783,9 +2786,9 @@ local function StressTester()
 			Length += 1
 			Nodes[Length] = New("Frame")({
                 [DoScheduling] = false,
-				BackgroundColor3 = Computed(function()
-					return Color3.new(0.5 + 0.5 * math.sin(TimeState:get() + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
-				end, false),
+				BackgroundColor3 = TimeState:bind(function(time)
+                    return Color3.new(0.5 + 0.5 * math.sin(time + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
+                end),
 
 				Position = UDim2.fromOffset(NODE_SIZE * X, NODE_SIZE * Y),
 				Size = UDim2.fromOffset(NODE_SIZE, NODE_SIZE),
@@ -4131,6 +4134,7 @@ return {
 	Observer = require(script.State.Observer),
     
     Spring = require(script.Animation.Spring),
+    Tween = require(script.Animation.Tween),
 }
 ]]></ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
@@ -4670,6 +4674,336 @@ end]]></ProtectedString>
 						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e0002478f</UniqueId>
 					</Properties>
 				</Item>
+				<Item class="ModuleScript" referent="RBXE71FD8A56D164F1A95B8DC055D00C2A2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">TweenScheduler</string>
+						<string name="ScriptGuid">{31A6F45E-F7AC-4F22-BF77-1D18AEDE1A0B}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    TweenScheduler.
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/TweenScheduler.lua
+    HawDevelopment
+    12/22/2021
+--]]
+
+local RunService = game:GetService("RunService")
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local GetTweenRatio = require(Package.Animation.GetTweenRatio)
+local LerpType = require(Package.Animation.LerpType)
+
+type Set<T> = { [T]: any }
+
+local TweenScheduler = {}
+
+local tweens: Set<Types.Tween<any>> = {}
+
+-- Adds a tween to the scheduler.
+function TweenScheduler.add(tween: Types.Tween<any>)
+    tweens[tween] = true
+end
+
+-- Removes a tween from the scheduler.
+function TweenScheduler.remove(tween: Types.Tween<any>)
+    tweens[tween] = nil
+end
+
+local function Update()
+    local now = os.clock()
+	for tween: any in pairs(tweens) do
+		local currentTime = now - tween._currentTweenStartTime
+
+		if currentTime > tween._currentTweenDuration then
+			if tween._currentTweenInfo.Reverses then
+				tween._value = tween._prevValue
+			else
+				tween._value = tween._nextValue
+			end
+			tween._signal:fire(tween._value)
+			TweenScheduler.remove(tween)
+		else
+			local ratio = GetTweenRatio(tween._currentTweenInfo, currentTime)
+			local currentValue = LerpType(tween._prevValue, tween._nextValue, ratio)
+			tween._value = currentValue
+            tween._signal:fire(tween._value)
+		end
+	end
+end
+
+RunService:BindToRenderStep(
+	"__FissionTweenScheduler",
+	Enum.RenderPriority.First.Value,
+	Update
+)
+
+return TweenScheduler]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b00024808</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXE02482D1654B46BB9E9B699023852188">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">GetTweenRatio</string>
+						<string name="ScriptGuid">{54568016-42C1-4157-B028-0957D68417B5}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    GetTweenRatio.
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/getTweenRatio.lua
+    HawDevelopment
+    12/23/2021
+--]]
+
+local TweenService = game:GetService("TweenService")
+
+return function (tweenInfo: TweenInfo, currentTime: number): number
+    local delay = tweenInfo.DelayTime
+	local duration = tweenInfo.Time
+
+	local cycleDuration = delay + duration
+	if tweenInfo.Reverses then
+		cycleDuration += duration
+	end
+
+	if currentTime >= cycleDuration * math.max(tweenInfo.RepeatCount, 1) then
+		return 1
+	end
+
+	local cycleTime = currentTime % cycleDuration
+
+	if cycleTime <= delay then
+		return 0
+	end
+
+	local tweenProgress = (cycleTime - delay) / duration
+	if tweenProgress > 1 then
+		tweenProgress = 2 - tweenProgress
+	end
+    
+    return TweenService:GetValue(tweenProgress, tweenInfo.EasingStyle, tweenInfo.EasingDirection)
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b0002480a</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX5DD7BFF4C13049B8998D4C61BEC78CD3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Tween</string>
+						<string name="ScriptGuid">{7B09BBC4-850A-49FF-A7BE-6D1FDC6224D8}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Tween.
+    HawDevelopment
+    12/22/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Signal = require(Package.Dependencies.Signal)
+local UseState = require(Package.Dependencies.UseState)
+local TweenScheduler = require(Package.Animation.TweenScheduler)
+
+local Tween = {}
+Tween.__index = Tween
+
+-- Gets the current value
+function Tween:get(asDependency: boolean): any
+    if asDependency ~= false then
+        UseState(self :: any)
+    end
+    return self._value
+end
+
+-- Initates a new tween.
+function Tween:update(): boolean
+	self._prevValue = self._value
+	self._nextValue = self._goalState:get(false)
+
+	self._currentTweenStartTime = os.clock()
+	self._currentTweenInfo = self._tweenInfo
+
+	local tweenDuration = self._tweenInfo.DelayTime + self._tweenInfo.Time
+	if self._tweenInfo.Reverses then
+		tweenDuration += self._tweenInfo.Time
+	end
+	tweenDuration *= math.max(self._tweenInfo.RepeatCount, 1)
+	self._currentTweenDuration = tweenDuration
+
+	-- start animating this tween
+	TweenScheduler.add(self :: any)
+	return false
+end
+
+return function <T>(goalState: Types.Value<any>, tweenInfo: TweenInfo?): Types.Tween<T>
+    
+    local currentValue = (goalState :: any):get(false)
+    
+    local self = setmetatable({
+        type = "State",
+        kind = "Tween",
+        _signal = Signal(),
+        
+        _goalState = goalState,
+		_tweenInfo = tweenInfo or TweenInfo.new(),
+        
+        _prevValue = currentValue,
+		_nextValue = currentValue,
+		_value = currentValue,
+        
+        _currentTweenInfo = tweenInfo,
+		_currentTweenDuration = 0,
+		_currentTweenStartTime = 0
+    }, Tween) :: any
+    
+    goalState._signal:connectCallback(function()
+        self:update()
+    end)
+    
+    return self
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b0002480c</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX7562CCE0C91F4FB697782F91122E3C16">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">LerpType</string>
+						<string name="ScriptGuid">{29F90DB5-2ACA-4496-87F4-E6ECF73E4216}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    LerpType.
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Animation/lerpType.lua
+    HawDevelopment
+    12/23/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local Oklab = require(Package.Colour.Oklab)
+
+return function (from: any, to: any, ratio: number): any
+    local typeString = typeof(from)
+
+	if typeof(to) == typeString then
+		-- both types must match for interpolation to make sense
+		if typeString == "number" then
+			return (to - from) * ratio + from
+
+		elseif typeString == "CFrame" then
+			return from:Lerp(to, ratio)
+
+		elseif typeString == "Color3" then
+			local fromLab = Oklab.to(from)
+			local toLab = Oklab.to(to)
+			return Oklab.from(
+				fromLab:Lerp(toLab, ratio),
+				false
+			)
+
+		elseif typeString == "ColorSequenceKeypoint" then
+			local fromLab = Oklab.to(from.Value)
+			local toLab = Oklab.to(to.Value)
+			return ColorSequenceKeypoint.new(
+				(to.Time - from.Time) * ratio + from.Time,
+				Oklab.from(
+					fromLab:Lerp(toLab, ratio),
+					false
+				)
+			)
+
+		elseif typeString == "DateTime" then
+			return DateTime.fromUnixTimestampMillis(
+				(to.UnixTimestampMillis - from.UnixTimestampMillis) * ratio + from.UnixTimestampMillis
+			)
+		elseif typeString == "NumberRange" then
+			return NumberRange.new(
+				(to.Min - from.Min) * ratio + from.Min,
+				(to.Max - from.Max) * ratio + from.Max
+			)
+		elseif typeString == "NumberSequenceKeypoint" then
+			return NumberSequenceKeypoint.new(
+				(to.Time - from.Time) * ratio + from.Time,
+				(to.Value - from.Value) * ratio + from.Value,
+				(to.Envelope - from.Envelope) * ratio + from.Envelope
+			)
+		elseif typeString == "PhysicalProperties" then
+			return PhysicalProperties.new(
+				(to.Density - from.Density) * ratio + from.Density,
+				(to.Friction - from.Friction) * ratio + from.Friction,
+				(to.Elasticity - from.Elasticity) * ratio + from.Elasticity,
+				(to.FrictionWeight - from.FrictionWeight) * ratio + from.FrictionWeight,
+				(to.ElasticityWeight - from.ElasticityWeight) * ratio + from.ElasticityWeight
+			)
+		elseif typeString == "Ray" then
+			return Ray.new(
+				from.Origin:Lerp(to.Origin, ratio),
+				from.Direction:Lerp(to.Direction, ratio)
+			)
+		elseif typeString == "Rect" then
+			return Rect.new(
+				from.Min:Lerp(to.Min, ratio),
+				from.Max:Lerp(to.Max, ratio)
+			)
+		elseif typeString == "Region3" then
+			local position = from.CFrame.Position:Lerp(to.CFrame.Position, ratio)
+			local halfSize = from.Size:Lerp(to.Size, ratio) / 2
+			return Region3.new(position - halfSize, position + halfSize)
+		elseif typeString == "Region3int16" then
+			return Region3int16.new(
+				Vector3int16.new(
+					(to.Min.X - from.Min.X) * ratio + from.Min.X,
+					(to.Min.Y - from.Min.Y) * ratio + from.Min.Y,
+					(to.Min.Z - from.Min.Z) * ratio + from.Min.Z
+				),
+				Vector3int16.new(
+					(to.Max.X - from.Max.X) * ratio + from.Max.X,
+					(to.Max.Y - from.Max.Y) * ratio + from.Max.Y,
+					(to.Max.Z - from.Max.Z) * ratio + from.Max.Z
+				)
+			)
+		elseif typeString == "UDim" then
+			return UDim.new(
+				(to.Scale - from.Scale) * ratio + from.Scale,
+				(to.Offset - from.Offset) * ratio + from.Offset
+			)
+		elseif typeString == "UDim2" then
+			return from:Lerp(to, ratio)
+		elseif typeString == "Vector2" then
+			return from:Lerp(to, ratio)
+		elseif typeString == "Vector2int16" then
+			return Vector2int16.new(
+				(to.X - from.X) * ratio + from.X,
+				(to.Y - from.Y) * ratio + from.Y
+			)
+		elseif typeString == "Vector3" then
+			return from:Lerp(to, ratio)
+		elseif typeString == "Vector3int16" then
+			return Vector3int16.new(
+				(to.X - from.X) * ratio + from.X,
+				(to.Y - from.Y) * ratio + from.Y,
+				(to.Z - from.Z) * ratio + from.Z
+			)
+		end
+	end
+
+	if ratio < 0.5 then
+		return from
+	else
+		return to
+	end
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b00024810</UniqueId>
+					</Properties>
+				</Item>
 			</Item>
 			<Item class="Folder" referent="RBXEC3F3112DE24474395331136D4BE6E51">
 				<Properties>
@@ -4776,7 +5110,6 @@ type Set<T> = { [T]: any }
 return function(saveto: Set<Types.StateObject<any>>, func: (...any) -> any, ...)
 	local prevDependencySet = Shared.CurrentDependencySet
 	Shared.CurrentDependencySet = saveto :: any
-
 	local ok, ret = xpcall(func, Error, ...)
 
 	Shared.CurrentDependencySet = prevDependencySet
@@ -4842,22 +5175,23 @@ local Types = require(Package.Types)
 local Signal = {}
 Signal.__index = Signal
 
-local WEAK_TABLE = { __mode = "k" }
-
 function Signal:connectCallback(callback: (...any) -> nil)
-    self._connectionsCount += 1
-    self._connections[self._connectionsCount] = callback
-    local index = self._connectionsCount
+    if self._isfiring then
+        self._shouldConnect = true
+        table.insert(self._toConnect, callback)
+    else
+        table.insert(self._connections, callback)
+    end
     local connected = true
     return function ()
         if not connected then
             return
         end
-        
-        self._connections[index] = nil
-        self._connections[index] = self._connections[self._connectionsCount]
-        self._connectionsCount -= 1
         connected = false
+        local index = table.find(self._connections, callback)
+        if index then
+            self._connections[index] = nil
+        end
     end
 end
 
@@ -4884,9 +5218,15 @@ function Signal:connectProperty(inst, key)
 end
 
 function Signal:fire(...)
-    if self._connectionsCount >= 0 then
-        for _, callback in ipairs(self._connections) do
-            callback(...)
+    self._isfiring = true
+    for _, callback in ipairs(self._connections) do
+        callback(...)
+    end
+    if self._shouldConnect then
+        self._shouldConnect = false
+        for index, callback in ipairs(self._toConnect) do
+            table.insert(self._connections, callback)
+            self._toConnect[index] = nil
         end
     end
     for inst, properties in pairs(self._properties) do
@@ -4894,13 +5234,18 @@ function Signal:fire(...)
             inst[key] = ...
         end
     end
+    self._isfiring = false
 end
+
+local WEAK_KEYS_TABLE = { __mode = "k" }
 
 return function (): Types.Signal
     local self = setmetatable({
-        _properties = { },
+        _isfiring = false,
+        _shouldConnect = false,
+        _properties = setmetatable({}, WEAK_KEYS_TABLE),
         _connections = {},
-        _connectionsCount = 0,
+        _toConnect = {},
     }, Signal) :: any
     
     return self
@@ -5140,9 +5485,11 @@ local Types = require(Package.Types)
 local LogError = require(Package.Logging.LogError)
 local Children = require(Package.Instances.Children)
 local DoScheduling = require(Package.Instances.DoScheduling)
-local Observer = require(Package.State.Observer)
 local Scheduler = require(Package.Instances.Scheduler)
 local DefaultProps = require(Package.Instances.DefaultProps)
+local CleanupOnDestroy = require(Package.Utility.CleanupOnDestroy)
+local Cleanup = require(Package.Utility.Cleanup)
+local Observer = require(Package.State.Observer)
 
 type Set<T> = { [T]: any }
 
@@ -5154,23 +5501,31 @@ end
 local function GetProperty(inst, key)
 	return inst[key]
 end
+local function callback() end
 
 local function New(className: string, propertyTable: Types.PropertyTable)
 	-- TODO: Add cleanup tasks
 
 	local toConnect: Set<RBXScriptSignal> = {}
     local doScheduling = if propertyTable[DoScheduling] == false then false else true
-
-	-- Create the instance
-	local ok, inst = pcall(Instance.new, className)
-	if not ok then
-		LogError("cannotCreateClass", nil, true, className)
-	end
-    local defualtProps = DefaultProps[className]
-    if defualtProps then
-        for key, value in pairs(defualtProps) do
-            inst[key] = value
+    local cleanupTasks: { Cleanup.Task } = { }
+    local dependencies: Set<any> = {}
+    local inst, conn
+    
+    do
+        -- Create the instance
+        local ok, ret = pcall(Instance.new, className)
+        if not ok then
+            LogError("cannotCreateClass", nil, true, className)
         end
+        inst = ret
+        local defualtProps = DefaultProps[className]
+        if defualtProps then
+            for key, value in pairs(defualtProps) do
+                ret[key] = value
+            end
+        end
+        conn = inst.Changed:Connect(callback)
     end
 
 	-- Apply props
@@ -5186,11 +5541,11 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 end
 				-- Clean this up?
                 if doScheduling then
-                    value._signal:connectCallback(function(newValue)
-                        Scheduler.enqueueProperty(inst, key, newValue)
-                    end)
+                    table.insert(cleanupTasks, Observer(value):onChange(function()
+                        Scheduler.enqueueProperty(inst, key, value:get(false))
+                    end))
                 else
-                    value._signal:connectProperty(inst, key)
+                    table.insert(cleanupTasks, value._signal:connectProperty(inst, key))
                 end
             else
                 if not pcall(SetProperty, inst, key, value) then
@@ -5245,7 +5600,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 					if child.type == "State" then
 						recursiveAddChild(child:get(false))
 						local disconnect
-						disconnect = Observer(child):onChange(function()
+						disconnect = child._signal:connectCallback(function()
 							task.defer(updateChildren)
 							disconnect()
 						end)
@@ -5281,15 +5636,14 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
 			end
             
-            if doScheduling then
-                Observer(parent):onChange(function()
-                    Scheduler.enqueueProperty(inst, "Parent", parent:get(false))
-                end)
-            else
-                Observer(parent):onChange(function()
-                    inst.Parent = parent:get(false)
-                end)
-            end
+            table.insert(cleanupTasks, 
+                if doScheduling then
+                    parent._signal:connectCallback(function(newValue)
+                        Scheduler.enqueueProperty(inst, "Parent", newValue)
+                    end)
+                else
+                    parent._signal:connectProperty(inst, "Parent")
+            )
 		else
 			if not pcall(SetProperty, inst, "Parent", parent) then
 				LogError("cannotAssignProperty", nil, true, className, "Parent")
@@ -5301,7 +5655,15 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	for event, func in pairs(toConnect) do
 		event:Connect(func)
 	end
-
+    
+    -- Add cleanup tasks
+    if #cleanupTasks ~= 0 then
+        CleanupOnDestroy(inst, cleanupTasks)
+    end
+    
+    -- Disconnect event
+    conn:Disconnect()
+    
 	return inst
 end
 
@@ -5626,10 +5988,10 @@ end
 -- Captures all used state inside the function.
 function Computed:capture()
     -- Disconnect all connections and remove them.
-	for index, func in pairs(self._connections) do
+	for _, func in pairs(self._connections) do
         func()
-        self._connections[index] = nil
 	end
+    table.clear(self._connections)
 
 	-- Store the old value, so if it errors we can revert.
 	self._oldDependencySet, self._dependencySet = self._dependencySet, self._oldDependencySet
@@ -5646,17 +6008,20 @@ function Computed:capture()
     
     for dependency, _ in pairs(self._dependencySet) do
         if self.recapture == false then
-            self._connections[dependency] = dependency._signal:connectCallback(function()
+            table.insert(self._connections, dependency._signal:connectCallback(function()
                 self._value = self._callback()
                 self._signal:fire(self._value)
-            end)
+            end))
         else
-            self._connections[dependency] = dependency._signal:connectCallback(function()
+            table.insert(self._connections, dependency._signal:connectCallback(function()
                 self:capture()
-            end)
+            end))
         end
     end
     
+    if ok then
+        self._signal:fire(self._value)
+    end
 end
 
 return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
@@ -5722,6 +6087,7 @@ function Observer:onChange(callback: () -> nil): () -> nil
 		if disconnected then
 			return
 		end
+        disconnected = true
 		disconnect()
         self.listeners -= 1
         if self.listeners == 0 then
@@ -5771,8 +6137,16 @@ local Types = require(Package.Types)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
+local Binding = require(Package.State.Binding)
 
-local Value = {}
+type ValueClass = {
+    __index: any,
+    get: (Types.Value<any>, asDependency: boolean) -> any,
+    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding<any>,
+    set: (any) -> (),
+}
+
+local Value: ValueClass = {} :: any
 Value.__index = Value
 
 -- Returns the current value.
@@ -5782,6 +6156,11 @@ function Value:get(asDependency: boolean?)
 		UseState(self :: any)
 	end
 	return self._value
+end
+
+-- Binds a function to the value.
+function Value:bind(callback: (any) -> any)
+    return Binding(self, callback)
 end
 
 -- Updates current value.
@@ -5808,6 +6187,73 @@ end
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a6</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBXF2C9C974A5D748F9A7A6832DD1AA484B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Binding</string>
+						<string name="ScriptGuid">{D39D78FB-2742-4E63-A5EB-204B386BA616}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Binding.
+    
+    A way to create a performant computed for one value.
+    
+    HawDevelopment
+    12/31/2021
+--]]
+
+local Package = script.Parent.Parent
+local Types = require(Package.Types)
+local UseState = require(Package.Dependencies.UseState)
+local Shared = require(Package.Dependencies.Shared)
+local Signal = require(Package.Dependencies.Signal)
+
+type BindingClass = {
+    get: (asDependency: boolean?) -> any,
+}
+
+local Binding = {}
+Binding.__index = Binding
+
+function Binding:get(asDependency: boolean?)
+    if asDependency ~= false and Shared.CurrentDependencySet then
+        UseState(self :: any)
+    end
+    return self._value
+end
+
+function Binding:update(newValue: any)
+    local callbackValue = self._callback(newValue)
+    if callbackValue ~= nil then
+        self._value = callbackValue
+        self._signal:fire(callbackValue)
+        return true
+    end
+    return false
+end
+
+return function <T>(value: Types.Value<any>, callback: (any) -> any): Types.Binding<T>
+    local binding = setmetatable({
+        type = "State",
+        kind = "Binding",
+        _callback = callback,
+        _value = nil,
+        _signal = Signal()
+    }, Binding)
+    
+    binding:update(value:get(false))
+    value._signal:connectCallback(function(newValue: any)
+        binding:update(newValue)
+    end)
+    
+    return binding :: any
+end
+]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">400770af094c28c301e07b5d0006085d</UniqueId>
 					</Properties>
 				</Item>
 			</Item>
@@ -5878,6 +6324,11 @@ export type Error = {
 
 export type Value<T> = StateObject<T> & {
 	set: (Value<T>, newValue: any, force: boolean?) -> nil,
+    bind: (Value<T>, callback: (any) -> any) -> Binding<T>,
+}
+
+export type Binding<T> = StateObject<T> & {
+    update: (Binding<T>, newValue: any) -> nil,
 }
 
 export type Computed<T> = StateObject<T> & {
@@ -5954,6 +6405,147 @@ return {
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e000247a9</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX70CEF237D2BF439BA1C8449A4D619468">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">Cleanup</string>
+						<string name="ScriptGuid">{4528AF0D-197A-43A5-94D4-B443C280FE0F}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    Cleanup.
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Utility/cleanup.lua
+    HawDevelopment
+    12/22/2021
+--]]
+
+export type Task = Instance | RBXScriptConnection | () -> () | { Destroy: (any) -> nil } | { destroy: (any) -> nil } | { Task }
+
+function Cleanup (task: Task)
+    local taskType = typeof(task)
+
+	if taskType == "Instance" then
+		task:Destroy()
+	elseif taskType == "RBXScriptConnection" then
+		task:Disconnect()
+	elseif taskType == "function" then
+		task()
+	elseif taskType == "table" then
+		if typeof(task.destroy) == "function" then
+            ---@diagnostic disable-next-line: deprecated
+			task:destroy()
+		elseif typeof(task.Destroy) == "function" then
+			task:Destroy()
+		elseif (task :: { Task })[1] ~= nil then
+			for _, subtask in ipairs((task :: { Task })) do
+				Cleanup(subtask)
+			end
+		end
+	end
+end
+
+return Cleanup]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b00024806</UniqueId>
+					</Properties>
+				</Item>
+				<Item class="ModuleScript" referent="RBX021B9549292D493B8AD214FB9D893837">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<Content name="LinkedSource"><null></null></Content>
+						<string name="Name">CleanupOnDestroy</string>
+						<string name="ScriptGuid">{3881FFC6-F2AF-4F67-9DD8-04119260DABC}</string>
+						<ProtectedString name="Source"><![CDATA[--[[
+    CleanupOnDestroy
+    Taken from fusion: https://github.com/Elttob/Fusion/blob/main/src/Utility/cleanupOnDestroy.lua
+    HawDevelopment
+    12/22/2021
+--]]
+
+local RunService = game:GetService("RunService")
+
+local Package = script.Parent.Parent
+local Cleanup = require(Package.Utility.Cleanup)
+
+type TaskData = {
+    connection: RBXScriptConnection,
+    task: Cleanup.Task,
+    cleaned: boolean,
+}
+
+local function callback() end
+
+local tasks: { TaskData } = {}
+local numTasks = 0
+local index = 1
+
+local function RunTasks()
+    if numTasks == 0 then
+        return
+    end
+    
+    local start = os.clock()
+	local stop = start + 1/2000
+
+	for _ = 1, numTasks do
+		local taskData = tasks[index]
+
+		if taskData.connection.Connected then
+			index += 1
+		else
+			table.remove(tasks, index)
+			taskData.cleaned = true
+			Cleanup(taskData.task)
+			numTasks -= 1
+		end
+        
+        if index > numTasks then
+            index = 1
+            break
+        end
+        
+		if os.clock() > stop or index > numTasks then
+			break
+		end
+	end
+end
+
+RunService:BindToRenderStep("__FissionCleanUp", Enum.RenderPriority.First.Value, RunTasks)
+
+return function (inst: Instance?, task: Cleanup.Task)
+    local taskData = {
+        connection = inst.AncestryChanged:Connect(callback),
+        task = task,
+        cleaned = false,
+    }
+    inst = nil
+
+    numTasks += 1
+    tasks[numTasks] = taskData
+    
+    return function ()
+        if not taskData or taskData.cleaned then
+            return
+        end
+
+        taskData.cleaned = true
+        taskData.connection:Disconnect()
+        Cleanup(task)
+        local index = table.find(tasks, taskData)
+        if index then
+            tasks[index] = nil
+            numTasks -= 1
+            if numTasks ~= 0 then
+                tasks[index] = tasks[numTasks]
+            end
+        end
+    end
+end]]></ProtectedString>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b0002480e</UniqueId>
 					</Properties>
 				</Item>
 			</Item>
