@@ -17,8 +17,8 @@ export type Signal = {
     _connection: Set<(...any) -> nil>,
     _isfiring: boolean,
     _shouldConnect: boolean,
-    _properties: { [Instance]: { string} },
-    _connections: { (...any) -> nil },
+    _properties: { [Instance]: { string } },
+    _connections: Set<(...any) -> nil>,
     _toConnect: { (...any) -> nil },
     
     fire: (Signal, ...any) -> nil,
