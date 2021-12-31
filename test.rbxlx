@@ -2608,7 +2608,7 @@ local StarterPlayerScripts = game:GetService("StarterPlayer"):WaitForChild("Star
 
 local TestEZ = require(StarterPlayerScripts.TestEZ)
 
-local RUN_TESTS = false
+local RUN_TESTS = true
 local RUN_BENCHMARKS = false
 
 -- run unit tests
@@ -2734,11 +2734,11 @@ end
 --     Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"), 
 --     [Children] = New("TextButton")({
 --         Size = UDim2.fromOffset(100, 100),
---         BackgroundColor3 = Tween(Computed(function()
+--         BackgroundColor3 = Computed(function()
 --             return clicked:get() % 2 == 0 and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(0, 255, 0)
---         end)),
+--         end),
 --         Text = Computed(function()
---             return "Clicked " .. clicked:get() .. " times"
+--             return "Clicked " .. tostring(clicked:get()) .. " times"
 --         end),
 --         [OnEvent("Activated")] = function()
 --             clicked:set(clicked:get() + 1)
@@ -2760,58 +2760,58 @@ end
 					<Content name="LinkedSource"><null></null></Content>
 					<string name="Name">Stress</string>
 					<string name="ScriptGuid">{974A7387-1AB0-4D8A-AF8F-330B89B25E32}</string>
-					<ProtectedString name="Source"><![CDATA[local RunService = game:GetService("RunService")
-local Fission = require(game.ReplicatedStorage.Fission)
+					<ProtectedString name="Source"><![CDATA[-- local RunService = game:GetService("RunService")
+-- local Fission = require(game.ReplicatedStorage.Fission)
 
-local NODE_SIZE = 10
-local GRID_SIZE = 50
+-- local NODE_SIZE = 10
+-- local GRID_SIZE = 50
 
-local New = Fission.New
-local Value = Fission.Value
-local Children = Fission.Children
-local Computed = Fission.Computed
-local DoScheduling = Fission.DoScheduling
+-- local New = Fission.New
+-- local Value = Fission.Value
+-- local Children = Fission.Children
+-- local Computed = Fission.Computed
+-- local DoScheduling = Fission.DoScheduling
 
-local function StressTester()
-	local TimeState = Value(time())
+-- local function StressTester()
+-- 	local TimeState = Value(time())
 
-	RunService.Heartbeat:Connect(function()
-		TimeState:set(time())
-	end)
+-- 	RunService.Heartbeat:Connect(function()
+-- 		TimeState:set(time())
+-- 	end)
 
-	local Nodes = {}
-	local Length = 0
-	for X = 0, GRID_SIZE - 1 do
-		for Y = 0, GRID_SIZE - 1 do
-			Length += 1
-			Nodes[Length] = New("Frame")({
-                [DoScheduling] = false,
-				BackgroundColor3 = TimeState:bind(function(time)
-                    return Color3.new(0.5 + 0.5 * math.sin(time + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
-                end),
+-- 	local Nodes = {}
+-- 	local Length = 0
+-- 	for X = 0, GRID_SIZE - 1 do
+-- 		for Y = 0, GRID_SIZE - 1 do
+-- 			Length += 1
+-- 			Nodes[Length] = New("Frame")({
+--                 [DoScheduling] = false,
+-- 				BackgroundColor3 = TimeState:bind(function(time)
+--                     return Color3.new(0.5 + 0.5 * math.sin(time + X / NODE_SIZE + Y / NODE_SIZE), 0.5, 0.5)
+--                 end),
 
-				Position = UDim2.fromOffset(NODE_SIZE * X, NODE_SIZE * Y),
-				Size = UDim2.fromOffset(NODE_SIZE, NODE_SIZE),
-			})
-		end
-	end
+-- 				Position = UDim2.fromOffset(NODE_SIZE * X, NODE_SIZE * Y),
+-- 				Size = UDim2.fromOffset(NODE_SIZE, NODE_SIZE),
+-- 			})
+-- 		end
+-- 	end
 
-	local Frame = New("Frame")({
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		Position = UDim2.fromScale(0.5, 0.5),
-		Size = UDim2.fromOffset(GRID_SIZE * NODE_SIZE, GRID_SIZE * NODE_SIZE),
-		[Children] = Nodes,
-	}) :: Frame
+-- 	local Frame = New("Frame")({
+-- 		AnchorPoint = Vector2.new(0.5, 0.5),
+-- 		Position = UDim2.fromScale(0.5, 0.5),
+-- 		Size = UDim2.fromOffset(GRID_SIZE * NODE_SIZE, GRID_SIZE * NODE_SIZE),
+-- 		[Children] = Nodes,
+-- 	}) :: Frame
 
-	return Frame
-end
+-- 	return Frame
+-- end
 
-local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
+-- local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
 
-New("ScreenGui")({
-	Parent = PlayerGui,
-	[Fission.Children] = { StressTester() },
-})
+-- New("ScreenGui")({
+-- 	Parent = PlayerGui,
+-- 	[Fission.Children] = { StressTester() },
+-- })
 ]]></ProtectedString>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
@@ -4122,6 +4122,32 @@ end
     12/12/2021
 --]]
 
+local Types = require(script.Types)
+
+export type StateObject<T> = Types.StateObject<T>
+export type CanBeState<T> = Types.CanBeState<T>
+export type Symbol = Types.Symbol
+export type Value<T> = Types.Value<T>
+export type Computed<T> = Types.Computed<T>
+export type Observer = Types.Observer
+export type Tween<T> = Types.Tween<T>
+export type Spring<T> = Types.Spring<T>
+
+type Fission = {
+	New: (className: string) -> ((propertyTable: Types.PropertyTable) -> Instance),
+	
+	Children: Types.Children,
+	OnEvent: (eventName: string) -> Types.OnEvent,
+	OnChange: (propertyName: string) -> Types.OnChange,
+    
+	Value: <T>(initialValue: T) -> Value<T>,
+	Computed: <T>(callback: () -> T) -> Computed<T>,
+	Observer: (watchedState: StateObject<any>) -> Observer,
+
+	Tween: <T>(goalState: StateObject<T>, tweenInfo: TweenInfo?) -> Types.Tween<T>,
+	Spring: <T>(goalState: StateObject<T>, speed: number?, damping: number?) -> Spring<T>
+}
+
 return {
 	New = require(script.Instances.New),
 	OnChange = require(script.Instances.OnChange),
@@ -4135,7 +4161,7 @@ return {
     
     Spring = require(script.Animation.Spring),
     Tween = require(script.Animation.Tween),
-}
+} :: Fission
 ]]></ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
@@ -4167,7 +4193,7 @@ return {
 
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Oklab = require(Package.Colour.Oklab)
 
 return function (value: {number}, typestr: string): Types.Animatable | nil
@@ -4253,14 +4279,20 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UnpackType = require(Package.Animation.UnpackType)
 local SpringScheduler = require(Package.Animation.SpringScheduler)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
 
-local Spring = {}
+type SpringClass = {
+    __index: any,
+    get: (Types.Spring<any>, asDependency: boolean?) -> any,
+    update: (Types.Spring<any>) -> boolean,
+}
+
+local Spring: SpringClass = {} :: any
 Spring.__index = Spring
 
 -- Returns the current value.
@@ -4277,13 +4309,13 @@ end
 --  - The spring is started.
 --  - Speed / damping changes.
 function Spring:update(): boolean
-    local goal = self._goalState:get(false)
+    local goal = (self._goalState :: any):get(false)
     
     if goal == self._goal then
         -- The speed / damping has changed, but the goal hasn't.
         -- So we need to reset the springscheduler.
-        SpringScheduler.remove(self)
-        SpringScheduler.add(self)
+        SpringScheduler.remove(self :: any)
+        SpringScheduler.add(self :: any)
         return false
     else
         -- The goal has changed.
@@ -4299,6 +4331,7 @@ function Spring:update(): boolean
         
         if newtype ~= oldtype then
             -- The type has changed.
+            
             table.clear(self._currentPosition)
             table.clear(self._currentVelocity)
             local positions = self._currentPosition
@@ -4312,15 +4345,15 @@ function Spring:update(): boolean
             self._currentPosition = positions
             self._currentVelocity = velocities
             self._value = goal
-            SpringScheduler.remove(self)
+            SpringScheduler.remove(self :: any)
             return true
         elseif numsprings == 0 then
             -- It cant be animated.
             self._value = goal
-            SpringScheduler.remove(self)
+            SpringScheduler.remove(self :: any)
             return true
         else
-            SpringScheduler.add(self)
+            SpringScheduler.add(self :: any)
         end
     end
 end
@@ -4498,7 +4531,7 @@ end]]></ProtectedString>
 local RunService = game:GetService("RunService")
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local PackType = require(Package.Animation.PackType)
 local LogError = require(Package.Logging.LogError)
 local SpringCoefficients = require(Package.Animation.SpringCoefficients)
@@ -4510,9 +4543,9 @@ type Set<T> = { [T]: any }
 
 local SpringScheduler = {}
 
-local Buckets: { [number]: { [number]: Set<any> } } = {}
+local Buckets: { [number]: { [number]: Set<Types.Spring<any>> } } = {}
 
-function SpringScheduler.add(spring: any)
+function SpringScheduler.add(spring: Types.Spring<any>)
     local damping = if spring._dampingIsState then spring._damping:get(false) else spring._damping
     local speed = if spring._speedIsState then spring._speed:get(false) else spring._speed
     
@@ -4542,13 +4575,13 @@ function SpringScheduler.add(spring: any)
     speedBucket[spring] = true
 end
 
-function SpringScheduler.remove(spring: any)
+function SpringScheduler.remove(spring: Types.Spring<any>)
     local damping = spring._lastDamping
     local speed = spring._lastSpeed
     if not Buckets[damping] or not Buckets[damping][speed] then
         return
     end
-    Buckets[damping][speed][spring] = nil
+    Buckets[damping][speed][spring :: any] = nil
 end
 
 local function Update(dt: number)
@@ -4587,7 +4620,7 @@ local function Update(dt: number)
                     spring._value = PackType(pos, spring._currentType)
                     spring._signal:fire(spring._value)
                 else
-                    SpringScheduler.remove(spring)
+                    SpringScheduler.remove(spring :: any)
                 end
             end
         end
@@ -4690,7 +4723,7 @@ end]]></ProtectedString>
 local RunService = game:GetService("RunService")
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local GetTweenRatio = require(Package.Animation.GetTweenRatio)
 local LerpType = require(Package.Animation.LerpType)
 
@@ -4702,17 +4735,17 @@ local tweens: Set<Types.Tween<any>> = {}
 
 -- Adds a tween to the scheduler.
 function TweenScheduler.add(tween: Types.Tween<any>)
-    tweens[tween] = true
+    tweens[tween :: any] = true
 end
 
 -- Removes a tween from the scheduler.
 function TweenScheduler.remove(tween: Types.Tween<any>)
-    tweens[tween] = nil
+    tweens[tween :: any] = nil
 end
 
 local function Update()
     local now = os.clock()
-	for tween: any in pairs(tweens) do
+	for tween in pairs(tweens) do
 		local currentTime = now - tween._currentTweenStartTime
 
 		if currentTime > tween._currentTweenDuration then
@@ -4722,7 +4755,7 @@ local function Update()
 				tween._value = tween._nextValue
 			end
 			tween._signal:fire(tween._value)
-			TweenScheduler.remove(tween)
+			TweenScheduler.remove(tween :: any)
 		else
 			local ratio = GetTweenRatio(tween._currentTweenInfo, currentTime)
 			local currentValue = LerpType(tween._prevValue, tween._nextValue, ratio)
@@ -4803,12 +4836,18 @@ end]]></ProtectedString>
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Signal = require(Package.Dependencies.Signal)
 local UseState = require(Package.Dependencies.UseState)
 local TweenScheduler = require(Package.Animation.TweenScheduler)
 
-local Tween = {}
+type TweenClass = {
+    __index: any,
+    get: (Types.Tween<any>, asDependency: boolean?) -> any,
+    update: (Types.Tween<any>) -> boolean,
+}
+
+local Tween: TweenClass = {} :: any
 Tween.__index = Tween
 
 -- Gets the current value
@@ -4822,7 +4861,7 @@ end
 -- Initates a new tween.
 function Tween:update(): boolean
 	self._prevValue = self._value
-	self._nextValue = self._goalState:get(false)
+	self._nextValue = (self._goalState :: any):get(false)
 
 	self._currentTweenStartTime = os.clock()
 	self._currentTweenInfo = self._tweenInfo
@@ -4885,7 +4924,6 @@ end]]></ProtectedString>
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
 local Oklab = require(Package.Colour.Oklab)
 
 return function (from: any, to: any, ratio: number): any
@@ -5026,6 +5064,12 @@ end]]></ProtectedString>
     12/18/2021
 --]]
 
+
+type OklabClass = {
+    to: (rgb: Color3) -> Vector3,
+    from: (lab: Vector3, unclamped: boolean?) -> Color3,
+}
+
 local Oklab = {}
 
 -- Converts a Color3 in RGB space to a Vector3 in Oklab space.
@@ -5101,7 +5145,7 @@ return Oklab]]></ProtectedString>
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Shared = require(Package.Dependencies.Shared)
 local Error = require(Package.Logging.Error)
 
@@ -5137,20 +5181,20 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 type Set<T> = { [T]: any }
 
 type Shared = {
-	CurrentDependencySet: Set<Types.StateObject<any>>,
+	CurrentDependencySet: Set<Types.StateObject<any>>?,
 }
 
-local Shared = {}
+local Shared: Shared = {} :: any
 
 -- The set where state should be updated to.
 Shared.CurrentDependencySet = nil
 
-return Shared :: Shared
+return Shared
 ]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
@@ -5170,7 +5214,7 @@ return Shared :: Shared
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 local Signal = {}
 Signal.__index = Signal
@@ -5180,7 +5224,7 @@ function Signal:connectCallback(callback: (...any) -> nil)
         self._shouldConnect = true
         table.insert(self._toConnect, callback)
     else
-        table.insert(self._connections, callback)
+        self._connections[callback] = true
     end
     local connected = true
     return function ()
@@ -5188,9 +5232,8 @@ function Signal:connectCallback(callback: (...any) -> nil)
             return
         end
         connected = false
-        local index = table.find(self._connections, callback)
-        if index then
-            self._connections[index] = nil
+        if self._connections[callback] then
+            self._connections[callback] = nil
         end
     end
 end
@@ -5219,15 +5262,12 @@ end
 
 function Signal:fire(...)
     self._isfiring = true
-    for _, callback in ipairs(self._connections) do
+    for callback, _ in pairs(self._connections) do
         callback(...)
     end
-    if self._shouldConnect then
-        self._shouldConnect = false
-        for index, callback in ipairs(self._toConnect) do
-            table.insert(self._connections, callback)
-            self._toConnect[index] = nil
-        end
+    for index, callback in ipairs(self._toConnect) do
+        self._connections[callback] = true
+        self._toConnect[index] = nil
     end
     for inst, properties in pairs(self._properties) do
         for _, key in ipairs(properties) do
@@ -5238,13 +5278,14 @@ function Signal:fire(...)
 end
 
 local WEAK_KEYS_TABLE = { __mode = "k" }
+local WEAK_VALUES_TABLE = { __mode = "v" }
 
 return function (): Types.Signal
     local self = setmetatable({
         _isfiring = false,
         _shouldConnect = false,
         _properties = setmetatable({}, WEAK_KEYS_TABLE),
-        _connections = {},
+        _connections = setmetatable({}, WEAK_KEYS_TABLE),
         _toConnect = {},
     }, Signal) :: any
     
@@ -5271,13 +5312,15 @@ end]]></ProtectedString>
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Shared = require(Package.Dependencies.Shared)
+
+type Set<T> = { [T]: any }
 
 return function(dependency: Types.StateObject<any>)
 	local set = Shared.CurrentDependencySet
 	if set ~= nil then
-		set[dependency] = true
+		(set :: any)[dependency] = true
 	end
 end
 ]]></ProtectedString>
@@ -5311,7 +5354,7 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 return {
 	type = "Symbol",
@@ -5335,6 +5378,7 @@ return {
     12/17/2021
 --]]
 
+type DefaultProps = { [string]: { [string]: any } }
 
 return {
 	ScreenGui = {
@@ -5431,7 +5475,7 @@ return {
 		BorderColor3 = Color3.new(0, 0, 0),
 		BorderSizePixel = 0
 	}
-}]]></ProtectedString>
+} :: DefaultProps]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<BinaryString name="Tags"></BinaryString>
 						<UniqueId name="UniqueId">399ec6564257603e01d4ad5e00024799</UniqueId>
@@ -5453,7 +5497,7 @@ return {
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 return {
 	type = "Symbol",
@@ -5481,7 +5525,7 @@ return {
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local LogError = require(Package.Logging.LogError)
 local Children = require(Package.Instances.Children)
 local DoScheduling = require(Package.Instances.DoScheduling)
@@ -5492,8 +5536,9 @@ local Cleanup = require(Package.Utility.Cleanup)
 local Observer = require(Package.State.Observer)
 
 type Set<T> = { [T]: any }
+type Child = Types.CanBeState<Instance> | { Child } | nil
 
-local OverrideParents = setmetatable({}, { __mode = "k" }) :: Set<Instance>
+local OverrideParents: Set<Instance> = setmetatable({}, { __mode = "k" }) :: any
 
 local function SetProperty(inst, key, value)
 	inst[key] = value
@@ -5504,13 +5549,11 @@ end
 local function callback() end
 
 local function New(className: string, propertyTable: Types.PropertyTable)
-	-- TODO: Add cleanup tasks
-
 	local toConnect: Set<RBXScriptSignal> = {}
     local doScheduling = if propertyTable[DoScheduling] == false then false else true
     local cleanupTasks: { Cleanup.Task } = { }
-    local dependencies: Set<any> = {}
-    local inst, conn
+    local inst: Instance
+    local conn: RBXScriptConnection
     
     do
         -- Create the instance
@@ -5529,17 +5572,15 @@ local function New(className: string, propertyTable: Types.PropertyTable)
     end
 
 	-- Apply props
-	for key, value: any | Types.Value<any> in pairs(propertyTable) do
+	for key, value in pairs(propertyTable) do
 		if key == Children or key == "Parent" then
 			-- We do children and parenting separately
 			continue
 		elseif type(key) == "string" then
-
 			if typeof(value) == "table" and value.type == "State" then
                 if not pcall(SetProperty, inst, key, value:get(false)) then
                     LogError("cannotAssignProperty", nil, true, className, key)
                 end
-				-- Clean this up?
                 if doScheduling then
                     table.insert(cleanupTasks, Observer(value):onChange(function()
                         Scheduler.enqueueProperty(inst, key, value:get(false))
@@ -5547,6 +5588,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 else
                     table.insert(cleanupTasks, value._signal:connectProperty(inst, key))
                 end
+                continue
             else
                 if not pcall(SetProperty, inst, key, value) then
                     LogError("cannotAssignProperty", nil, true, className, key)
@@ -5580,13 +5622,24 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 	end
 
 	-- Do children
-	local children = propertyTable[Children]
+	local children = propertyTable[Children] :: Child
 	if children ~= nil then
-		local currentChildren, prevChildren = {}, {}
+		local currentChildren: Set<Instance> = {}
+        local prevChildren: Set<Instance> = {}
+        local connections: Set<Types.StateObject<any>> = {}
+        
+        -- Cleanup connections
+        table.insert(cleanupTasks, function()
+            for _, value in pairs(connections) do
+                value()
+            end
+            table.clear(connections)
+        end)
+        
 		local function updateChildren()
 			currentChildren, prevChildren = prevChildren, currentChildren
 
-			local function recursiveAddChild(child)
+			local function recursiveAddChild(child: Types.CanBeState<Instance> | table | nil)
 				local childType = typeof(child)
 
 				if childType == "Instance" then
@@ -5598,12 +5651,14 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 					end
 				elseif childType == "table" then
 					if child.type == "State" then
+                        local child: any = child
 						recursiveAddChild(child:get(false))
-						local disconnect
-						disconnect = child._signal:connectCallback(function()
-							task.defer(updateChildren)
-							disconnect()
-						end)
+                        
+                        if not connections[child] then
+                            connections[child] = child._signal:connectCallback(function()
+                                task.defer(updateChildren)
+                            end)
+                        end
 					else
 						for _, subChild in pairs(child) do
 							recursiveAddChild(subChild)
@@ -5618,7 +5673,7 @@ local function New(className: string, propertyTable: Types.PropertyTable)
 
 			for child in pairs(prevChildren) do
 				if OverrideParents[child] == nil then
-					child.Parent = nil
+					child.Parent = nil :: Instance
 				end
 			end
 		end
@@ -5694,18 +5749,20 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 local Chache: { [string]: Types.OnChange } = {}
 return function(propertyName: string): Types.OnChange
 	if Chache[propertyName] then
 		return Chache[propertyName]
 	end
-	local onchange = {
+	
+    local onchange = {
 		type = "Symbol",
 		name = "OnChange",
 		key = propertyName,
 	} :: Types.OnChange
+    
 	Chache[propertyName] = onchange
 	return onchange
 end
@@ -5731,18 +5788,20 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 local Chache: { [string]: Types.OnEvent } = {}
 return function(propertyName: string): Types.OnEvent
 	if Chache[propertyName] then
 		return Chache[propertyName]
 	end
-	local onevent = {
+	
+    local onevent = {
 		type = "Symbol",
 		name = "OnEvent",
 		key = propertyName,
 	} :: Types.OnEvent
+    
 	Chache[propertyName] = onevent
 	return onevent
 end
@@ -5839,7 +5898,7 @@ return Scheduler
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 return function(err: string): Types.Error
 	return {
@@ -5872,7 +5931,7 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Messages = require(Package.Logging.Messages)
 
 return function(messageID: string, errObj: Types.Error | nil, fatal: boolean?, ...)
@@ -5967,13 +6026,20 @@ return {
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local Capture = require(Package.Dependencies.Capture)
 local UseState = require(Package.Dependencies.UseState)
 local LogError = require(Package.Logging.LogError)
 local Signal = require(Package.Dependencies.Signal)
+local Shared = require(Package.Dependencies.Shared)
 
-local Computed = {}
+type ComputedClass = {
+    __index: any,
+    get: (Types.Computed<any>, asDependency: boolean?) -> any,
+    capture: (Types.Computed<any>) -> (),
+}
+
+local Computed: ComputedClass = {} :: any
 Computed.__index = Computed
 
 -- Returns the current value.
@@ -6009,7 +6075,10 @@ function Computed:capture()
     for dependency, _ in pairs(self._dependencySet) do
         if self.recapture == false then
             table.insert(self._connections, dependency._signal:connectCallback(function()
+		        local last = Shared.CurrentDependencySet
+		        Shared.CurrentDependencySet = nil
                 self._value = self._callback()
+		        Shared.CurrentDependencySet = last
                 self._signal:fire(self._value)
             end))
         else
@@ -6041,7 +6110,7 @@ return function<T>(callback: () -> T, recapture: boolean?): Types.Computed<T>
     
     -- Intialize the value.
 	computed:capture()
-
+    
 	return computed
 end
 ]]></ProtectedString>
@@ -6066,20 +6135,25 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 type Set<T> = { [T]: any }
 
 local strongRefs: Set<Types.Observer> = {}
 
-local Observer = {}
+type ObserverClass = {
+    __index: any,
+    onChange: (Types.Observer, callback: () -> ()) -> (),
+}
+
+local Observer: ObserverClass = {} :: any
 Observer.__index = Observer
 
 -- Adds a function to the list of listeners.
 -- Returns a function that when called will remove the listener.
-function Observer:onChange(callback: () -> nil): () -> nil
+function Observer:onChange(callback: () -> ()): () -> nil
     self.listeners += 1
-    local disconnect = self.state._signal:connectCallback(callback)
+    local disconnect = self.state._signal:connectCallback(callback :: (...any) -> nil)
 	strongRefs[self :: Types.Observer] = true
 
 	local disconnected = false
@@ -6133,7 +6207,7 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
@@ -6142,8 +6216,8 @@ local Binding = require(Package.State.Binding)
 type ValueClass = {
     __index: any,
     get: (Types.Value<any>, asDependency: boolean) -> any,
-    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding<any>,
-    set: (any) -> (),
+    bind: (Types.Value<any>, callback: (any) -> any) -> Types.Binding,
+    set: (newValue: any, force: boolean?) -> (),
 }
 
 local Value: ValueClass = {} :: any
@@ -6205,16 +6279,18 @@ end
 --]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 local UseState = require(Package.Dependencies.UseState)
 local Shared = require(Package.Dependencies.Shared)
 local Signal = require(Package.Dependencies.Signal)
 
 type BindingClass = {
-    get: (asDependency: boolean?) -> any,
+    __index: any,
+    get: (Types.Binding, asDependency: boolean?) -> any,
+    update: (Types.Binding, newValue: any) -> boolean,
 }
 
-local Binding = {}
+local Binding: BindingClass = {} :: any
 Binding.__index = Binding
 
 function Binding:get(asDependency: boolean?)
@@ -6234,16 +6310,16 @@ function Binding:update(newValue: any)
     return false
 end
 
-return function <T>(value: Types.Value<any>, callback: (any) -> any): Types.Binding<T>
+return function <T>(value: Types.Value<any>, callback: (any) -> any): Types.Binding
     local binding = setmetatable({
         type = "State",
         kind = "Binding",
         _callback = callback,
         _value = nil,
         _signal = Signal()
-    }, Binding)
+    }, Binding) :: Types.Binding
     
-    binding:update(value:get(false))
+    binding:update((value :: any):get(false))
     value._signal:connectCallback(function(newValue: any)
         binding:update(newValue)
     end)
@@ -6273,7 +6349,8 @@ end
 --]]
 
 type Set<T> = { [T]: any }
-type Symbol = {
+
+export type Symbol = {
 	type: string,
 	name: string,
 }
@@ -6282,17 +6359,12 @@ export type Object = {
     kind: string,
 }
 export type Signal = {
-    _connection: Set<(...any) -> nil>,
-    
     fire: (Signal, ...any) -> nil,
     connectCallback: (Signal, (...any) -> nil) -> () -> nil,
     connectProperty: (Signal, Instance, string) -> () -> nil,
 }
 export type StateObject<T> = Object & {
-    _value: T,
-    _signal: Signal,
     get: (StateObject<T>, asDependency: boolean?) -> T,
-    observer: Observer
 }
 export type CanBeState<T> = StateObject<T> | T
 
@@ -6331,21 +6403,14 @@ export type Binding<T> = StateObject<T> & {
     update: (Binding<T>, newValue: any) -> nil,
 }
 
-export type Computed<T> = StateObject<T> & {
-    recapture: boolean?,
-    capture: (Computed<T>) -> boolean,
-	_callback: () -> T,
-    _connections: { [StateObject<any>]: (...any) -> nil },
-    _dependencySet: Set<StateObject<any>>,
-    _oldDependencySet: Set<StateObject<any>>,
-}
+export type Computed<T> = StateObject<T>
 
 export type Observer = Object & {
-	callbacks: { [() -> nil]: boolean },
-	onChange: (Observer, callback: () -> nil) -> () -> nil,
+	onChange: (Observer, callback: () -> ()) -> () -> (),
 }
 
 export type Spring<T> = StateObject<T>
+export type Tween<T> = StateObject<T>
 
 export type Children = Symbol
 export type DoScheduling = Symbol
@@ -6395,7 +6460,7 @@ return nil
 ]]
 
 local Package = script.Parent.Parent
-local Types = require(Package.Types)
+local Types = require(Package.PrivateTypes)
 
 return {
 	type = "Symbol",
@@ -6548,6 +6613,155 @@ end]]></ProtectedString>
 						<UniqueId name="UniqueId">32ba651bfaf52e4201d5e12b0002480e</UniqueId>
 					</Properties>
 				</Item>
+			</Item>
+			<Item class="ModuleScript" referent="RBXC807978E70A44859BDC9E74B62DBD73A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<Content name="LinkedSource"><null></null></Content>
+					<string name="Name">PrivateTypes</string>
+					<string name="ScriptGuid">{7B648FB4-10C8-4500-9218-9FD358A5F05A}</string>
+					<ProtectedString name="Source"><![CDATA[--[[
+    PrivateTypes.
+    HawDevelopment
+    12/31/2021
+--]]
+
+type Set<T> = { [T]: any }
+type Symbol = {
+	type: string,
+	name: string,
+}
+export type Object = {
+    type: string,
+    kind: string,
+}
+export type Signal = {
+    _connection: Set<(...any) -> nil>,
+    _isfiring: boolean,
+    _shouldConnect: boolean,
+    _properties: { [Instance]: { string } },
+    _connections: Set<(...any) -> nil>,
+    _toConnect: { (...any) -> nil },
+    
+    fire: (Signal, ...any) -> nil,
+    connectCallback: (Signal, (...any) -> nil) -> () -> nil,
+    connectProperty: (Signal, Instance, string) -> () -> nil,
+}
+export type StateObject<T> = {
+    type: string,
+    kind: string,
+    _value: T,
+    _signal: Signal,
+    get: (StateObject<T>, asDependency: boolean?) -> T,
+    observer: Observer
+}
+export type CanBeState<T> = StateObject<T> | T
+
+export type Animatable = number |
+    CFrame |
+    Color3 |
+    ColorSequenceKeypoint |
+    DateTime |
+    NumberRange |
+    NumberSequenceKeypoint |
+    PhysicalProperties |
+    Ray |
+    Rect |
+    Region3 |
+    Region3int16 |
+    UDim |
+    UDim2 |
+    Vector2 |
+    Vector2int16 |
+    Vector3 |
+    Vector3int16
+
+export type Error = {
+	type: string,
+	raw: string,
+	message: string,
+	trace: string,
+}
+
+export type Value<T> = StateObject<T> & {
+	set: (Value<T>, newValue: any, force: boolean?) -> nil,
+    bind: (Value<T>, callback: (any) -> any) -> Binding,
+}
+
+export type Binding = StateObject<any> & {
+    _callback: (any) -> any,
+    update: (Binding, newValue: any) -> nil,
+}
+
+export type Computed<T> = StateObject<T> & {
+    recapture: boolean?,
+	_callback: () -> T,
+    _connections: { [StateObject<any>]: (...any) -> nil },
+    _dependencySet: Set<StateObject<any>>,
+    _oldDependencySet: Set<StateObject<any>>,
+    
+    capture: (Computed<T>) -> boolean,
+}
+
+export type Observer = Object & {
+	listeners: number,
+    state: StateObject<any>,
+    
+	onChange: (Observer, callback: () -> nil) -> () -> nil,
+}
+
+export type Spring<T> = StateObject<T> & {
+    _speed: CanBeState<number>?,
+    _speedIsState: boolean,
+    _lastSpeed: number?,
+    _damping: CanBeState<number>?,
+    _dampingIsState: boolean,
+    _lastDamping: number?,
+    
+    _goalState: Value<any>,
+    _goal: any?,
+    _value: any?,
+    _currentType: string?,
+    _currentPosition: { [number]: number },
+    _currentVelocity: { number },
+    _currentGoal: { number },
+    
+    update: (Spring<T>) -> boolean
+}
+
+export type Tween<T> = StateObject<T> & {
+    _goalState: Value<any>,
+    _tweenInfo: TweenInfo,
+    _prevValue: any,
+    _nextValue: any,
+    _value: any,
+    _currentTweenInfo: TweenInfo,
+    _currentTweenDuration: number,
+    _currentTweenStartTime: number,
+}
+
+export type Children = Symbol
+export type DoScheduling = Symbol
+
+export type OnChange = Symbol & {
+	key: string,
+}
+
+export type OnEvent = Symbol & {
+	key: string,
+}
+export type None = Symbol
+
+export type PropertyTable = {
+	[string | OnEvent | OnChange | Children]: CanBeState<any>,
+}
+
+return nil
+]]></ProtectedString>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">2f8c9b7c393f5bb601e0b9620002568a</UniqueId>
+				</Properties>
 			</Item>
 		</Item>
 	</Item>

@@ -63,12 +63,6 @@ export type Error = {
 
 export type Value<T> = StateObject<T> & {
 	set: (Value<T>, newValue: any, force: boolean?) -> nil,
-    bind: (Value<T>, callback: (any) -> any) -> Binding,
-}
-
-export type Binding = StateObject<any> & {
-    _callback: (any) -> any,
-    update: (Binding, newValue: any) -> nil,
 }
 
 export type Computed<T> = StateObject<T> & {

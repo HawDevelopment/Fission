@@ -22,6 +22,7 @@ type Set<T> = { [T]: any }
 type Child = Types.CanBeState<Instance> | { Child } | nil
 
 local OverrideParents: Set<Instance> = setmetatable({}, { __mode = "k" }) :: any
+local StrongStateRefrence: Set<Types.StateObject<any>> = {}
 
 local function SetProperty(inst, key, value)
 	inst[key] = value
@@ -71,6 +72,12 @@ local function New(className: string, propertyTable: Types.PropertyTable)
                 else
                     table.insert(cleanupTasks, value._signal:connectProperty(inst, key))
                 end
+                
+                StrongStateRefrence[value] = true
+                table.insert(cleanupTasks, function()
+                    StrongStateRefrence[value] = nil
+                end)
+                
                 continue
             else
                 if not pcall(SetProperty, inst, key, value) then
