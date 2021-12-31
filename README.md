@@ -3,20 +3,10 @@
 An optimized fork of [Fusion](https://github.com/Elttob/Fusion).
 Huge props to Elttob, Fusion is truely awesome. One of the best projects I've ever seen.
 
+Fission should only be used if you want really good performance. Consider Fusion if you dont plan on maximising fps.
+
 Changes from Fusion:
 
--   Computed now takes a second argument `recapture`. If `recapture` is set to `false`, it will not recalculate dependencies, and will not provide error handling.
--   A state can only have one observer.
--   Added `DoScheduling` symbol. When added to a property table and the value is set to false, Fission will no longer use the scheduler. Instead it will just set the property.
--   Added method `Value:bind`. It works a lot like a computed but can only be used for one value.
-
-    ```lua
-    local value = Value(1)
-
-    value:bind(function(v)
-        print(v)
-    end) -- prints 1 (The binding will be called when its created)
-
-    value:set(2) -- prints 2
-    value:set("Hello") -- prints Hello
-    ```
+-   Computed now has a second optional argument `recapture`. If `recapture` is a boolean parameter and will only change the behavior of the computed if set `false`. If `recapture` is passed as false, it will not try to find used state objects when an update happens. This is good when you dont plan on adding and removing states in the computed.
+-   Observers will be stored for future use in states. If you create to observers for the same state, it would be the same object.
+-   Added `DoScheduling` symbol. When added to a property table and the value is set to false, Fission will no longer use the scheduler for that object. Instead it will just set the property. (I plan to set DoScheduling to false by defualt for future releases.)

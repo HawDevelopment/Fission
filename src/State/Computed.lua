@@ -13,6 +13,7 @@ local Capture = require(Package.Dependencies.Capture)
 local UseState = require(Package.Dependencies.UseState)
 local LogError = require(Package.Logging.LogError)
 local Signal = require(Package.Dependencies.Signal)
+local Shared = require(Package.Dependencies.Shared)
 
 local Computed = {}
 Computed.__index = Computed
@@ -50,7 +51,10 @@ function Computed:capture()
     for dependency, _ in pairs(self._dependencySet) do
         if self.recapture == false then
             table.insert(self._connections, dependency._signal:connectCallback(function()
+		        local last = Shared.CurrentDependencySet
+		        Shared.CurrentDependencySet = nil
                 self._value = self._callback()
+		        Shared.CurrentDependencySet = last
                 self._signal:fire(self._value)
             end))
         else
